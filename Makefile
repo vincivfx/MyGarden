@@ -1,7 +1,7 @@
 # ------------------------------------------------------
 # Configuration JavaFX et chemins
 # ------------------------------------------------------
-JAVAFX_HOME = /usr/share/openjfx
+JAVAFX_HOME = lib
 JAVAFX_LIB = $(JAVAFX_HOME)/lib
 
 SRC_DIR = src
@@ -11,7 +11,7 @@ MAIN_CLASS = Main
 JAVAC = javac
 JAVA  = java
 
-JAVAFX_FLAGS = --module-path $(JAVAFX_LIB) --add-modules javafx.controls
+JAVAFX_FLAGS = --module-path lib --add-modules javafx.controls
 
 # ------------------------------------------------------
 # Cibles
