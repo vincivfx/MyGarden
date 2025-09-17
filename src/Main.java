@@ -5,21 +5,21 @@ import javax.swing.JPanel;
 
 public class Main {
     public static void main(String[] args) {
-        // Crée la fenêtre
-        JFrame frame = new JFrame("Exemple Swing");
+        // Create the main window
+        JFrame frame = new JFrame("Swing Example");
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Crée un panneau et un bouton
+        // Create a panel and a button
         JPanel panel = new JPanel();
-        JButton button = new JButton("Clique-moi !");
-        button.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Bouton cliqué !"));
+        JButton button = new JButton("Click me!");
+        button.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Button clicked!"));
 
-        // Ajoute le bouton au panneau et le panneau à la fenêtre
+        // Add the button to the panel and the panel to the window
         panel.add(button);
         frame.add(panel);
 
-        // Affiche la fenêtre
+        // Show the window
         frame.setVisible(true);
     }
 }
