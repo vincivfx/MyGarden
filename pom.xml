@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>se.chalmers.agile.mygarden</groupId>
+    <groupId>com.mygarden.app</groupId>
     <artifactId>MyGarden</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>MyGarden</name>
@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                se.chalmers.agile.mygarden.mygarden/se.chalmers.agile.mygarden.mygarden.HelloApplication
+                                com.mygarden.app.mygarden/com.mygarden.app.mygarden.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

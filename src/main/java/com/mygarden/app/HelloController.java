@@ -1,4 +1,4 @@
-package se.chalmers.agile.mygarden.mygarden;
+package com.mygarden.app;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
