@@ -1,4 +1,4 @@
-package com.mygarden.app;
+package com.mygarden.app.temp;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

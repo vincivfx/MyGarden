@@ -1,12 +1,11 @@
-package com.mygarden.app;
+package com.mygarden.app.temp;
+
+import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.sql.SQLException;
 
 public class HelloApplication extends Application {
     @Override
@@ -19,15 +18,6 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        Persistence persistence;
-
-        try {
-            persistence = new Persistence();
-        } catch (SQLException exception) {
-            System.out.println(exception.getMessage());
-            System.exit(1);
-        }
-
         launch();
     }
 }
