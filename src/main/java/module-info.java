@@ -5,6 +5,7 @@ module com.mygarden.app {
     requires org.controlsfx.controls;
     requires ormlite.jdbc;
     requires java.sql;
+    requires javafx.graphics;
 
     exports com.mygarden.app;
     exports com.mygarden.app.models;

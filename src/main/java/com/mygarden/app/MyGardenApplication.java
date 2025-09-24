@@ -11,7 +11,8 @@ public class MyGardenApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MyGardenApplication.class.getResource("main-page-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 335, 600);
+        stage.setResizable(false);
         stage.setTitle("MyGarden");
         stage.setScene(scene);
         stage.show();
