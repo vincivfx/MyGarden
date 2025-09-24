@@ -1,4 +1,4 @@
-package com.mygarden.app;
+package com.mygarden.app.controllers;
 
 import java.io.IOException;
 

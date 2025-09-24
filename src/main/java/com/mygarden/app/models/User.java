@@ -15,6 +15,11 @@ public class User {
     @DatabaseField
     private String password;
 
+    @DatabaseField
+    private int coins;
+
+
+
     public User() {
         // needed by ORMLite
     }
