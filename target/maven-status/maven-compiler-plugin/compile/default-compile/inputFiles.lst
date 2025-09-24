@@ -1,7 +1,10 @@
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\MainPageController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\User.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\MyGardenApplication.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\temp\HelloApplication.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\temp\HelloController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\temp\Persistence.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\module-info.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/MyGardenApplication.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/MainPageController.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/ShopController.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Plant.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Shop.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/User.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/temp/HelloApplication.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/temp/HelloController.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/temp/Persistence.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/module-info.java

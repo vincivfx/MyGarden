@@ -1,7 +1,10 @@
-com\mygarden\app\MainPageController.class
+com/mygarden/app/controllers/MainPageController.class
+com/mygarden/app/temp/Persistence.class
+com/mygarden/app/controllers/ShopController.class
+com/mygarden/app/MyGardenApplication.class
+com/mygarden/app/temp/HelloController.class
+com/mygarden/app/models/Plant.class
+com/mygarden/app/models/User.class
 module-info.class
-com\mygarden\app\models\User.class
-com\mygarden\app\temp\HelloApplication.class
-com\mygarden\app\temp\HelloController.class
-com\mygarden\app\MyGardenApplication.class
-com\mygarden\app\temp\Persistence.class
+com/mygarden/app/models/Shop.class
+com/mygarden/app/temp/HelloApplication.class

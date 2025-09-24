@@ -1,21 +1,23 @@
 package com.mygarden.app.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    List<Plant> shopItems;
+    List<Plant> ShopItems;
     
 
     public Shop() {
-        shopItems.add(new Plant("tulip",3,"images/MainPage.jpg"));
+        ShopItems = new ArrayList<>();
+        ShopItems.add(new Plant("tulip",3,"/images/MainPage.jpg"));
     }
 
     public List<Plant> getShopItems() {
-        return shopItems;
+        return ShopItems;
     }
 
     public void setShopItems(List<Plant> shopItems) {
-        this.shopItems = shopItems;
+        this.ShopItems = shopItems;
     }
     
 }
