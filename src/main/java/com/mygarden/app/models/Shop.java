@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    List<Plant> ShopItems;
+    List<ShopItem> ShopItems;
     
 
     public Shop() {
         ShopItems = new ArrayList<>();
-        ShopItems.add(new Plant("tulip",3,"/images/MainPage.jpg"));
+        ShopItems.add(new ShopItem("tulip",3,"/images/MainPage.jpg"));
     }
 
-    public List<Plant> getShopItems() {
+    public List<ShopItem> getShopItems() {
         return ShopItems;
     }
 
-    public void setShopItems(List<Plant> shopItems) {
+    public void setShopItems(List<ShopItem> shopItems) {
         this.ShopItems = shopItems;
     }
     

@@ -1,11 +1,11 @@
 package com.mygarden.app.models;
 
-public class Plant {
+public class ShopItem {
     private String name;
     private int price;
     private String imagePath;
 
-    public Plant(String name, int price, String imagePath) {
+    public ShopItem(String name, int price, String imagePath) {
         this.name = name;
         this.price = price;
         this.imagePath = imagePath;

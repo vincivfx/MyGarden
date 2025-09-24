@@ -1,8 +1,8 @@
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/MyGardenApplication.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/MainPageController.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/ShopController.java
-/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Plant.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Shop.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/ShopItem.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/User.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/temp/HelloApplication.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/temp/HelloController.java
