@@ -41,7 +41,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<SplitPane dividerPositions="0.10869565217391304" orientation="VERTICAL" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.ShopController">
+<SplitPane dividerPositions="0.10869565217391304" orientation="VERTICAL" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/17.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.ShopController">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="20.0" prefWidth="160.0">
          <children>

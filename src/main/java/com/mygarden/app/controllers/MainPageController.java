@@ -44,12 +44,12 @@ public class MainPageController {
 
     @FXML
     private void onGoToShop(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Changing Scene");
         alert.setHeaderText("Shop Clicked!");
         alert.setContentText("Remove comment in .java to change scene.");
-        alert.showAndWait(); // Show and Wait for user to close
-        //changeScene(event, "shop-view.fxml");
+        alert.showAndWait(); // Show and Wait for user to close*/
+        changeScene(event, "/com/mygarden/app/shop-view.fxml");
     }
 
         @FXML
