@@ -3,8 +3,10 @@ package com.mygarden.app.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mygarden.app.models.Plant;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.User;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,12 +19,17 @@ import javafx.scene.layout.GridPane;
 
 
 public class ShopController implements Initializable {
+
+    // --- Models ---
+
     Shop shop = new Shop();
+    User user = new User();
 
-    @FXML
-    private GridPane ShopGrid;
+    // --- End Models ---
 
-    private void InitialzeGrid(int rows, int columnss)
+
+    // --- Methods ---
+    private void initialzeGrid(int rows, int columnss)
     {
          for (int row = 0; row < rows; row++) {
                 for (int col = 0; col < columnss; col++) {
@@ -51,6 +58,20 @@ public class ShopController implements Initializable {
                 }
     }
 
+    private void updateUICoins()
+    {
+        UserCoins.setText(String.format("%d coins", user.getCoins()));
+    }
+    // --- End Methods ---
+
+    // --- FXML UI elements ---
+    @FXML
+    private Label UserCoins;
+
+    @FXML
+    private GridPane ShopGrid;
+    // --- END FXML UI elements ---
+
     @FXML
     private void BuyPlant(MouseEvent event) {
 
@@ -61,7 +82,22 @@ public class ShopController implements Initializable {
         // If the index is valid
         if(indexInShop >= 0 && indexInShop < shop.getNumberOfItems())
         {
-            System.out.println(shop.getShopItem(indexInShop).getName());
+            ShopItem shopItem = shop.getShopItem(indexInShop);
+
+            if(shopItem.getPrice() <= user.getCoins()) //Enough Money
+            {
+                System.out.println("Buy");
+                user.spendCoins(shopItem.getPrice());
+                updateUICoins();
+
+                //Create the plant with the name and the image of the shop item
+                user.addPlantInInventory(new Plant());
+                
+            }
+            else  //Not Enough money
+            {
+               System.out.println("Not Enough money");
+            }
         }
         
     }
@@ -69,17 +105,21 @@ public class ShopController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle resbundle)
     {
+        updateUICoins();
 
         for (int i = 0; i < shop.getNumberOfItems(); i++)
         {
             ShopItem item = shop.getShopItem(i);
 
             AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
-            ImageView iv = (ImageView)anchor.getChildren().get(0);
-            iv.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
+            ImageView itemImage = (ImageView)anchor.getChildren().get(0);
+            itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
 
-            Label l = (Label)anchor.getChildren().get(1);
-            l.setText(item.getName());
+            Label itemPrice = (Label)anchor.getChildren().get(1);
+            itemPrice.setText(String.format("%d coins", item.getPrice()));
+
+            Label itemName = (Label)anchor.getChildren().get(2);
+            itemName.setText(item.getName());
         } 
             
     }

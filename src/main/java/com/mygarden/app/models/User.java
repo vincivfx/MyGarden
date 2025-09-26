@@ -1,5 +1,8 @@
 package com.mygarden.app.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -18,8 +21,33 @@ public class User {
     @DatabaseField
     private int coins;
 
+    @DatabaseField
+    private List<Plant> inventory;
+
     public User() {
         // needed by ORMLite
+        this.coins = 50;
+        inventory = new ArrayList<>();
+    }
+
+    public int getCoins()
+    {
+        return this.coins;
+    }
+
+    public void spendCoins(int price)
+    {
+        this.coins -= price;
+    }
+
+    public void earnCoins(int coins)
+    {
+        this.coins += coins;
+    }
+
+    public void addPlantInInventory(Plant plant)
+    {
+        inventory.add(plant);
     }
 
 }
