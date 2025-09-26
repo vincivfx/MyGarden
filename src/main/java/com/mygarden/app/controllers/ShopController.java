@@ -4,12 +4,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.mygarden.app.models.Shop;
+import com.mygarden.app.models.ShopItem;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
@@ -49,20 +51,38 @@ public class ShopController implements Initializable {
                 }
     }
 
-    @Override
-    public void initialize (URL url, ResourceBundle resbundle){
+    @FXML
+    private void BuyPlant(MouseEvent event) {
 
-           InitialzeGrid(3,4);
+        //Get the index of the item in the shop
+        AnchorPane cell = (AnchorPane) event.getSource();
+        int indexInShop = ShopGrid.getChildren().indexOf(cell);
 
-            for (int i = 0; i < shop.getShopItems().size(); i++)
-            {
-                AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
-                ImageView iv = (ImageView)anchor.getChildren().get(0);
-
-                iv.setImage(new Image(getClass().getResourceAsStream(shop.getShopItems().get(i).getImagePath())));
-            } 
-            
+        // If the index is valid
+        if(indexInShop >= 0 && indexInShop < shop.getNumberOfItems())
+        {
+            System.out.println(shop.getShopItem(indexInShop).getName());
         }
+        
+    }
+
+    @Override
+    public void initialize (URL url, ResourceBundle resbundle)
+    {
+
+        for (int i = 0; i < shop.getNumberOfItems(); i++)
+        {
+            ShopItem item = shop.getShopItem(i);
+
+            AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
+            ImageView iv = (ImageView)anchor.getChildren().get(0);
+            iv.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
+
+            Label l = (Label)anchor.getChildren().get(1);
+            l.setText(item.getName());
+        } 
+            
+    }
 
     
 }
