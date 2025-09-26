@@ -18,8 +18,6 @@ public class User {
     @DatabaseField
     private int coins;
 
-
-
     public User() {
         // needed by ORMLite
     }

@@ -1,21 +1,34 @@
 package com.mygarden.app.models;
 
-public class ShopItem {
-    private String name;
-    private int price;
-    private String imagePath;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-    public ShopItem(String name, int price, String imagePath) {
+@DatabaseTable(tableName = "mg_shop_items")
+public class ShopItem {
+    @DatabaseField(id = true, generatedId = true)
+    private int shop_item_id;
+
+    @DatabaseField
+    private String name;
+
+    @DatabaseField
+    private int price;
+
+    @DatabaseField
+    private String image_path;
+
+    public ShopItem(String name, int price, String image_path, Shop shop) {
         this.name = name;
         this.price = price;
-        this.imagePath = imagePath;
+        this.image_path = image_path;
+        this.shop = shop;
     }
 
     public String getName() {
         return name;
     }
 
-     public void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
     public int getPrice() {
@@ -25,10 +38,10 @@ public class ShopItem {
         this.price = price;
     }
     public String getImagePath() {
-        return imagePath;
+        return image_path;
     }
     public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+        this.image_path = imagePath;
     }
     
 }
