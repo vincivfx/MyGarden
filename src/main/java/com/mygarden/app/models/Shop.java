@@ -9,7 +9,10 @@ public class Shop {
 
     public Shop() {
         ShopItems = new ArrayList<>();
-        ShopItems.add(new ShopItem("Tulip", 10, "/images/MainPage.jpg"));
+        ShopItems.add(new ShopItem("Tulip", 10, "/images/tulip.jpg"));
+        ShopItems.add(new ShopItem("Rose", 20, "/images/rose.jpg"));
+        ShopItems.add(new ShopItem("Sunflower", 30, "/images/sunflower.jpg"));
+        ShopItems.add(new ShopItem("Daisy", 40, "/images/daisy.jpg"));
     }
 
     public ShopItem getShopItem(int i) {

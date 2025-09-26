@@ -23,14 +23,14 @@ public class MainPageController {
         alert.setContentText("Do these things.");
         alert.showAndWait(); // Show and Wait for user to close
     }
-
+    /* 
     private void changeScene(ActionEvent event, String fxmlFile) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
         Scene newScene = new Scene(fxmlLoader.load());
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.setScene(newScene);
-    }
+    }*/
 
     @FXML
     private void onGoToGarden(ActionEvent event) throws IOException {
@@ -49,7 +49,7 @@ public class MainPageController {
         alert.setHeaderText("Shop Clicked!");
         alert.setContentText("Remove comment in .java to change scene.");
         alert.showAndWait(); // Show and Wait for user to close*/
-        changeScene(event, "/com/mygarden/app/shop-view.fxml");
+        SceneUtils.changeScene(event, "/com/mygarden/app/shop-view.fxml");
     }
 
         @FXML
