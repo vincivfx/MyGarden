@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 //import javafx.scene.control.Label;
 
-public class MainPageController {
+public class MainPageController extends AbstractController {
     /*@FXML
     private Label welcomeText;*/
 
@@ -32,12 +32,12 @@ public class MainPageController {
 
     @FXML
     private void onGoToShop(ActionEvent event) throws IOException {
-        SceneUtils.changeScene(event, "/com/mygarden/app/shop-view.fxml");
+        SceneUtils.changeScene(event, "/com/mygarden/app/shop-view.fxml", getUser());
     }
 
     @FXML
     private void onGoToSettings(ActionEvent event) throws IOException {
-        SceneUtils.changeScene(event, "/com/mygarden/app/settings-view.fxml");
+        SceneUtils.changeScene(event, "/com/mygarden/app/settings-view.fxml", getUser());
     }
 
 }

@@ -4,12 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.mygarden.app.MyGardenApplication;
 import com.mygarden.app.models.Plant;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
-import com.mygarden.app.models.User;
-import com.mygarden.app.temp.HelloApplication;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,12 +19,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 
-public class ShopController implements Initializable {
+public class ShopController extends AbstractController implements Initializable  {
 
     // --- Models ---
 
     Shop shop = new Shop();
-    User user = new User();// PROBLEM HERE BC WE ARE CREATING AN USER EVERYTIME THAT WE OPEN SHOP AND COINS RESTART 
 
     // --- End Models ---
 
@@ -107,9 +103,14 @@ public class ShopController implements Initializable {
     }
 
     @Override
-    public void initialize (URL url, ResourceBundle resbundle)
+    public void onUserIsSet()
     {
         updateUICoins();
+    }
+
+    @Override
+    public void initialize (URL url, ResourceBundle resbundle)
+    {
 
         for (int i = 0; i < shop.getNumberOfItems(); i++)
         {
@@ -129,7 +130,7 @@ public class ShopController implements Initializable {
     }
     @FXML
     private void goToMainPage(ActionEvent event) throws IOException {
-        SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml");
+        SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
 
