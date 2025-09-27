@@ -15,4 +15,10 @@ public class SettingsController extends AbstractController{
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
+    @Override
+    public void onUserIsSet()
+    {
+        //Call when the page is load to update all the UI with the user data
+    }
+
 }

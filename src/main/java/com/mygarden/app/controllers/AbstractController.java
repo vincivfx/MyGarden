@@ -17,9 +17,6 @@ public abstract class AbstractController {
         onUserIsSet();
     }
 
-    public void onUserIsSet()
-    {
-
-    }
+    public abstract void onUserIsSet();
     
 }
