@@ -25,9 +25,14 @@ public class User {
     private List<Plant> inventory;
 
     public User() {
+        this.name = "Arthur";
         // needed by ORMLite
         this.coins = 50;
         inventory = new ArrayList<>();
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public int getCoins()

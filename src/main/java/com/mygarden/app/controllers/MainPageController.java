@@ -22,12 +22,8 @@ public class MainPageController extends AbstractController {
 
     @FXML
     private void onGoToGarden(ActionEvent event) throws IOException {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Changing Scene");
-        alert.setHeaderText("Garden Clicked!");
-        alert.setContentText("Remove comment in .java to change scene.");
-        alert.showAndWait(); // Show and Wait for user to close
-        //SceneUtils.changeScene(event, "/com/mygarden/app/garden-view.fxml");
+        SceneUtils.changeScene(event, "/com/mygarden/app/garden-view.fxml",getUser());
+
     }
 
     @FXML
@@ -39,6 +35,7 @@ public class MainPageController extends AbstractController {
     private void onGoToSettings(ActionEvent event) throws IOException {
         SceneUtils.changeScene(event, "/com/mygarden/app/settings-view.fxml", getUser());
     }
+
 
     @Override
     public void onUserIsSet()
