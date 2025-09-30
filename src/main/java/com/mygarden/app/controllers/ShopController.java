@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Plant;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
@@ -60,8 +61,9 @@ public class ShopController extends AbstractController implements Initializable 
 
     private void updateUICoins()
     {
-        UserCoins.setText(String.format("%d coins", user.getCoins()));
+        UserCoins.setText(String.format("%d coins", getUser().getCoins()));
     }
+
     // --- End Methods ---
 
     // --- FXML UI elements ---
@@ -71,40 +73,43 @@ public class ShopController extends AbstractController implements Initializable 
     @FXML
     private GridPane ShopGrid;
     // --- END FXML UI elements ---
-
+    
     @FXML
-    private void BuyPlant(MouseEvent event) {
-
-        //Get the index of the item in the shop
-        AnchorPane cell = (AnchorPane) event.getSource();
-        int indexInShop = ShopGrid.getChildren().indexOf(cell);
-
-        // If the index is valid
-        if(indexInShop >= 0 && indexInShop < shop.getNumberOfItems())
+    private void BuyPlant(MouseEvent event) throws IOException {
+        
+        if(SceneUtils.showConfirmationPopup("Are you sure to buy this plant ?"))
         {
-            ShopItem shopItem = shop.getShopItem(indexInShop);
+            //Get the index of the item in the shop
+            AnchorPane cell = (AnchorPane) event.getSource();
+            int indexInShop = ShopGrid.getChildren().indexOf(cell);
 
-            if(shopItem.getPrice() <= user.getCoins()) //Enough Money
+            // If the index is valid
+            if(indexInShop >= 0 && indexInShop < shop.getNumberOfItems())
             {
-                System.out.println("Buy");
-                user.spendCoins(shopItem.getPrice());
-                updateUICoins();
+                ShopItem shopItem = shop.getShopItem(indexInShop);
 
-                //Create the plant with the name and the image of the shop item
-                user.addPlantInInventory(new Plant());
-                
-            }
-            else  //Not Enough money
-            {
-               System.out.println("Not Enough money");
+                if(shopItem.getPrice() <= getUser().getCoins()) //Enough Money
+                {
+                    System.out.println("Buy");
+                    getUser().spendCoins(shopItem.getPrice());
+                    updateUICoins();
+
+                    //Create the plant with the name and the image of the shop item
+                    getUser().addPlantInInventory(new Plant());
+                    
+                }
+                else  //Not Enough money
+                {
+                System.out.println("Not Enough money");
+                }
             }
         }
-        
     }
 
     @Override
     public void onUserIsSet()
     {
+        //Call when the page is load to update all the UI with the user data
         updateUICoins();
     }
 

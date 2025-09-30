@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.utils.ConfirmationPopUpController">
+   <children>
+      <Label fx:id="question" alignment="CENTER" layoutX="53.0" layoutY="26.0" text="Are you sure to buy this plant?" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0" />
+      <Button layoutX="24.0" layoutY="62.0" mnemonicParsing="false" onAction="#onYesClicked" text="Yes" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0" />
+      <Button layoutX="124.0" layoutY="62.0" mnemonicParsing="false" onAction="#onNoClicked" text="No" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" />
+   </children>
+</AnchorPane>
