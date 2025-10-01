@@ -7,11 +7,17 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-//import javafx.scene.control.Label;
+import javafx.scene.control.Label;
 
 public class MainPageController extends AbstractController {
-    /*@FXML
-    private Label welcomeText;*/
+    // --- FXML UI elements ---
+    @FXML
+    private Label UserCoins;
+
+    private void updateUICoins()
+    {
+        UserCoins.setText(String.format("%d", getUser().getCoins()));
+    }
 
     @FXML
     private void onChallengeClick() {
@@ -43,6 +49,7 @@ public class MainPageController extends AbstractController {
     public void onUserIsSet()
     {
         //Call when the page is load to update all the UI with the user data
+        updateUICoins();
     }
 
 
