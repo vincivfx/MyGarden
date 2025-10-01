@@ -84,6 +84,41 @@
                                           <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.rowIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.rowIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.rowIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#buyPlant" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="159.0" fitWidth="159.0" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
                                  </children>
                               </GridPane>
                            </children>

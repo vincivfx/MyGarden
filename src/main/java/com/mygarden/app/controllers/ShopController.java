@@ -78,12 +78,6 @@ public class ShopController extends AbstractController implements Initializable 
            
             ImageView itemImage = (ImageView)anchor.getChildren().get(0);
             itemImage.setImage(null);
-
-            Label itemPrice = (Label)anchor.getChildren().get(1);
-            itemPrice.setText("");
-
-            Label itemName = (Label)anchor.getChildren().get(2);
-            itemName.setText("");
        }
     }
 
@@ -101,11 +95,6 @@ public class ShopController extends AbstractController implements Initializable 
                 ImageView itemImage = (ImageView)anchor.getChildren().get(0);
                 itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
 
-                Label itemPrice = (Label)anchor.getChildren().get(1);
-                itemPrice.setText(String.format("%d coins", item.getPrice()));
-
-                Label itemName = (Label)anchor.getChildren().get(2);
-                itemName.setText(item.getName());
                 indexInShop++;
             }
         } 
@@ -150,9 +139,11 @@ public class ShopController extends AbstractController implements Initializable 
                 System.out.println("Buy");
                 getUser().spendCoins(shopItem.getPrice());
                 updateUICoins();
+                
 
                 //Create the plant with the name and the image of the shop item
                 getUser().addPlantInInventory(new Plant()); 
+                SceneUtils.showPopup("Plant is buyed");
             }
             
         }

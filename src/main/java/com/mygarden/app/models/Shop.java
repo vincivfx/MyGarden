@@ -9,10 +9,10 @@ public class Shop {
 
     public Shop() {
         ShopItems = new ArrayList<>();
-        ShopItems.add(new ShopItem("Tulip", 10, "/images/tulip.jpg", 0));
-        ShopItems.add(new ShopItem("Rose", 20, "/images/rose.jpg", 0));
-        ShopItems.add(new ShopItem("Sunflower", 30, "/images/sunflower.jpg", 1));
-        ShopItems.add(new ShopItem("Daisy", 40, "/images/daisy.jpg", 2));
+        ShopItems.add(new ShopItem("Tulip", 10, "/images/shopImg/tulip.png", 0));
+        ShopItems.add(new ShopItem("Rose", 20, "/images/shopImg/rose.png", 0));
+        ShopItems.add(new ShopItem("Sunflower", 30, "/images/shopImg/sunflower.png", 1));
+        ShopItems.add(new ShopItem("Daisy", 40, "/images/shopImg/daisy.png", 2));
     }
 
     public ShopItem getShopItem(int i) {
