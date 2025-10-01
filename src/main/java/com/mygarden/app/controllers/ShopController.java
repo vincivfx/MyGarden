@@ -3,6 +3,8 @@ package com.mygarden.app.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Plant;
@@ -12,6 +14,8 @@ import com.mygarden.app.models.ShopItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +26,8 @@ import javafx.scene.layout.GridPane;
 
 public class ShopController extends AbstractController implements Initializable  {
 
+
+    int currentCategorie = -1;
     // --- Models ---
 
     Shop shop = new Shop();
@@ -64,46 +70,45 @@ public class ShopController extends AbstractController implements Initializable 
         UserCoins.setText(String.format("%d coins", getUser().getCoins()));
     }
 
-    // --- End Methods ---
+    private void clearShop()
+    {
+       for(Node node : ShopGrid.getChildren())
+       {
+            AnchorPane anchor = (AnchorPane)node;
+           
+            ImageView itemImage = (ImageView)anchor.getChildren().get(0);
+            itemImage.setImage(null);
 
-    // --- FXML UI elements ---
-    @FXML
-    private Label UserCoins;
+            Label itemPrice = (Label)anchor.getChildren().get(1);
+            itemPrice.setText("");
 
-    @FXML
-    private GridPane ShopGrid;
-    // --- END FXML UI elements ---
-    
-    @FXML
-    private void BuyPlant(MouseEvent event) throws IOException {
-        
-        if(SceneUtils.showConfirmationPopup("Are you sure to buy this plant ?"))
+            Label itemName = (Label)anchor.getChildren().get(2);
+            itemName.setText("");
+       }
+    }
+
+
+    private void showShopItemsFromCategorie(int categorie)
+    {
+        clearShop();
+        int indexInShop = 0;
+        for (int i = 0; i < shop.getNumberOfItems(); i++)
         {
-            //Get the index of the item in the shop
-            AnchorPane cell = (AnchorPane) event.getSource();
-            int indexInShop = ShopGrid.getChildren().indexOf(cell);
-
-            // If the index is valid
-            if(indexInShop >= 0 && indexInShop < shop.getNumberOfItems())
+            ShopItem item = shop.getShopItem(i);
+            if(item.getCategorie() == categorie || categorie == -1)
             {
-                ShopItem shopItem = shop.getShopItem(indexInShop);
+                AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(indexInShop));
+                ImageView itemImage = (ImageView)anchor.getChildren().get(0);
+                itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
 
-                if(shopItem.getPrice() <= getUser().getCoins()) //Enough Money
-                {
-                    System.out.println("Buy");
-                    getUser().spendCoins(shopItem.getPrice());
-                    updateUICoins();
+                Label itemPrice = (Label)anchor.getChildren().get(1);
+                itemPrice.setText(String.format("%d coins", item.getPrice()));
 
-                    //Create the plant with the name and the image of the shop item
-                    getUser().addPlantInInventory(new Plant());
-                    
-                }
-                else  //Not Enough money
-                {
-                System.out.println("Not Enough money");
-                }
+                Label itemName = (Label)anchor.getChildren().get(2);
+                itemName.setText(item.getName());
+                indexInShop++;
             }
-        }
+        } 
     }
 
     @Override
@@ -115,24 +120,68 @@ public class ShopController extends AbstractController implements Initializable 
 
     @Override
     public void initialize (URL url, ResourceBundle resbundle)
-    {
-
-        for (int i = 0; i < shop.getNumberOfItems(); i++)
-        {
-            ShopItem item = shop.getShopItem(i);
-
-            AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
-            ImageView itemImage = (ImageView)anchor.getChildren().get(0);
-            itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
-
-            Label itemPrice = (Label)anchor.getChildren().get(1);
-            itemPrice.setText(String.format("%d coins", item.getPrice()));
-
-            Label itemName = (Label)anchor.getChildren().get(2);
-            itemName.setText(item.getName());
-        } 
-            
+    {   
+        showShopItemsFromCategorie(currentCategorie);
     }
+
+    // --- End Methods ---
+
+    // --- FXML UI elements ---
+    @FXML
+    private Label UserCoins;
+
+    @FXML
+    private GridPane ShopGrid;
+    // --- END FXML UI elements ---
+    
+    @FXML
+    private void buyPlant(MouseEvent event) throws IOException {
+        
+        //Get the index of the item in the shop
+        AnchorPane cell = (AnchorPane) event.getSource();
+        int indexInShop = ShopGrid.getChildren().indexOf(cell);
+
+        ShopItem shopItem = shop.getShopItemFromCategorie(indexInShop, currentCategorie);
+
+        if(shopItem.getPrice() <= getUser().getCoins()) //Enough Money
+        {
+            if(SceneUtils.showConfirmationPopup(String.format("Are you sure to buy %s ?", shopItem.getName())))
+            {
+                System.out.println("Buy");
+                getUser().spendCoins(shopItem.getPrice());
+                updateUICoins();
+
+                //Create the plant with the name and the image of the shop item
+                getUser().addPlantInInventory(new Plant()); 
+            }
+            
+        }
+        else  //Not Enough money
+        {
+            System.out.println("Not Enough money");
+        }
+
+        
+    }
+
+    @FXML
+    private void changeCategorie(ActionEvent event)
+    {
+        Button source = (Button) event.getSource();
+         
+        Pattern pattern = Pattern.compile("Categorie(\\d+)");
+        Matcher matcher = pattern.matcher(source.getId());
+        
+        int categorie;
+        if (matcher.matches()) {
+            categorie = Integer.parseInt(matcher.group(1)); 
+        } else {
+            categorie = -1;
+        }
+        currentCategorie = categorie;
+        showShopItemsFromCategorie(categorie);
+    }
+
     @FXML
     private void goToMainPage(ActionEvent event) throws IOException {
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());

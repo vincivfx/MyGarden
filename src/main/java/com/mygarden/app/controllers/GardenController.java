@@ -2,9 +2,9 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import com.mygarden.app.controllers.utils.SceneUtils;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.ClipboardContent;

@@ -17,10 +17,14 @@ public class ShopItem {
     @DatabaseField
     private String image_path;
 
-    public ShopItem(String name, int price, String image_path) {
+    @DatabaseField
+    private int categorie;
+
+    public ShopItem(String name, int price, String image_path, int categorie) {
         this.name = name;
         this.price = price;
         this.image_path = image_path;
+        this.categorie = categorie;
     }
 
     public String getName() {
@@ -41,6 +45,13 @@ public class ShopItem {
     }
     public void setImagePath(String imagePath) {
         this.image_path = imagePath;
+    }
+
+    public int getCategorie() {
+        return categorie;
+    }
+    public void setCategorie(int categorie) {
+        this.categorie = categorie;
     }
     
 }

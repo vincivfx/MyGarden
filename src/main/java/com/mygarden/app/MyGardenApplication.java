@@ -18,6 +18,7 @@ public class MyGardenApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 335, 600);
 
         AbstractController controller = fxmlLoader.getController();
+        
         controller.setUser(new User());
 
 
