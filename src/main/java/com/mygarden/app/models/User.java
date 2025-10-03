@@ -21,7 +21,6 @@ public class User {
     @DatabaseField
     private int coins;
 
-    @DatabaseField
     private List<Plant> inventory;
 
     public User() {
@@ -50,9 +49,18 @@ public class User {
         this.coins += coins;
     }
 
-    public void addPlantInInventory(Plant plant)
-    {
-        inventory.add(plant);
+    public Boolean verifyPassword(String password) {
+        return true;
+    }
+
+    public static User createUser(String username, String password, String name) {
+        User user = new User();
+
+        user.username = username;
+        user.password = password;
+        user.name = name;
+
+        return user;
     }
 
 }
