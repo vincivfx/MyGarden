@@ -33,6 +33,8 @@ public class ShopItem {
         return price;
     }
 
+    public String getId() {return shop_item_id;}
+
     public void setId(String id) {
         this.shop_item_id = id;
     }

@@ -21,9 +21,9 @@ public final class DatabaseManager {
     private final Dao<Garden, String> gardenDao;
     private final Dao<UserItem, String> userPlantDao;
     private final Dao<ShopItem, String> shopItemDao;
+    private final Dao<Transfer, Integer> transferDao;
 
     /**
-     *
      * @param cs
      * @throws SQLException
      */
@@ -36,10 +36,10 @@ public final class DatabaseManager {
         shopItemDao = DaoManager.createDao(connectionSource, ShopItem.class);
         gardenDao = DaoManager.createDao(connectionSource, Garden.class);
         userPlantDao = DaoManager.createDao(connectionSource, UserItem.class);
+        transferDao = DaoManager.createDao(connectionSource, Transfer.class);
     }
 
     /**
-     *
      * @param jdbcUrl
      * @throws SQLException
      */
@@ -62,15 +62,36 @@ public final class DatabaseManager {
         return INSTANCE;
     }
 
-    public Dao<User, String> getUserDao() {return userDao;}
-    public Dao<Challenge, String> getChallengeDao() {return challengeDao;}
-    public Dao<Garden, String> getGardenDao() {return gardenDao;}
-    public Dao<UserItem, String> getUserPlantDao() {return userPlantDao;}
-    public Dao<ShopItem, String> getShopItemDao() {return shopItemDao;}
+    public Dao<User, String> getUserDao() {
+        return userDao;
+    }
+
+    public Dao<Challenge, String> getChallengeDao() {
+        return challengeDao;
+    }
+
+    public Dao<Garden, String> getGardenDao() {
+        return gardenDao;
+    }
+
+    public Dao<UserItem, String> getUserPlantDao() {
+        return userPlantDao;
+    }
+
+    public Dao<ShopItem, String> getShopItemDao() {
+        return shopItemDao;
+    }
+
+    public Dao<Transfer, Integer> getTransferDao() {
+        return transferDao;
+    }
 
     public static synchronized void shutdown() {
         if (INSTANCE != null && INSTANCE.connectionSource != null) {
-            try { INSTANCE.connectionSource.close(); } catch (Exception ignored) {}
+            try {
+                INSTANCE.connectionSource.close();
+            } catch (Exception ignored) {
+            }
             INSTANCE = null;
         }
     }
@@ -84,6 +105,7 @@ public final class DatabaseManager {
     }
 
     public void spawnDatabase() throws SQLException {
+        System.out.println("Spawning database");
         shopItemDao.createOrUpdate(ShopItem.create("rose", "Rose", 25, 0));
         shopItemDao.createOrUpdate(ShopItem.create("tulip", "Tulip", 15, 0));
         shopItemDao.createOrUpdate(ShopItem.create("sunflower", "Sunflower", 20, 0));

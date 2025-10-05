@@ -2,10 +2,10 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.mygarden.app.controllers.utils.SceneUtils;
-import com.mygarden.app.models.Plant;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
 
@@ -95,7 +95,7 @@ public class ShopController extends AbstractController implements Initializable 
                     updateUICoins();
 
                     //Create the plant with the name and the image of the shop item
-                    getUser().addPlantInInventory(new Plant());
+                    // getUser().addPlantInInventory(new Plant());
                     
                 }
                 else  //Not Enough money
@@ -123,7 +123,7 @@ public class ShopController extends AbstractController implements Initializable 
 
             AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
             ImageView itemImage = (ImageView)anchor.getChildren().get(0);
-            itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
+            itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png"))));
 
             Label itemPrice = (Label)anchor.getChildren().get(1);
             itemPrice.setText(String.format("%d coins", item.getPrice()));
