@@ -21,7 +21,6 @@ public class MyGardenApplication extends Application {
         
         controller.setUser(new User());
 
-
         stage.setResizable(false);
         stage.setTitle("MyGarden");
         stage.setScene(scene);
