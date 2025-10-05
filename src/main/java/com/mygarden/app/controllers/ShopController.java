@@ -143,7 +143,7 @@ public class ShopController extends AbstractController implements Initializable 
 
                 //Create the plant with the name and the image of the shop item
                 getUser().addPlantInInventory(new Plant()); 
-                SceneUtils.showPopup("Plant is buyed");
+                SceneUtils.showPopup("Plant is bought");
             }
             
         }
