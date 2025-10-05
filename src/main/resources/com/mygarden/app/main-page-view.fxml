@@ -73,7 +73,7 @@
                      <Insets left="164.0" top="175.0" />
                   </VBox.margin>
                </Button>
-               <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChallengeClick" opacity="0.0" prefHeight="64.0" prefWidth="90.0" style="-fx-background-color: black;" text="Challenge" textFill="WHITE">
+               <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToChallenge" opacity="0.0" prefHeight="64.0" prefWidth="90.0" style="-fx-background-color: black;" text="Challenge" textFill="WHITE">
                   <font>
                      <Font name="System Bold" size="16.0" />
                   </font>
