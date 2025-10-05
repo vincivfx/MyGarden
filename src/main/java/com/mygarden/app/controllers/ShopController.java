@@ -1,7 +1,9 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -9,6 +11,7 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
 
+import com.mygarden.app.repositories.ShopItemsRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -117,21 +120,23 @@ public class ShopController extends AbstractController implements Initializable 
     public void initialize (URL url, ResourceBundle resbundle)
     {
 
-        for (int i = 0; i < shop.getNumberOfItems(); i++)
-        {
-            ShopItem item = shop.getShopItem(i);
+        ShopItemsRepository repository = new ShopItemsRepository();
+        try {
+            List<ShopItem> shopItemList = repository.findAll();
 
-            AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
-            ImageView itemImage = (ImageView)anchor.getChildren().get(0);
-            itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png"))));
+            for (int i = 0; i < shopItemList.size(); i++)
+            {
+                ShopItem item = shopItemList.get(i);
 
-            Label itemPrice = (Label)anchor.getChildren().get(1);
-            itemPrice.setText(String.format("%d coins", item.getPrice()));
+                AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(i));
+                ImageView itemImage = (ImageView)anchor.getChildren().get(0);
+                itemImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png"))));
+            }
 
-            Label itemName = (Label)anchor.getChildren().get(2);
-            itemName.setText(item.getName());
-        } 
-            
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            System.exit(1);
+        }
     }
     @FXML
     private void goToMainPage(ActionEvent event) throws IOException {
