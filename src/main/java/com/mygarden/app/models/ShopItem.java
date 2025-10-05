@@ -28,7 +28,6 @@ public class ShopItem {
     public void setName(String name) {
         this.name = name;
     }
-
     public int getPrice() {
         return price;
     }
@@ -47,6 +46,10 @@ public class ShopItem {
         this.category_id = category_id;
     }
 
+    public int getCategory() {
+        return this.category_id;
+    }
+
     /**
      * Static method that enables developers to get a ShopItem without constructor
      *
@@ -63,4 +66,5 @@ public class ShopItem {
         shopItem.setCategoryId(categoryId);
         return shopItem;
     }
+    
 }
