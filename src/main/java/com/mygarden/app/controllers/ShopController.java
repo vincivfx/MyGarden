@@ -2,6 +2,8 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +11,7 @@ import java.util.regex.Pattern;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.repositories.ShopItemsRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -83,7 +86,6 @@ public class ShopController extends AbstractController implements Initializable 
        }
     }
 
-
     private void showShopItemsFromCategorie(int categorie)
     {
         clearShop();
@@ -91,11 +93,17 @@ public class ShopController extends AbstractController implements Initializable 
         for (int i = 0; i < shop.getNumberOfItems(); i++)
         {
             ShopItem item = shop.getShopItem(i);
-            if(item.getCategorie() == categorie || categorie == -1)
+            if(item.getCategory() == categorie || categorie == -1)
             {
                 AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(indexInShop));
                 ImageView itemImage = (ImageView)anchor.getChildren().get(0);
-                itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
+
+                itemImage.setImage(
+                    new Image(Objects.requireNonNull(
+                        getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png")
+                    ))
+                );
+                
 
                 indexInShop++;
             }
@@ -112,6 +120,20 @@ public class ShopController extends AbstractController implements Initializable 
     @Override
     public void initialize (URL url, ResourceBundle resbundle)
     {   
+        ShopItemsRepository repository = new ShopItemsRepository();
+        try {
+            List<ShopItem> shopItemList = repository.findAll();
+
+            for (int i = 0; i < shopItemList.size(); i++) {
+                ShopItem item = shopItemList.get(i);
+                shop.addShopItem(item);
+                
+            }
+
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            System.exit(1);
+        }
         showShopItemsFromCategorie(currentCategorie);
     }
 

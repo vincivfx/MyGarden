@@ -21,6 +21,10 @@ public class Challenge {
     @DatabaseField
     private Date date;
 
+    public int getPoints() {
+        return points;
+    }
+
     public Challenge() {
         // needed by ORMLite
     }

@@ -3,8 +3,11 @@ package com.mygarden.app.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import com.mygarden.app.repositories.TransferRepository;
 
 @DatabaseTable(tableName = "mg_users")
 public class User {
@@ -21,7 +24,10 @@ public class User {
     @DatabaseField
     private int coins;
 
-    @DatabaseField
+    @ForeignCollectionField
+    private ForeignCollection<Transfer> transfers;
+
+
     private List<Plant> inventory;
 
     public User() {
@@ -31,28 +37,44 @@ public class User {
         inventory = new ArrayList<>();
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public int getCoins()
-    {
-        return this.coins;
+    public int getCoins() {
+        int coins = 0;
+
+        if (this.transfers == null) {
+            return coins;
+        }
+
+        for (Transfer transfer : this.transfers) {
+            coins += transfer.getAmount();
+        }
+        return coins;
     }
 
-    public void spendCoins(int price)
-    {
+    public void spendCoins(int price) {
         this.coins -= price;
     }
 
-    public void earnCoins(int coins)
-    {
+    public void earnCoins(int coins) {
         this.coins += coins;
     }
 
-    public void addPlantInInventory(Plant plant)
-    {
-        inventory.add(plant);
+    public Boolean verifyPassword(String password) {
+        return true;
     }
+
+    public static User createUser(String username, String password, String name) {
+        User user = new User();
+
+        user.username = username;
+        user.password = password;
+        user.name = name;
+
+        return user;
+    }
+
 
 }
