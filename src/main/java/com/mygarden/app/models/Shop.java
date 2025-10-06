@@ -11,6 +11,10 @@ public class Shop {
         ShopItems = new ArrayList<>();
     }
 
+    public void addShopItem(ShopItem item) {
+        ShopItems.add(item);
+    }
+
     public ShopItem getShopItem(int i) {
         return ShopItems.get(i);
     }

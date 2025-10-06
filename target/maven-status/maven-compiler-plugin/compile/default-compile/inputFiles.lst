@@ -1,7 +1,7 @@
-<<<<<<< HEAD
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/DatabaseManager.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/MyGardenApplication.java
-/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/Persistence.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/AbstractController.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/ChallengeController.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/GardenController.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/MainPageController.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/controllers/SettingsController.java
@@ -14,26 +14,12 @@
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Plant.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Shop.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/ShopItem.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/Transfer.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/User.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/UserItem.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/BaseRepository.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/NotFoundException.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/ShopItemsRepository.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/TransferRepository.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/UserRepository.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/module-info.java
-=======
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\AbstractController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\ChallengeController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\GardenController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\MainPageController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\SettingsController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\ShopController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\utils\ConfirmationPopUpController.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\controllers\utils\SceneUtils.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\Challenge.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\Garden.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\Plant.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\Shop.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\ShopItem.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\User.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\models\UserItem.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\MyGardenApplication.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\com\mygarden\app\Persistence.java
-C:\Users\loren\Desktop\Projects\MyGarden - Agile Software Project Management\MyGarden\src\main\java\module-info.java
->>>>>>> d/challenges

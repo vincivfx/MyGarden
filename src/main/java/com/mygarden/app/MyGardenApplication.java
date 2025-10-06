@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import com.mygarden.app.controllers.AbstractController;
 import com.mygarden.app.models.User;
 
-import com.mygarden.app.repositories.UserRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,7 +33,8 @@ public class MyGardenApplication extends Application {
         // connect to the SQLite database
         try {
             DatabaseManager.connect();
-
+            
+            
             if (args.length > 0 && args[0].equals("--spawn")) {
                 DatabaseManager.getInstance().spawnDatabase();
             }
