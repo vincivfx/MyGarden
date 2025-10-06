@@ -23,11 +23,6 @@ public class ChallengeController extends AbstractController{
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
-    @FXML
-    private void onGoToSettings(ActionEvent event) throws IOException {
-        SceneUtils.changeScene(event, "/com/mygarden/app/settings-view.fxml", getUser());
-    }
-
     @Override
     public void onUserIsSet()
     {
