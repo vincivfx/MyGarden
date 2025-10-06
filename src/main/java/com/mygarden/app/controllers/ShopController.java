@@ -1,7 +1,6 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.Objects;
@@ -10,8 +9,8 @@ import java.util.ResourceBundle;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
-
 import com.mygarden.app.repositories.ShopItemsRepository;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
