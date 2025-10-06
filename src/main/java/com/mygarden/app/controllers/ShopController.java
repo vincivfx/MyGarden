@@ -7,7 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.mygarden.app.controllers.utils.SceneUtils;
-import com.mygarden.app.models.Plant;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
 
@@ -38,31 +37,34 @@ public class ShopController extends AbstractController implements Initializable 
     // --- Methods ---
     private void initialzeGrid(int rows, int columnss)
     {
-         for (int row = 0; row < rows; row++) {
-                for (int col = 0; col < columnss; col++) {
-                    // Créer la cellule
-                    AnchorPane cell = new AnchorPane();
-                    cell.setPrefSize(100, 100); // taille de la cellule, ajuste comme tu veux
-                    
-                    // Ajouter l'image
-                    ImageView imageView = new ImageView();
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
-                    AnchorPane.setTopAnchor(imageView, 10.0); // distance du haut
-                    AnchorPane.setLeftAnchor(imageView, 10.0); // distance de la gauche
-                    
-                    // Ajouter le texte
-                    Label label = new Label("Texte");
-                    AnchorPane.setBottomAnchor(label, 10.0); // distance du bas
-                    AnchorPane.setLeftAnchor(label, 10.0); // distance de la gauche
-                    
-                    // Ajouter image et texte au AnchorPane
-                    cell.getChildren().addAll(imageView, label);
-                    
-                    // Ajouter la cellule à la grille
-                    ShopGrid.add(cell, col, row);
-                    }
-                }
+        for (int row = 0; row < rows; row++) 
+        {
+
+            for (int col = 0; col < columnss; col++) 
+            {
+                // Créer la cellule
+                AnchorPane cell = new AnchorPane();
+                cell.setPrefSize(100, 100); // taille de la cellule, ajuste comme tu veux
+                
+                // Ajouter l'image
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(50);
+                imageView.setFitHeight(50);
+                AnchorPane.setTopAnchor(imageView, 10.0); // distance du haut
+                AnchorPane.setLeftAnchor(imageView, 10.0); // distance de la gauche
+                
+                // Ajouter le texte
+                Label label = new Label("Texte");
+                AnchorPane.setBottomAnchor(label, 10.0); // distance du bas
+                AnchorPane.setLeftAnchor(label, 10.0); // distance de la gauche
+                
+                // Ajouter image et texte au AnchorPane
+                cell.getChildren().addAll(imageView, label);
+                
+                // Ajouter la cellule à la grille
+                ShopGrid.add(cell, col, row);
+            }
+        }
     }
 
     private void updateUICoins()
@@ -142,7 +144,7 @@ public class ShopController extends AbstractController implements Initializable 
                 
 
                 //Create the plant with the name and the image of the shop item
-                getUser().addPlantInInventory(new Plant()); 
+                //getUser().addPlantInInventory(new Plant()); 
                 SceneUtils.showPopup("Plant is bought");
             }
             
