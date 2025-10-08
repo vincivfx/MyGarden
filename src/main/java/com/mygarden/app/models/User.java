@@ -7,7 +7,6 @@ import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-import com.mygarden.app.repositories.TransferRepository;
 
 @DatabaseTable(tableName = "mg_users")
 public class User {
@@ -33,7 +32,7 @@ public class User {
     public User() {
         this.name = "Arthur";
         // needed by ORMLite
-        this.coins = 50;
+        this.coins = 30;
         inventory = new ArrayList<>();
     }
 
@@ -42,7 +41,7 @@ public class User {
     }
 
     public int getCoins() {
-        int coins = 0;
+        //int coins = 0;
 
         if (this.transfers == null) {
             return coins;

@@ -15,6 +15,7 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
 import com.mygarden.app.repositories.ShopItemsRepository;
+import com.mygarden.app.repositories.TransferRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -179,7 +180,15 @@ public class ShopController extends AbstractController implements Initializable 
             if(SceneUtils.showConfirmationPopup(String.format("Are you sure to buy %s ?", shopItem.getName())))
             {
                 System.out.println("Buy");
-                getUser().spendCoins(shopItem.getPrice());
+
+                TransferRepository tr = new TransferRepository();
+                try {
+                    tr.buy(user, shopItem);
+                } catch (Exception e) {
+                    System.err.println("SQL error");
+                }
+
+                // getUser().spendCoins(shopItem.getPrice());
                 updateUICoins();
                 
 

@@ -1,15 +1,18 @@
 package com.mygarden.app;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import com.mygarden.app.models.*;
+import com.mygarden.app.models.Challenge;
+import com.mygarden.app.models.Garden;
+import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.Transfer;
+import com.mygarden.app.models.User;
+import com.mygarden.app.models.UserItem;
 
 public final class DatabaseManager {
 
@@ -51,6 +54,7 @@ public final class DatabaseManager {
         TableUtils.createTableIfNotExists(cs, ShopItem.class);
         TableUtils.createTableIfNotExists(cs, Garden.class);
         TableUtils.createTableIfNotExists(cs, UserItem.class);
+        TableUtils.createTableIfNotExists(cs, Transfer.class);
 
         INSTANCE = new DatabaseManager(cs);
     }
@@ -106,6 +110,7 @@ public final class DatabaseManager {
 
     public void spawnDatabase() throws SQLException {
         System.out.println("Spawning database");
+        
         shopItemDao.createOrUpdate(ShopItem.create("rose", "Rose", 25, 0));
         shopItemDao.createOrUpdate(ShopItem.create("tulip", "Tulip", 15, 0));
         shopItemDao.createOrUpdate(ShopItem.create("sunflower", "Sunflower", 20, 0));
