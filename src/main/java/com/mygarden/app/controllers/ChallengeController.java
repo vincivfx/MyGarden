@@ -1,8 +1,13 @@
 package com.mygarden.app.controllers;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Challenge;
+import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.repositories.ChallengesRepository;
+import com.mygarden.app.repositories.ShopItemsRepository;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import javafx.event.ActionEvent;
@@ -10,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 //import javafx.scene.control.Label;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 
 public class ChallengeController extends AbstractController{
     // --- FXML UI elements ---
@@ -23,16 +29,8 @@ public class ChallengeController extends AbstractController{
     private Button completedBtn;
 
     private Challenge currentChallenge;
+    private List<Challenge> challengeList;
 
-    private void loadRandomChallenge(String type){
-        //call a list of all the items in table ddbb
-        //if all is empty " no available challenges"
-
-        // take random challenge 
-        Random rnd= new Random();
-        currentChallenge=
-
-    }
 
     private void updateUICoins()
     {
@@ -55,5 +53,29 @@ public class ChallengeController extends AbstractController{
         //Call when the page is load to update all the UI with the user data
         updateUICoins();
     }
+    private void loadChallengesFromDatabase() {
 
+        ChallengesRepository repository = new ChallengesRepository();
+        try 
+        {
+            List<Challenge> challengeList = repository.findAll();
+        } 
+        catch (Exception exception) {
+            exception.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+
+    private void loadRandomChallenge(String type){
+        if (challengeList == null || challengeList.isEmpty()) {
+            challengeDescription.setText("There are no available challenges");
+            //ChallengeTip.setText("");
+            completedBtn.setDisable(true);
+            return;
+        }
+        //take a random one 
+
+
+    }
 }
