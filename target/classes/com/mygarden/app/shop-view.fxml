@@ -47,14 +47,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.ShopController">
    <children>
       <StackPane prefHeight="100.0" prefWidth="335.0">
          <children>
-            <ImageView fitHeight="100.0" fitWidth="335.0" pickOnBounds="true" StackPane.alignment="CENTER">
+            <ImageView fitHeight="100.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@../../../images/Sky.jpg" />
+                  <Image url="@../../../images/Diseño%20sin%20título%20(1).png" />
                </image>
                <StackPane.margin>
                   <Insets />
@@ -64,20 +63,19 @@
                <children>
                   <AnchorPane prefHeight="70.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="UserCoins" alignment="TOP_CENTER" layoutX="89.0" layoutY="23.0" text="Coins">
+                        <Label fx:id="UserCoins" alignment="TOP_CENTER" layoutX="73.0" layoutY="21.0" text="Coins">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
                         <Button layoutX="225.0" layoutY="23.0" mnemonicParsing="false" onAction="#goToMainPage" text="Main Page" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="10.0">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="26.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="16.0">
                            <image>
                               <Image url="@../../../images/icon_coins.png" />
                            </image>
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <Label alignment="CENTER" prefHeight="43.0" prefWidth="335.0" text="Shop" textAlignment="CENTER" />
                </children>
             </VBox>
          </children>
