@@ -67,13 +67,15 @@
                                  <Insets top="21.0" />
                               </VBox.margin>
                            </Label>
+                           <Label fx:id="challengeTip" alignment="TOP_LEFT" prefHeight="104.0" prefWidth="270.0" text="Why?" wrapText="true">
+                              <VBox.margin>
+                                 <Insets top="30.0" />
+                              </VBox.margin>
+                           </Label>
+                           <Label fx:id="challengeDescription" alignment="TOP_LEFT" prefHeight="104.0" prefWidth="270.0" text="Challenge description..." wrapText="true" />
+                           <Button fx:id="completedBtn" mnemonicParsing="false" text="Completed" />
                         </children>
                      </VBox>
-                     <Label fx:id="challengeDescription" prefHeight="26.0" prefWidth="215.0" text="Label">
-                        <graphic>
-                           <Button fx:id="completedBtn" mnemonicParsing="false" text="Button" />
-                        </graphic>
-                     </Label>
                   </children>
                </StackPane>
                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">

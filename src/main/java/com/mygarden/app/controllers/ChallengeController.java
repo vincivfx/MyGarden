@@ -17,6 +17,9 @@ public class ChallengeController extends AbstractController{
     private Label challengeDescription;
 
     @FXML
+    private Label challengeTip;
+
+    @FXML
     private Label UserCoins;
 
     @FXML
@@ -41,13 +44,16 @@ public class ChallengeController extends AbstractController{
     {
         //Call when the page is load to update all the UI with the user data
         updateUICoins();
+        loadChallengesFromDatabase();
+        loadRandomChallenge("daily");
     }
+
     private void loadChallengesFromDatabase() {
 
         ChallengesRepository repository = new ChallengesRepository();
         try 
         {
-            List<Challenge> challengeList = repository.findAll();
+            challengeList = repository.findAll();
         } 
         catch (Exception exception) {
             exception.printStackTrace();
@@ -55,16 +61,51 @@ public class ChallengeController extends AbstractController{
         }
     }
 
-
     private void loadRandomChallenge(String type){
         if (challengeList == null || challengeList.isEmpty()) {
             challengeDescription.setText("There are no available challenges");
-            //ChallengeTip.setText("");
+            challengeTip.setText("");
             completedBtn.setDisable(true);
             return;
         }
-        //take a random one 
+
+        // Filter challenges by type if specified
+        List<Challenge> filtered = challengeList.stream()
+            .filter(c -> type == null || c.getType().equalsIgnoreCase(type))
+            .toList();
+
+        if (filtered.isEmpty()) {
+            challengeDescription.setText("Well done! You completed all the current challenges of this type");
+            challengeTip.setText("No challenges of this type available");
+            completedBtn.setDisable(true);
+            return;
+        }
+
+        // Pick a random challenge
+        int index = (int) (Math.random() * filtered.size());
+        currentChallenge = filtered.get(index);
+
+        // Update UI
+        challengeDescription.setText(currentChallenge.getDescription());
+        challengeTip.setText(currentChallenge.getTip());
+        completedBtn.setDisable(false);
 
 
     }
+
+    @FXML
+    private void onChallengeCompleted(ActionEvent event) {
+        if (currentChallenge != null) {
+            // Update user coins
+            getUser().earnCoins(currentChallenge.getPoints());
+            updateUICoins();
+
+            // Remove completed challenge from the list
+            challengeList.remove(currentChallenge);
+
+            // Load a new challenge
+            loadRandomChallenge(null);
+        }
+    }
+
 }

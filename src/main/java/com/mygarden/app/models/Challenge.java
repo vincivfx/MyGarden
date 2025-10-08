@@ -31,7 +31,10 @@ public class Challenge {
         return points;
     }
 
-    
+    //REQUIRED by ORMLite
+    public Challenge() {
+        // no-arg constructor for ORMLite
+    }
 
     public Challenge(int challenge_id, String description, String type, String tip) {
         this.challenge_id = challenge_id;
@@ -48,6 +51,10 @@ public class Challenge {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getTip() {
+        return tip;
     }
 
     public int getChallengeId() {
