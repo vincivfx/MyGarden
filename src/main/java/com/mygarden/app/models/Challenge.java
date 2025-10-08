@@ -28,9 +28,15 @@ public class Challenge {
         return points;
     }
 
-    public Challenge() {
-        // needed by ORMLite
+    
+
+    public Challenge(int challenge_id, String description, String type) {
+        this.challenge_id = challenge_id;
+        this.description = description;
+        this.type = type;
     }
+
+
 
     public String getType() {
     return type;
