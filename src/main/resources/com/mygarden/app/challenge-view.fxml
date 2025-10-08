@@ -84,6 +84,11 @@
                            </Label>
                         </children>
                      </VBox>
+                     <Label fx:id="challengeDescription" prefHeight="26.0" prefWidth="215.0" text="Label">
+                        <graphic>
+                           <Button fx:id="completedBtn" mnemonicParsing="false" text="Button" />
+                        </graphic>
+                     </Label>
                   </children>
                </StackPane>
                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">
