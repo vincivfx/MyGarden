@@ -41,7 +41,7 @@ public class User {
     }
 
     public int getCoins() {
-        //int coins = 0;
+        coins = 100;
 
         if (this.transfers == null) {
             return coins;
