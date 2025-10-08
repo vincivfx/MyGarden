@@ -124,7 +124,7 @@ public final class DatabaseManager {
         shopItemDao.createOrUpdate(ShopItem.create("pine", "Pine", 80, 2));
         shopItemDao.createOrUpdate(ShopItem.create("willow", "Willow", 150, 2));
 
-        challengeDao.createOrUpdate(Challenge.create())
+        //challengeDao.createOrUpdate(Challenge.create());
     }
 
 }
