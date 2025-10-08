@@ -20,15 +20,35 @@ public class Challenge {
 
     @DatabaseField
     private Date date;
+    
+    @DatabaseField
+    private String type;// daily or weekly
 
     public int getPoints() {
         return points;
     }
 
-    public Challenge() {
-        // needed by ORMLite
+    
+
+    public Challenge(int challenge_id, String description, String type) {
+        this.challenge_id = challenge_id;
+        this.description = description;
+        this.type = type;
     }
 
+
+
+    public String getType() {
+    return type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getChallengeId() {
+    return challenge_id;
+    }
 
 
 }

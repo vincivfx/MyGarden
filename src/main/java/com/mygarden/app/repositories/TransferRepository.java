@@ -1,13 +1,16 @@
 package com.mygarden.app.repositories;
 
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.mygarden.app.DatabaseManager;
-import com.mygarden.app.models.*;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
+import com.j256.ormlite.dao.Dao;
+import com.mygarden.app.DatabaseManager;
+import com.mygarden.app.models.Challenge;
+import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.Transfer;
+import com.mygarden.app.models.User;
+import com.mygarden.app.models.UserItem;
 
 public class TransferRepository implements BaseRepository<Transfer, Integer> {
     public final Dao<Transfer, Integer> transferDao;
