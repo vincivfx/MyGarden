@@ -8,7 +8,7 @@ import com.j256.ormlite.dao.Dao;
 import com.mygarden.app.DatabaseManager;
 import com.mygarden.app.models.Challenge;
 
-public class ChallangesRepository implements BaseRepository<Challenge, String>{
+public class ChallengesRepository implements BaseRepository<Challenge, String>{
     private final Dao<Challenge, String> challengeDao = DatabaseManager.getInstance().getChallengeDao();
 
     @Override

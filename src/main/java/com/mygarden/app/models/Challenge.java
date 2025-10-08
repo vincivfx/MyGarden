@@ -16,6 +16,9 @@ public class Challenge {
     private String description;
 
     @DatabaseField
+    private String tip;
+
+    @DatabaseField
     private int points;
 
     @DatabaseField
@@ -30,10 +33,11 @@ public class Challenge {
 
     
 
-    public Challenge(int challenge_id, String description, String type) {
+    public Challenge(int challenge_id, String description, String type, String tip) {
         this.challenge_id = challenge_id;
         this.description = description;
         this.type = type;
+        this.tip=tip;
     }
 
 

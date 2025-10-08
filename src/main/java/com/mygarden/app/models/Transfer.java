@@ -1,9 +1,9 @@
 package com.mygarden.app.models;
 
+import java.util.Optional;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.Optional;
 
 @DatabaseTable
 public class Transfer {
@@ -20,7 +20,7 @@ public class Transfer {
     @DatabaseField(canBeNull = true, foreign = true)
     private ShopItem shopItemId;
 
-    @DatabaseField(canBeNull = false, foreign = true)
+    @DatabaseField(canBeNull = true, foreign = true)
     private Challenge challengeId;
 
     public int getAmount() {return amount;}
@@ -41,7 +41,7 @@ public class Transfer {
     }
 
     public static Transfer createTransferBought(User user, ShopItem shopItem) {
-        return new Transfer(user, shopItem.getPrice(), Optional.of(shopItem), Optional.empty());
+        return new Transfer(user, -shopItem.getPrice(), Optional.of(shopItem), Optional.empty());
     }
 
 }

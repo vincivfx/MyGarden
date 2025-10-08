@@ -1,16 +1,23 @@
 package com.mygarden.app.controllers;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.User;
 import com.mygarden.app.repositories.UserRepository;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginPageController {
     
+
+    private boolean loginMode = true;
     //FXML 
 
     @FXML
@@ -20,18 +27,51 @@ public class LoginPageController {
     private TextField password;
 
     @FXML
-    private void tryToLogin(Event e)
+    private TextField name;
+
+    @FXML
+    private Label informations;
+
+    @FXML
+    private Button changeModeButton;
+
+    @FXML
+    private void tryToConnect(ActionEvent e) throws IOException, SQLException
     {
         UserRepository ur = new UserRepository();
-
-        Optional<User> optionalUser = ur.register("Nguiard", "1234", "Nathan GM");
-        if (optionalUser.isPresent()) {
-            SceneUtils.changeScene(event, fxmlFile, currentUser);
-        } else {
-            System.out.println("Login failed");
+        Optional<User> optionalUser;
+        if(loginMode)
+        {
+            optionalUser = ur.login(login.getText(), password.getText());
         }
-        //controller.setUser(user);
-
+        else
+        {
+            optionalUser = ur.register(login.getText(), password.getText(), name.getText());
+        }
+        
+        if (optionalUser.isPresent()) {
+            SceneUtils.changeScene(e, "/com/mygarden/app/main-page-view.fxml", optionalUser.get());
+        } else {
+            informations.setText("Login failed");
+        }
     }
+
+    @FXML
+    private void changeMode(ActionEvent e)
+    {
+        loginMode = !loginMode;
+        name.setVisible(!loginMode);
+        if(loginMode)
+        {
+            changeModeButton.setText("Create Account");
+            
+        }
+        else
+        {
+            changeModeButton.setText("Login");
+        }
+    }
+
+
 
 }
