@@ -104,7 +104,7 @@ public class ShopController extends AbstractController implements Initializable 
 
     private void updateUICoins()
     {
-        UserCoins.setText(String.format("%d coins", getUser().getCoins()));
+        UserCoins.setText(String.format("%d", getUser().getCoins()));
     }
 
     private void clearShop()
