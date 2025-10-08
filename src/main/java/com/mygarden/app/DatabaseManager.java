@@ -17,7 +17,7 @@ public final class DatabaseManager {
 
     private final ConnectionSource connectionSource;
     private final Dao<User, String> userDao;
-    private final Dao<Challenge, String> challengeDao;
+    private final Dao<Challenge, Integer> challengeDao;
     private final Dao<Garden, String> gardenDao;
     private final Dao<UserItem, String> userPlantDao;
     private final Dao<ShopItem, String> shopItemDao;
@@ -66,7 +66,7 @@ public final class DatabaseManager {
         return userDao;
     }
 
-    public Dao<Challenge, String> getChallengeDao() {
+    public Dao<Challenge, Integer> getChallengeDao() {
         return challengeDao;
     }
 
