@@ -27,7 +27,7 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <Button fx:id="connection" mnemonicParsing="false" onAction="#tryToConnect" text="Connection">
+            <Button fx:id="connection" mnemonicParsing="false" onAction="#tryToConnect" text="Connect">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
