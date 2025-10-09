@@ -36,6 +36,9 @@ public class LoginPageController {
     private Button changeModeButton;
 
     @FXML
+    private Button connection;
+
+    @FXML
     private void tryToConnect(ActionEvent e) throws IOException, SQLException
     {
         UserRepository ur = new UserRepository();
@@ -63,12 +66,14 @@ public class LoginPageController {
         name.setVisible(!loginMode);
         if(loginMode)
         {
-            changeModeButton.setText("Create Account");
+            connection.setText("Connect");
+            changeModeButton.setText("Don't have an account?");
             
         }
         else
         {
-            changeModeButton.setText("Login");
+            connection.setText("Create");
+            changeModeButton.setText("You have an account");
         }
     }
 

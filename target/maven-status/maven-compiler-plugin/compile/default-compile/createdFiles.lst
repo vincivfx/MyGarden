@@ -1,12 +1,12 @@
 com/mygarden/app/controllers/ChallengeController.class
 com/mygarden/app/MyGardenApplication.class
 com/mygarden/app/controllers/utils/SceneUtils.class
-com/mygarden/app/repositories/ChallangesRepository.class
 com/mygarden/app/controllers/AbstractController.class
 com/mygarden/app/controllers/LoginPageController.class
 com/mygarden/app/models/Transfer.class
 com/mygarden/app/models/Plant.class
 com/mygarden/app/models/ShopItem.class
+com/mygarden/app/repositories/ChallengesRepository.class
 com/mygarden/app/controllers/GardenController.class
 com/mygarden/app/repositories/UserRepository.class
 com/mygarden/app/controllers/MainPageController.class
