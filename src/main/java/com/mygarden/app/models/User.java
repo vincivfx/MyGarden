@@ -34,6 +34,10 @@ public class User {
         // needed by ORMLite
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     public String getName() {
         return this.name;
     }

@@ -39,14 +39,28 @@ public class UserItemRepository implements BaseRepository<UserItem, Integer> {
 
 
     /**
-     * Move a userItem inside the garden, changing the position
-     * @param entity
-     * @param position_x
-     * @param position_y
+     * Move a userItem inside the garden, changing the position, checking if the position is actually
+     * free or not.
+     * @param entity the UserItem to move
+     * @param position_x new X coordinate of the element
+     * @param position_y new Y coordinate of the element
      * @throws SQLException
+     * @return TRUE if the move has been completed, FALSE if not, i.e. occupied position
      */
     public boolean move(UserItem entity, int position_x, int position_y) throws SQLException {
-        return true;
+        long occupied = userItemsDao.queryBuilder().where()
+                .eq(UserItem.USER_ID, entity.getUser().getUsername())
+                .and().eq(UserItem.POSITION_X, position_x)
+                .and().eq(UserItem.POSITION_Y, position_y)
+                .countOf();
 
+        if (occupied == 0) {
+            return false;
+        }
+
+        entity.move(position_x, position_y);
+        this.save(entity);
+
+        return true;
     }
 }
