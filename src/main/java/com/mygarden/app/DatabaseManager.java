@@ -12,6 +12,7 @@ import com.mygarden.app.models.Garden;
 import com.mygarden.app.models.ShopItem;
 import com.mygarden.app.models.Transfer;
 import com.mygarden.app.models.User;
+import com.mygarden.app.models.UserChallenge;
 import com.mygarden.app.models.UserItem;
 
 public final class DatabaseManager {
@@ -21,6 +22,7 @@ public final class DatabaseManager {
     private final ConnectionSource connectionSource;
     private final Dao<User, String> userDao;
     private final Dao<Challenge, String> challengeDao;
+    private final Dao<UserChallenge, Integer> userChallengeDao;
     private final Dao<Garden, String> gardenDao;
     private final Dao<UserItem, String> userPlantDao;
     private final Dao<ShopItem, String> shopItemDao;
@@ -39,6 +41,7 @@ public final class DatabaseManager {
         shopItemDao = DaoManager.createDao(connectionSource, ShopItem.class);
         gardenDao = DaoManager.createDao(connectionSource, Garden.class);
         userPlantDao = DaoManager.createDao(connectionSource, UserItem.class);
+        userChallengeDao = DaoManager.createDao(connectionSource, UserChallenge.class);
         transferDao = DaoManager.createDao(connectionSource, Transfer.class);
     }
 
@@ -51,6 +54,7 @@ public final class DatabaseManager {
 
         TableUtils.createTableIfNotExists(cs, User.class);
         TableUtils.createTableIfNotExists(cs, Challenge.class);
+        TableUtils.createTableIfNotExists(cs, UserChallenge.class);
         TableUtils.createTableIfNotExists(cs, ShopItem.class);
         TableUtils.createTableIfNotExists(cs, Garden.class);
         TableUtils.createTableIfNotExists(cs, UserItem.class);
@@ -73,6 +77,11 @@ public final class DatabaseManager {
     public Dao<Challenge, String> getChallengeDao() {
         return challengeDao;
     }
+
+    public Dao<UserChallenge, Integer> getUserChallengeDao() {
+        return userChallengeDao;
+    }
+
 
     public Dao<Garden, String> getGardenDao() {
         return gardenDao;

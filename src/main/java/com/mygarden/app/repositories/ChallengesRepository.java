@@ -18,8 +18,16 @@ public class ChallengesRepository implements BaseRepository<Challenge, String>{
 
     @Override
     public Optional<Challenge> findById(String id) throws SQLException {
-        return Optional.of(challengeDao.queryForId(id));
+        return Optional.ofNullable(challengeDao.queryForId(id));
     }
+
+    public List<Challenge> findByType(String type) throws SQLException {
+        return challengeDao.queryBuilder()
+                .where()
+                .eq("type", type)
+                .query();
+    }
+
 
     @Override
     public Challenge save(Challenge entity) throws SQLException {

@@ -1,6 +1,9 @@
 package com.mygarden.app.models;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.j256.ormlite.dao.ForeignCollection;
@@ -23,6 +26,18 @@ public class User {
     @DatabaseField
     private int coins;
 
+    @DatabaseField
+    private Date lastChallengeGenerationDate;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "current_daily_challenge_id")
+    private Challenge currentDailyChallenge;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "current_weekly_challenge_id")
+    private Challenge currentWeeklyChallenge;
+
+    @ForeignCollectionField
+    private ForeignCollection<UserChallenge> completedChallenges;
+
     @ForeignCollectionField
     private ForeignCollection<Transfer> transfers;
 
@@ -34,6 +49,10 @@ public class User {
         // needed by ORMLite
         this.coins = 30;
         inventory = new ArrayList<>();
+    }
+
+    public String getUsername() {
+        return this.username;
     }
 
     public String getName() {
@@ -59,6 +78,39 @@ public class User {
 
     public void earnCoins(int coins) {
         this.coins += coins;
+    }
+
+    public LocalDate getLastChallengeGenerationDate() {
+        if (lastChallengeGenerationDate == null) return null;
+        return lastChallengeGenerationDate.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    public void setLastChallengeGenerationDate(LocalDate localDate) {
+        if (localDate == null) {
+            this.lastChallengeGenerationDate = null;
+        } else {
+            this.lastChallengeGenerationDate = Date.from(
+                    localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()
+            );
+        }
+    }
+
+    public void setCurrentDailyChallenge(Challenge challenge) {
+        this.currentDailyChallenge = challenge;
+    }
+
+    public Challenge getCurrentDailyChallenge() {
+        return this.currentDailyChallenge;
+    }
+
+    public void setCurrentWeeklyChallenge(Challenge challenge) {
+        this.currentWeeklyChallenge = challenge;
+    }
+
+    public Challenge getCurrentWeeklyChallenge() {
+        return this.currentWeeklyChallenge;
     }
 
     public Boolean verifyPassword(String password) {
