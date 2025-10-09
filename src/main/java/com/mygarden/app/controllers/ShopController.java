@@ -2,7 +2,10 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -12,6 +15,7 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
 import com.mygarden.app.repositories.ShopItemsRepository;
+import com.mygarden.app.repositories.TransferRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +34,9 @@ public class ShopController extends AbstractController implements Initializable 
 
 
     int currentCategorie = -1;
+    private final Map<String, Image> imageCache = new HashMap<>();
+
+
     // --- Models ---
 
     Shop shop = new Shop();
@@ -70,9 +77,35 @@ public class ShopController extends AbstractController implements Initializable 
         }
     }
 
+    private void loadShopFromDatabase() {
+
+        ShopItemsRepository repository = new ShopItemsRepository();
+        try 
+        {
+            List<ShopItem> shopItemList = repository.findAll();
+
+            for (int i = 0; i < shopItemList.size(); i++) 
+            {
+                ShopItem item = shopItemList.get(i);
+                shop.addShopItem(item);
+                imageCache.put(item.getId(),
+                    new Image(Objects.requireNonNull(
+                        getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png")
+                    ))
+                );  
+            }
+        } 
+        catch (Exception exception) {
+            exception.printStackTrace();
+            System.exit(1);
+        }
+            
+    }
+    
+
     private void updateUICoins()
     {
-        UserCoins.setText(String.format("%d coins", getUser().getCoins()));
+        UserCoins.setText(String.format("%d", getUser().getCoins()));
     }
 
     private void clearShop()
@@ -89,19 +122,18 @@ public class ShopController extends AbstractController implements Initializable 
     private void showShopItemsFromCategorie(int categorie)
     {
         clearShop();
+        List<Node> anchors = new ArrayList<>(ShopGrid.getChildren());
         int indexInShop = 0;
         for (int i = 0; i < shop.getNumberOfItems(); i++)
         {
             ShopItem item = shop.getShopItem(i);
             if(item.getCategory() == categorie || categorie == -1)
             {
-                AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(indexInShop));
+                AnchorPane anchor = (AnchorPane)(anchors.get(indexInShop));
                 ImageView itemImage = (ImageView)anchor.getChildren().get(0);
 
                 itemImage.setImage(
-                    new Image(Objects.requireNonNull(
-                        getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png")
-                    ))
+                    imageCache.get(item.getId())
                 );
                 
 
@@ -120,20 +152,7 @@ public class ShopController extends AbstractController implements Initializable 
     @Override
     public void initialize (URL url, ResourceBundle resbundle)
     {   
-        ShopItemsRepository repository = new ShopItemsRepository();
-        try {
-            List<ShopItem> shopItemList = repository.findAll();
-
-            for (int i = 0; i < shopItemList.size(); i++) {
-                ShopItem item = shopItemList.get(i);
-                shop.addShopItem(item);
-                
-            }
-
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            System.exit(1);
-        }
+        loadShopFromDatabase();
         showShopItemsFromCategorie(currentCategorie);
     }
 
@@ -161,7 +180,15 @@ public class ShopController extends AbstractController implements Initializable 
             if(SceneUtils.showConfirmationPopup(String.format("Are you sure to buy %s ?", shopItem.getName())))
             {
                 System.out.println("Buy");
-                getUser().spendCoins(shopItem.getPrice());
+
+                TransferRepository tr = new TransferRepository();
+                try {
+                    tr.buy(user, shopItem);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                // getUser().spendCoins(shopItem.getPrice());
                 updateUICoins();
                 
 
