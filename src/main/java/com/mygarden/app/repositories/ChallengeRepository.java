@@ -25,6 +25,13 @@ public class ChallengeRepository implements BaseRepository<Challenge, Integer> {
     @Override
     public Challenge save(Challenge entity) throws SQLException {
         challengeDao.createOrUpdate(entity);
-        return entity;
+
+        Optional<Challenge> currentChallenge = findById(entity.getId());
+
+        if (currentChallenge.isEmpty()) {
+            throw new SQLException("Challenge not found");
+        }
+
+        return currentChallenge.get();
     }
 }

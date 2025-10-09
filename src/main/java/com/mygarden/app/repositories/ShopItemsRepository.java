@@ -24,6 +24,13 @@ public class ShopItemsRepository implements BaseRepository<ShopItem, String>{
     @Override
     public ShopItem save(ShopItem entity) throws SQLException {
         shopItemDao.createOrUpdate(entity);
-        return entity;
+
+        Optional<ShopItem> shopItem = findById(entity.getId());
+
+        if (shopItem.isEmpty()) {
+            throw new SQLException("Shop item not found");
+        }
+
+        return shopItem.get();
     }
 }

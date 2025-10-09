@@ -4,8 +4,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import com.mygarden.app.controllers.AbstractController;
+import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.Transfer;
 import com.mygarden.app.models.User;
 
+import com.mygarden.app.repositories.ShopItemsRepository;
+import com.mygarden.app.repositories.TransferRepository;
 import com.mygarden.app.repositories.UserRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

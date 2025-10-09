@@ -5,13 +5,13 @@ import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.Optional;
 
-@DatabaseTable
+@DatabaseTable(tableName = "mg_transfers")
 public class Transfer {
 
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true, columnName = "user_id")
+    @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true, columnName = "user_id")
     private User user;
 
     @DatabaseField(canBeNull = false)
@@ -20,10 +20,12 @@ public class Transfer {
     @DatabaseField(canBeNull = true, foreign = true)
     private ShopItem shopItemId;
 
-    @DatabaseField(canBeNull = false, foreign = true)
+    @DatabaseField(canBeNull = true, foreign = true)
     private Challenge challengeId;
 
     public int getAmount() {return amount;}
+
+    public int getId() {return id;}
 
     public Transfer() {
         /* required by ORMLite */
@@ -41,7 +43,7 @@ public class Transfer {
     }
 
     public static Transfer createTransferBought(User user, ShopItem shopItem) {
-        return new Transfer(user, shopItem.getPrice(), Optional.of(shopItem), Optional.empty());
+        return new Transfer(user, -shopItem.getPrice(), Optional.of(shopItem), Optional.empty());
     }
 
 }

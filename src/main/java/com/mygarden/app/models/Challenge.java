@@ -25,6 +25,10 @@ public class Challenge {
         return points;
     }
 
+    public int getId() {
+        return challenge_id;
+    }
+
     public Challenge() {
         // needed by ORMLite
     }

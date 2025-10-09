@@ -64,6 +64,11 @@ public class TransferRepository implements BaseRepository<Transfer, Integer> {
     public Transfer registerChallenge(User user, Challenge challenge) throws SQLException {
         Transfer transfer = Transfer.createTransferChallenge(user, challenge);
         this.save(transfer);
-        return transfer;
+
+        Optional<Transfer> currentTransfer = findById(transfer.getId());
+
+        if (currentTransfer.isEmpty()) {throw new SQLException("Transfer not found");}
+
+        return currentTransfer.get();
     }
 }
