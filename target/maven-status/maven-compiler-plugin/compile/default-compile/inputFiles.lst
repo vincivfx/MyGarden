@@ -19,7 +19,7 @@
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/User.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/models/UserItem.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/BaseRepository.java
-/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/ChallangesRepository.java
+/home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/ChallengesRepository.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/NotFoundException.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/ShopItemsRepository.java
 /home/nathan/ENSIMAG/Echange/Cours/Agile_Project/MyGarden/src/main/java/com/mygarden/app/repositories/TransferRepository.java

@@ -9,10 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.LoginPageController">
    <children>
-      <Button layoutX="122.0" layoutY="252.0" mnemonicParsing="false" onAction="#tryToConnect" text="Connection" />
-      <Label fx:id="informations" layoutX="150.0" layoutY="194.0" />
-      <Button fx:id="changeModeButton" layoutX="109.0" layoutY="221.0" mnemonicParsing="false" onAction="#changeMode" text="Create account" />
-      <VBox layoutX="72.0" layoutY="76.0" prefHeight="115.0" prefWidth="194.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0">
+      <VBox alignment="TOP_CENTER" layoutX="72.0" layoutY="76.0" prefHeight="115.0" prefWidth="194.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="70.0">
          <children>
             <TextField fx:id="login" promptText="Login" />
             <TextField fx:id="password" promptText="Password">
@@ -25,6 +22,21 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </TextField>
+            <Label fx:id="informations">
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Button fx:id="connection" mnemonicParsing="false" onAction="#tryToConnect" text="Connection">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="changeModeButton" mnemonicParsing="false" onAction="#changeMode" text="Don't have an account?">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
    </children>

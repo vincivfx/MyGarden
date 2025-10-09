@@ -33,6 +33,8 @@ public class Challenge {
         // no-arg constructor for ORMLite
     }
 
+    
+
     public Challenge(int challenge_id, String description, String type, String tip) {
         this.challenge_id = challenge_id;
         this.type = type;
