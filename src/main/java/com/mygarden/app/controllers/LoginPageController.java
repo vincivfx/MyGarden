@@ -66,14 +66,14 @@ public class LoginPageController {
         name.setVisible(!loginMode);
         if(loginMode)
         {
-            connection.setText("Connect");
-            changeModeButton.setText("Don't have an account?");
+            connection.setText("Start!");
+            changeModeButton.setText("I don't have an account");
             
         }
         else
         {
             connection.setText("Create");
-            changeModeButton.setText("You have an account");
+            changeModeButton.setText("I already have an account");
         }
     }
 
