@@ -21,6 +21,14 @@ public class ChallengesRepository implements BaseRepository<Challenge, Integer>{
         return Optional.of(challengeDao.queryForId(id));
     }
 
+    public List<Challenge> findByType(String type) throws SQLException {
+        return challengeDao.queryBuilder()
+                .where()
+                .eq("type", type)
+                .query();
+    }
+
+
     @Override
     public Challenge save(Challenge entity) throws SQLException {
         challengeDao.createOrUpdate(entity);
