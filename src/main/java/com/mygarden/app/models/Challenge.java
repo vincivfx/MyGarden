@@ -31,6 +31,10 @@ public class Challenge {
         return points;
     }
 
+    public int getId() {
+        return challenge_id;
+    }
+
     public Challenge() {
         // empty constructor required by ORMLite
     }

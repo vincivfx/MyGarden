@@ -30,10 +30,11 @@ public class User {
     private List<Plant> inventory;
 
     public User() {
-        this.name = "Arthur"; // Remove this when it's working
         // needed by ORMLite
-        this.coins = 30;
-        inventory = new ArrayList<>();
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public String getName() {

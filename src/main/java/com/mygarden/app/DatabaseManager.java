@@ -20,9 +20,9 @@ public final class DatabaseManager {
 
     private final ConnectionSource connectionSource;
     private final Dao<User, String> userDao;
-    private final Dao<Challenge, String> challengeDao;
+    private final Dao<Challenge, Integer> challengeDao;
     private final Dao<Garden, String> gardenDao;
-    private final Dao<UserItem, String> userPlantDao;
+    private final Dao<UserItem, Integer> userItemsDao;
     private final Dao<ShopItem, String> shopItemDao;
     private final Dao<Transfer, Integer> transferDao;
 
@@ -38,7 +38,7 @@ public final class DatabaseManager {
         challengeDao = DaoManager.createDao(connectionSource, Challenge.class);
         shopItemDao = DaoManager.createDao(connectionSource, ShopItem.class);
         gardenDao = DaoManager.createDao(connectionSource, Garden.class);
-        userPlantDao = DaoManager.createDao(connectionSource, UserItem.class);
+        userItemsDao = DaoManager.createDao(connectionSource, UserItem.class);
         transferDao = DaoManager.createDao(connectionSource, Transfer.class);
     }
 
@@ -70,7 +70,7 @@ public final class DatabaseManager {
         return userDao;
     }
 
-    public Dao<Challenge, String> getChallengeDao() {
+    public Dao<Challenge, Integer> getChallengeDao() {
         return challengeDao;
     }
 
@@ -78,8 +78,8 @@ public final class DatabaseManager {
         return gardenDao;
     }
 
-    public Dao<UserItem, String> getUserPlantDao() {
-        return userPlantDao;
+    public Dao<UserItem, Integer> getUserItemDao() {
+        return userItemsDao;
     }
 
     public Dao<ShopItem, String> getShopItemDao() {
