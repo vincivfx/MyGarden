@@ -52,10 +52,6 @@ public class User {
         return username;
     }
 
-    public String getUsername() {
-        return this.username;
-    }
-
     public String getName() {
         return this.name;
     }

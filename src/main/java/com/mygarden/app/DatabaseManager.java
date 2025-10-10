@@ -21,7 +21,7 @@ public final class DatabaseManager {
 
     private final ConnectionSource connectionSource;
     private final Dao<User, String> userDao;
-    private final Dao<Challenge, String> challengeDao;
+    private final Dao<Challenge, Integer> challengeDao;
     private final Dao<UserChallenge, Integer> userChallengeDao;
     private final Dao<Garden, String> gardenDao;
     private final Dao<UserItem, Integer> userItemsDao;
@@ -40,12 +40,8 @@ public final class DatabaseManager {
         challengeDao = DaoManager.createDao(connectionSource, Challenge.class);
         shopItemDao = DaoManager.createDao(connectionSource, ShopItem.class);
         gardenDao = DaoManager.createDao(connectionSource, Garden.class);
-<<<<<<< HEAD
         userItemsDao = DaoManager.createDao(connectionSource, UserItem.class);
-=======
-        userPlantDao = DaoManager.createDao(connectionSource, UserItem.class);
         userChallengeDao = DaoManager.createDao(connectionSource, UserChallenge.class);
->>>>>>> origin/d/challenges
         transferDao = DaoManager.createDao(connectionSource, Transfer.class);
     }
 
