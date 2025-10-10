@@ -4,7 +4,7 @@ import com.mygarden.app.models.User;
 
 public abstract class AbstractController {
 
-    User user;
+    private User user;
 
     public User getUser()
     {
