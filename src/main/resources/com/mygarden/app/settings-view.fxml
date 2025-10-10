@@ -49,9 +49,15 @@
 
                            <HBox alignment="CENTER" prefHeight="342.0" prefWidth="335.0" spacing="10.0">
                               <children>
-                                 <Label text="Music Volume" />
+                                 <Label text="Music Volume">
+                                    <font>
+                                       <Font name="System Bold" size="12.0" />
+                                    </font></Label>
                                  <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="160.0" />
-                                 <Label fx:id="volumeLabel" text="50%" />
+                                 <Label fx:id="volumeLabel" text="50%">
+                                    <font>
+                                       <Font name="System Bold" size="12.0" />
+                                    </font></Label>
                               </children>
                               <!-- proper Insets element instead of padding="10.0" -->
                               <padding>
