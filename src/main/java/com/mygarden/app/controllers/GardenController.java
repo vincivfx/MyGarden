@@ -1,6 +1,10 @@
 package com.mygarden.app.controllers;
 
+import java.io.IOException;
+
+import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -19,8 +23,6 @@ import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-
-import java.io.IOException;
 
 public class GardenController extends AbstractController {
 
@@ -88,11 +90,13 @@ public class GardenController extends AbstractController {
 
     @FXML
     private void onGoToMainPage(ActionEvent event) throws IOException {
+        SoundManager.getInstance().playClick();
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
     @FXML
     private void onGoToShop(ActionEvent event) throws IOException {
+        SoundManager.getInstance().playClick();
         SceneUtils.changeScene(event, "/com/mygarden/app/shop-view.fxml", getUser());
     }
 

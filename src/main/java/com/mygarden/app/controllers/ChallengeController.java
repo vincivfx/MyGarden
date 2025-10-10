@@ -10,6 +10,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Challenge;
 import com.mygarden.app.models.User;
@@ -94,8 +95,8 @@ public class ChallengeController extends AbstractController{
 
     @Override
     public void onUserIsSet()
-    {
-        //Call when the page is load to update all the UI with the user data
+    {   
+        //Call when the page is loaded to update all the UI with the user data
         updateUICoins();
         typeDisplayed.setText("Daily");
         typeBtn.setText("Weekly");
@@ -247,12 +248,14 @@ public class ChallengeController extends AbstractController{
 
     @FXML
     private void onGoToMainPage(ActionEvent event) throws IOException {
+        SoundManager.getInstance().playClick();
         stopScheduler();
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
     @FXML
     private void onChallengeCompleted(ActionEvent event) {
+        SoundManager.getInstance().playClick();
         Challenge currentChallenge;
         if(typeDisplayed.getText().equals("Daily")){
             currentChallenge = currentDailyChallenge;
@@ -301,9 +304,11 @@ public class ChallengeController extends AbstractController{
         typeBtn.setText(curTypeDisplayed);
 
         if(curTypeDisplayed.equals("Daily")){
+            SoundManager.getInstance().playClick();
             updateUIChallenge(currentWeeklyChallenge);
             startCountdown("weekly");
         } else {
+            SoundManager.getInstance().playClick();
             updateUIChallenge(currentDailyChallenge);
             startCountdown("daily");
         }
