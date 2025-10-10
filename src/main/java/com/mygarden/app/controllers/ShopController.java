@@ -185,7 +185,7 @@ public class ShopController extends AbstractController implements Initializable 
                 try {
                     tr.buy(user, shopItem);
                 } catch (Exception e) {
-                    System.err.println("SQL error");
+                    e.printStackTrace();
                 }
 
                 // getUser().spendCoins(shopItem.getPrice());

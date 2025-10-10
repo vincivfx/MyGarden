@@ -15,6 +15,20 @@ public class MyGardenApplication extends Application {
 
         Scene scene = new Scene(fxmlLoader.load(), 335, 600);
 
+        //AbstractController controller = fxmlLoader.getController();
+        
+
+        /*UserRepository ur = new UserRepository();
+       Optional<User> optionalUser = ur.login("admin", "admin");
+        if (optionalUser.isPresent()) {
+            controller.setUser(optionalUser.get());
+            System.out.println(optionalUser.get());
+        } else {
+            System.out.println("Login failed");
+        }
+        //controller.setUser(user);*/
+
+
         stage.setResizable(false);
         stage.setTitle("MyGarden");
         stage.setScene(scene);
@@ -25,7 +39,6 @@ public class MyGardenApplication extends Application {
         // connect to the SQLite database
         try {
             DatabaseManager.connect();
-            
             
             if (args.length > 0 && args[0].equals("--spawn")) {
                 DatabaseManager.getInstance().spawnDatabase();

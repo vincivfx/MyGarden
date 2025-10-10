@@ -1,29 +1,23 @@
 package com.mygarden.app.controllers;
-import com.mygarden.app.controllers.utils.SceneUtils;
-import com.mygarden.app.models.Challenge;
-import com.mygarden.app.models.ShopItem;
-import com.mygarden.app.repositories.ChallengesRepository;
-import com.mygarden.app.repositories.ShopItemsRepository;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
+
+import com.mygarden.app.controllers.utils.SceneUtils;
+import com.mygarden.app.models.Challenge;
+import com.mygarden.app.repositories.ChallengesRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-//import javafx.scene.control.Label;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
+
 
 public class ChallengeController extends AbstractController{
-    // --- FXML UI elements ---
-    @FXML
-    private Label UserCoins;
-
     @FXML
     private Label challengeDescription;
+
+    @FXML
+    private Label UserCoins;
 
     @FXML
     private Button completedBtn;
@@ -40,11 +34,6 @@ public class ChallengeController extends AbstractController{
     @FXML
     private void onGoToMainPage(ActionEvent event) throws IOException {
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
-    }
-
-    @FXML
-    private void onGoToSettings(ActionEvent event) throws IOException {
-        SceneUtils.changeScene(event, "/com/mygarden/app/settings-view.fxml", getUser());
     }
 
     @Override

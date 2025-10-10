@@ -52,6 +52,7 @@ public class TransferRepository implements BaseRepository<Transfer, Integer> {
         UserItem boughtUserItem = new UserItem();
 
         // TODO: save userItem
+        DatabaseManager.getInstance().getUserPlantDao().createIfNotExists(boughtUserItem);
 
         this.save(transfer);
         return Optional.of(transfer);

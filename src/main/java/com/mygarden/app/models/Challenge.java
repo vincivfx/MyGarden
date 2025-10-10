@@ -31,7 +31,10 @@ public class Challenge {
         return points;
     }
 
-    
+    public Challenge() {
+        // empty constructor required by ORMLite
+    }
+
 
     public Challenge(int challenge_id, String description, String type, String tip) {
         this.challenge_id = challenge_id;
