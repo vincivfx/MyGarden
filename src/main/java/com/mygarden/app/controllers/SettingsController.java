@@ -1,15 +1,24 @@
 package com.mygarden.app.controllers;
-import com.mygarden.app.controllers.utils.SceneUtils;
 
 import java.io.IOException;
 
+import com.mygarden.app.AudioManager;
+import com.mygarden.app.controllers.utils.SceneUtils;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-//import javafx.scene.control.Label;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 
 public class SettingsController extends AbstractController{
     /*@FXML
     private Label welcomeText;*/
+
+    @FXML
+    private Slider volumeSlider;
+
+    @FXML
+    private Label volumeLabel;
 
     @FXML
     private void onGoToMainPage(ActionEvent event) throws IOException {
@@ -19,7 +28,20 @@ public class SettingsController extends AbstractController{
     @Override
     public void onUserIsSet()
     {
-        //Call when the page is load to update all the UI with the user data
+        // Called when the page is loaded to update all the UI with the user data
+
+        // Initialize volume slider
+        AudioManager audio = AudioManager.getInstance();
+        double volPercent = audio.getVolume() * 100.0;
+        volumeSlider.setValue(volPercent);
+        volumeLabel.setText(String.format("%d%%", Math.round(volPercent)));
+
+        // Update AudioManager when slider moves
+        volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
+            double v = newVal.doubleValue();
+            audio.setVolume(v / 100.0); // AudioManager expects 0.0..1.0
+            volumeLabel.setText(String.format("%d%%", Math.round(v)));
+        });
     }
 
 }
