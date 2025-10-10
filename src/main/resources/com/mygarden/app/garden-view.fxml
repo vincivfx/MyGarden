@@ -1,53 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.Group?>
 
 <BorderPane xmlns="http://javafx.com/javafx/24.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.mygarden.app.controllers.GardenController"
-            prefWidth="900.0" prefHeight="600.0"
-            style="-fx-background-color: linear-gradient(to bottom, #cde7f7, #b9e0cf);">
+            prefWidth="335.0" prefHeight="600.0"
+            style="-fx-font-family: 'Segoe UI';">
 
-        <!-- TOPO: navegação -->
         <top>
-                <HBox spacing="12" alignment="CENTER_LEFT"
-                      style="-fx-padding: 10 16 10 16; -fx-background-color: rgba(255,255,255,0.6); -fx-border-color: #cfcfcf; -fx-border-width: 0 0 1 0;">
+                <HBox spacing="10" alignment="CENTER_LEFT"
+                      style="-fx-padding: 10 12 8 12; -fx-background-color: rgba(255,255,255,0.6); -fx-border-color: #cfcfcf; -fx-border-width: 0 0 1 0;">
                         <children>
                                 <Button text="Main Page" onAction="#onGoToMainPage"
-                                        style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 12;"/>
+                                        style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 10;"/>
                                 <Button text="Shop" onAction="#onGoToShop"
-                                        style="-fx-background-color: #388e3c; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 12;"/>
+                                        style="-fx-background-color: #388e3c; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 10;"/>
                                 <Button text="Inventory"
-                                        style="-fx-background-color: #e0e0e0; -fx-text-fill: #333; -fx-background-radius: 8; -fx-padding: 6 12;"/>
+                                        style="-fx-background-color: #e0e0e0; -fx-text-fill: #333; -fx-background-radius: 8; -fx-padding: 6 10;"/>
                         </children>
                 </HBox>
         </top>
 
-        <!-- CENTRO: canvas com rolagem para a "vila" isométrica -->
         <center>
-                <ScrollPane fx:id="scroll"
-                            pannable="true"
-                            fitToWidth="false" fitToHeight="false"
+                <AnchorPane fx:id="canvas"
+                            prefWidth="335.0" prefHeight="540.0"
+                            onMousePressed="#onPanStart"
+                            onMouseDragged="#onPanDrag"
                             BorderPane.alignment="CENTER"
-                            style="-fx-background-color: transparent; -fx-padding: 10;">
-                        <content>
-                                <AnchorPane fx:id="canvas" prefWidth="1600.0" prefHeight="1200.0"
-                                            style="-fx-background-color: linear-gradient(to bottom, #9fd8a5, #7ecf8c); -fx-background-radius: 12; -fx-border-color: rgba(0,0,0,0.15); -fx-border-radius: 12;">
-                                        <!-- camada onde desenhamos os losangos (tiles) -->
-                                        <children>
-                                                <Group fx:id="isoLayer" layoutX="800.0" layoutY="100.0"/>
-                                        </children>
-                                        <padding>
-                                                <Insets top="20" right="20" bottom="20" left="20"/>
-                                        </padding>
-                                </AnchorPane>
-                        </content>
-                </ScrollPane>
+                            style="-fx-background-image: url('/images/bg_grass.png'); -fx-background-size: cover; -fx-background-radius: 12; -fx-border-color: rgba(0,0,0,0.15); -fx-border-radius: 12;">
+                        <children>
+                                <Group fx:id="isoLayer"/>
+                        </children>
+                        <padding>
+                                <Insets top="12" right="12" bottom="12" left="12"/>
+                        </padding>
+                </AnchorPane>
         </center>
 </BorderPane>
