@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" spacing="200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.SettingsController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" spacing="200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.ChallengeController">
    <StackPane prefHeight="150.0" prefWidth="200.0">
       <children>
          <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
@@ -24,6 +24,28 @@
          <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_CENTER">
             <children>
                <HBox alignment="CENTER" prefHeight="73.0" prefWidth="335.0" spacing="50.0">
+                  <children>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="150.0">
+                        <children>
+                           <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../images/icon_coins.png" />
+                              </image>
+                           </ImageView>
+                           <Label fx:id="UserCoins" alignment="CENTER" contentDisplay="CENTER" text="n_coins">
+                              <HBox.margin>
+                                 <Insets left="6.0" />
+                              </HBox.margin>
+                              <font>
+                                 <Font size="26.0" />
+                              </font>
+                           </Label>
+                        </children>
+                        <HBox.margin>
+                           <Insets />
+                        </HBox.margin>
+                     </HBox>
+                  </children>
                   <VBox.margin>
                      <Insets />
                   </VBox.margin>
@@ -37,7 +59,7 @@
                      </ImageView>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="335.0">
                         <children>
-                           <Label text="Settings">
+                           <Label text="Challenge">
                               <font>
                                  <Font name="System Bold" size="25.0" />
                               </font>
@@ -47,6 +69,11 @@
                            </Label>
                         </children>
                      </VBox>
+                     <Label fx:id="challengeDescription" prefHeight="26.0" prefWidth="215.0" text="Label">
+                        <graphic>
+                           <Button fx:id="completedBtn" mnemonicParsing="false" text="Button" />
+                        </graphic>
+                     </Label>
                   </children>
                </StackPane>
                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">

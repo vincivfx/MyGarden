@@ -14,7 +14,7 @@ public class SettingsController extends AbstractController{
     private Label welcomeText;*/
 
     @FXML
-    private void goToMainPage(ActionEvent event) throws IOException {
+    private void onGoToMainPage(ActionEvent event) throws IOException {
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 

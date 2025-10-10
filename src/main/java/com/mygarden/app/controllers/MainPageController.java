@@ -7,19 +7,21 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-//import javafx.scene.control.Label;
+import javafx.scene.control.Label;
 
 public class MainPageController extends AbstractController {
-    /*@FXML
-    private Label welcomeText;*/
+    // --- FXML UI elements ---
+    @FXML
+    private Label UserCoins;
+
+    private void updateUICoins()
+    {
+        UserCoins.setText(String.format("%d", getUser().getCoins()));
+    }
 
     @FXML
-    private void onChallengeClick() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Challenge");
-        alert.setHeaderText("Test Challenge Name");
-        alert.setContentText("Do these things.");
-        alert.showAndWait(); // Show and Wait for user to close
+    private void onGoToChallenge(ActionEvent event) throws IOException {
+        SceneUtils.changeScene(event, "/com/mygarden/app/challenge-view.fxml",getUser());
     }
 
     @FXML
@@ -43,6 +45,7 @@ public class MainPageController extends AbstractController {
     public void onUserIsSet()
     {
         //Call when the page is load to update all the UI with the user data
+        updateUICoins();
     }
 
 

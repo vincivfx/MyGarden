@@ -31,9 +31,7 @@ public class SceneUtils {
     {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL); // Bloque la fenêtre principale
-        popup.setTitle("Confirmation");
 
-        // Empêche déplacement et redimensionnement
         popup.initStyle(StageStyle.UNDECORATED); // enlève la barre de titre
         popup.setResizable(false);
 
@@ -47,5 +45,24 @@ public class SceneUtils {
         popup.showAndWait();
 
         return controller.isConfirmed();
+    }
+
+    public static void showPopup(String text) throws IOException 
+    {
+        Stage popup = new Stage();
+        popup.initModality(Modality.APPLICATION_MODAL); // Bloque la fenêtre principale
+
+        popup.initStyle(StageStyle.UNDECORATED); // enlève la barre de titre
+        popup.setResizable(false);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(SceneUtils.class.getResource("/com/mygarden/app/utils/popup-view.fxml"));
+        Scene popUpScene = new Scene(fxmlLoader.load());
+
+        PopUpController controller = fxmlLoader.getController();
+        controller.setText(text);
+
+        popup.setScene(popUpScene);
+        popup.showAndWait();
+
     }
 }

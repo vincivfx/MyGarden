@@ -2,14 +2,20 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.mygarden.app.controllers.utils.SceneUtils;
-import com.mygarden.app.models.Plant;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.repositories.ShopItemsRepository;
+import com.mygarden.app.repositories.TransferRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,6 +34,9 @@ public class ShopController extends AbstractController implements Initializable 
 
 
     int currentCategorie = -1;
+    private final Map<String, Image> imageCache = new HashMap<>();
+
+
     // --- Models ---
 
     Shop shop = new Shop();
@@ -38,36 +47,65 @@ public class ShopController extends AbstractController implements Initializable 
     // --- Methods ---
     private void initialzeGrid(int rows, int columnss)
     {
-         for (int row = 0; row < rows; row++) {
-                for (int col = 0; col < columnss; col++) {
-                    // Créer la cellule
-                    AnchorPane cell = new AnchorPane();
-                    cell.setPrefSize(100, 100); // taille de la cellule, ajuste comme tu veux
-                    
-                    // Ajouter l'image
-                    ImageView imageView = new ImageView();
-                    imageView.setFitWidth(50);
-                    imageView.setFitHeight(50);
-                    AnchorPane.setTopAnchor(imageView, 10.0); // distance du haut
-                    AnchorPane.setLeftAnchor(imageView, 10.0); // distance de la gauche
-                    
-                    // Ajouter le texte
-                    Label label = new Label("Texte");
-                    AnchorPane.setBottomAnchor(label, 10.0); // distance du bas
-                    AnchorPane.setLeftAnchor(label, 10.0); // distance de la gauche
-                    
-                    // Ajouter image et texte au AnchorPane
-                    cell.getChildren().addAll(imageView, label);
-                    
-                    // Ajouter la cellule à la grille
-                    ShopGrid.add(cell, col, row);
-                    }
-                }
+        for (int row = 0; row < rows; row++) 
+        {
+
+            for (int col = 0; col < columnss; col++) 
+            {
+                // Créer la cellule
+                AnchorPane cell = new AnchorPane();
+                cell.setPrefSize(100, 100); // taille de la cellule, ajuste comme tu veux
+                
+                // Ajouter l'image
+                ImageView imageView = new ImageView();
+                imageView.setFitWidth(50);
+                imageView.setFitHeight(50);
+                AnchorPane.setTopAnchor(imageView, 10.0); // distance du haut
+                AnchorPane.setLeftAnchor(imageView, 10.0); // distance de la gauche
+                
+                // Ajouter le texte
+                Label label = new Label("Texte");
+                AnchorPane.setBottomAnchor(label, 10.0); // distance du bas
+                AnchorPane.setLeftAnchor(label, 10.0); // distance de la gauche
+                
+                // Ajouter image et texte au AnchorPane
+                cell.getChildren().addAll(imageView, label);
+                
+                // Ajouter la cellule à la grille
+                ShopGrid.add(cell, col, row);
+            }
+        }
     }
+
+    private void loadShopFromDatabase() {
+
+        ShopItemsRepository repository = new ShopItemsRepository();
+        try 
+        {
+            List<ShopItem> shopItemList = repository.findAll();
+
+            for (int i = 0; i < shopItemList.size(); i++) 
+            {
+                ShopItem item = shopItemList.get(i);
+                shop.addShopItem(item);
+                imageCache.put(item.getId(),
+                    new Image(Objects.requireNonNull(
+                        getClass().getResourceAsStream("/images/shopImg/" + item.getId() + ".png")
+                    ))
+                );  
+            }
+        } 
+        catch (Exception exception) {
+            exception.printStackTrace();
+            System.exit(1);
+        }
+            
+    }
+    
 
     private void updateUICoins()
     {
-        UserCoins.setText(String.format("%d coins", getUser().getCoins()));
+        UserCoins.setText(String.format("%d", getUser().getCoins()));
     }
 
     private void clearShop()
@@ -78,34 +116,27 @@ public class ShopController extends AbstractController implements Initializable 
            
             ImageView itemImage = (ImageView)anchor.getChildren().get(0);
             itemImage.setImage(null);
-
-            Label itemPrice = (Label)anchor.getChildren().get(1);
-            itemPrice.setText("");
-
-            Label itemName = (Label)anchor.getChildren().get(2);
-            itemName.setText("");
        }
     }
-
 
     private void showShopItemsFromCategorie(int categorie)
     {
         clearShop();
+        List<Node> anchors = new ArrayList<>(ShopGrid.getChildren());
         int indexInShop = 0;
         for (int i = 0; i < shop.getNumberOfItems(); i++)
         {
             ShopItem item = shop.getShopItem(i);
-            if(item.getCategorie() == categorie || categorie == -1)
+            if(item.getCategory() == categorie || categorie == -1)
             {
-                AnchorPane anchor = (AnchorPane)(ShopGrid.getChildren().get(indexInShop));
+                AnchorPane anchor = (AnchorPane)(anchors.get(indexInShop));
                 ImageView itemImage = (ImageView)anchor.getChildren().get(0);
-                itemImage.setImage(new Image(getClass().getResourceAsStream(item.getImagePath())));
 
-                Label itemPrice = (Label)anchor.getChildren().get(1);
-                itemPrice.setText(String.format("%d coins", item.getPrice()));
+                itemImage.setImage(
+                    imageCache.get(item.getId())
+                );
+                
 
-                Label itemName = (Label)anchor.getChildren().get(2);
-                itemName.setText(item.getName());
                 indexInShop++;
             }
         } 
@@ -121,6 +152,7 @@ public class ShopController extends AbstractController implements Initializable 
     @Override
     public void initialize (URL url, ResourceBundle resbundle)
     {   
+        loadShopFromDatabase();
         showShopItemsFromCategorie(currentCategorie);
     }
 
@@ -148,11 +180,21 @@ public class ShopController extends AbstractController implements Initializable 
             if(SceneUtils.showConfirmationPopup(String.format("Are you sure to buy %s ?", shopItem.getName())))
             {
                 System.out.println("Buy");
-                getUser().spendCoins(shopItem.getPrice());
+
+                TransferRepository tr = new TransferRepository();
+                try {
+                    tr.buy(user, shopItem);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                // getUser().spendCoins(shopItem.getPrice());
                 updateUICoins();
+                
 
                 //Create the plant with the name and the image of the shop item
-                getUser().addPlantInInventory(new Plant()); 
+                //getUser().addPlantInInventory(new Plant()); 
+                SceneUtils.showPopup("Plant is bought");
             }
             
         }
