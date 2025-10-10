@@ -17,6 +17,7 @@ import com.mygarden.app.repositories.TransferRepository;
 import com.mygarden.app.repositories.UserChallengeRepository;
 import com.mygarden.app.repositories.UserRepository;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,6 +41,9 @@ public class ChallengeController extends AbstractController{
 
     @FXML
     private Button completedBtn;
+
+    @FXML
+    private Button whyBtn;
 
     @FXML
     private Button typeBtn;
@@ -70,14 +74,24 @@ public class ChallengeController extends AbstractController{
 
     private void updateUIChallenge(Challenge challenge)
     {
-        if(challenge == null)
-        {
-            completedBtn.setDisable(true);
+        String description;
+        String tip;
+
+        if(challenge == null) 
+        { // Dummy challenge
+            description = "Well done! You completed all the current " + typeDisplayed.getText().toLowerCase() + " challenges!";
+            tip = "No more " + typeDisplayed.getText().toLowerCase() + " challenges available";
+        } else{
+            description = challenge.getDescription();
+            tip = challenge.getTip();
+        }
+        completedBtn.setDisable(challenge == null);
+        challengeDesc.setText(description);
+        challengeTip.setText(tip);
+
+        if(challenge == null) {
             return;
         }
-
-        challengeDesc.setText(challenge.getDescription());
-        challengeTip.setText(challenge.getTip());
 
         try {
             UserChallengeRepository ucr = new UserChallengeRepository();
@@ -97,6 +111,7 @@ public class ChallengeController extends AbstractController{
     {
         //Call when the page is load to update all the UI with the user data
         updateUICoins();
+        challengeTip.setOpacity(0);
         typeDisplayed.setText("Daily");
         typeBtn.setText("Weekly");
         loadChallengesFromDatabase();
@@ -104,14 +119,11 @@ public class ChallengeController extends AbstractController{
 
         Challenge daily = getUser().getCurrentDailyChallenge();
         Challenge weekly = getUser().getCurrentWeeklyChallenge();
-        if (weekly != null) {
-            currentWeeklyChallenge = weekly;
-            updateUIChallenge(weekly);
-        }
-        if (daily != null) {
-            currentDailyChallenge = daily;
-            updateUIChallenge(daily);
-        }
+
+        currentWeeklyChallenge = weekly;
+        currentDailyChallenge = daily;
+        updateUIChallenge(daily);
+
         startCountdown("daily");
     }
 
@@ -153,9 +165,6 @@ public class ChallengeController extends AbstractController{
 
         user.setCurrentWeeklyChallenge(weekly);
 
-        // Update UI
-        updateUIChallenge(weekly);
-
         regenerateDaily();
     }
 
@@ -190,13 +199,9 @@ public class ChallengeController extends AbstractController{
         }
 
         if (challengeList == null || challengeList.isEmpty()) {
-            String description = "Well done! You completed all the current " + type + " challenges!";
+            /*String description = "Well done! You completed all the current " + type + " challenges!";
             String tip = "No " + type + " challenges available";
-            Challenge dummy = new Challenge(-1, description, type, tip);
-
-            // Update UI
-            updateUIChallenge(dummy);
-
+            Challenge dummy = new Challenge(-1, description, type, tip);*/
             return null;
         }
 
@@ -230,17 +235,53 @@ public class ChallengeController extends AbstractController{
         String text = String.format("%dd %dh %dm", days, hours, minutes);
         // Update the label on the JavaFX Application Thread
         Platform.runLater(() -> remainingTime.setText(text));
+
+        // Check if a new day or week has started
+        User user = getUser();
+        LocalDate today = LocalDate.now();
+        LocalDate lastGen = user.getLastChallengeGenerationDate();
+
+        if (lastGen == null || today.isAfter(lastGen)) {
+            Platform.runLater(() -> assignChallenges());
+        }
+
+        Challenge daily = getUser().getCurrentDailyChallenge();
+        Challenge weekly = getUser().getCurrentWeeklyChallenge();
+
+        currentWeeklyChallenge = weekly;
+        currentDailyChallenge = daily;
     }
 
     private void startCountdown(String type) {
         stopScheduler(); // Stop any existing scheduler
-        scheduler = Executors.newSingleThreadScheduledExecutor(r -> {
-            Thread t = new Thread(r);
-            t.setDaemon(true); // thread daemon -> doesn't prevent JVM shutdown
-            return t;
-        });
-        // update immediatly and after every minute
-        scheduler.scheduleAtFixedRate(() -> updateTimeRemaining(type), 0, 1, TimeUnit.MINUTES);
+        Challenge currentChallenge = type.equals("daily") ? currentDailyChallenge : currentWeeklyChallenge;
+        if(currentChallenge == null) {
+            remainingTime.setText("\u221E"); // Infinity symbol
+            return;
+        }
+        else
+        {
+            scheduler = Executors.newSingleThreadScheduledExecutor(r -> {
+                Thread t = new Thread(r);
+                t.setDaemon(true); // thread daemon -> doesn't prevent JVM shutdown
+                return t;
+            });
+
+            // Initial update
+            Platform.runLater(() -> updateTimeRemaining(type));
+
+            // calculate delay to align with the start of the next minute
+            long now = System.currentTimeMillis();
+            long delay = 60_000 - (now % 60_000);
+
+            // schedule aligned to the start of each minute
+            scheduler.scheduleAtFixedRate(
+                () -> Platform.runLater(() -> updateTimeRemaining(type)),
+                delay,                // first run at start of next minute
+                60_000,               // every minute
+                TimeUnit.MILLISECONDS
+            );
+        }
     }
 
 
@@ -307,5 +348,21 @@ public class ChallengeController extends AbstractController{
             updateUIChallenge(currentDailyChallenge);
             startCountdown("daily");
         }
+    }
+
+    @FXML
+    private void onWhyClicked(ActionEvent event) {
+        challengeTip.setOpacity(1);
+        whyBtn.setOpacity(0);
+        whyBtn.setDisable(true);
+
+        // After 5 seconds, hide the tip and show the button again
+        PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(5));
+        pause.setOnFinished(e -> {
+            challengeTip.setOpacity(0);
+            whyBtn.setOpacity(1);
+            whyBtn.setDisable(false);
+        });
+        pause.play();
     }
 }
