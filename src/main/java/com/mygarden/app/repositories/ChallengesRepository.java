@@ -8,8 +8,8 @@ import com.j256.ormlite.dao.Dao;
 import com.mygarden.app.DatabaseManager;
 import com.mygarden.app.models.Challenge;
 
-public class ChallengesRepository implements BaseRepository<Challenge, String>{
-    private final Dao<Challenge, String> challengeDao = DatabaseManager.getInstance().getChallengeDao();
+public class ChallengesRepository implements BaseRepository<Challenge, Integer>{
+    private final Dao<Challenge, Integer> challengeDao = DatabaseManager.getInstance().getChallengeDao();
 
     @Override
     public List<Challenge> findAll() throws SQLException {
@@ -17,9 +17,17 @@ public class ChallengesRepository implements BaseRepository<Challenge, String>{
     }
 
     @Override
-    public Optional<Challenge> findById(String id) throws SQLException {
+    public Optional<Challenge> findById(Integer id) throws SQLException {
         return Optional.of(challengeDao.queryForId(id));
     }
+
+    public List<Challenge> findByType(String type) throws SQLException {
+        return challengeDao.queryBuilder()
+                .where()
+                .eq("type", type)
+                .query();
+    }
+
 
     @Override
     public Challenge save(Challenge entity) throws SQLException {

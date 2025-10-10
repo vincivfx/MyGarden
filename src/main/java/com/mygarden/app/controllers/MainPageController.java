@@ -2,11 +2,11 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 
+import com.mygarden.app.AudioManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 public class MainPageController extends AbstractController {
@@ -46,7 +46,13 @@ public class MainPageController extends AbstractController {
     {
         //Call when the page is load to update all the UI with the user data
         updateUICoins();
+
+        // Background music
+        AudioManager audio = AudioManager.getInstance();
+        if (!audio.isPlaying()) {
+            audio.play();
+        }
+
+
     }
-
-
 }

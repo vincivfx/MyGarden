@@ -53,6 +53,13 @@ public class UserRepository implements BaseRepository<User, String> {
         User user = User.createUser(username, password, name);
         try {
             this.userDao.createOrUpdate(user);
+
+            Optional<User> currentUser = this.findById(username);
+            if (currentUser.isEmpty()) {
+                throw new SQLException("User not found!");
+            }
+
+            user = currentUser.get();
         } catch (SQLException sqlException) {
             return Optional.empty();
         }
