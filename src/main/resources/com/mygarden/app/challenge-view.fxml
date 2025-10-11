@@ -76,13 +76,13 @@
                                  <Insets top="21.0" />
                               </VBox.margin>
                            </HBox>
-                           <Label fx:id="challengeDesc" alignment="CENTER" prefHeight="120.0" prefWidth="270.0" style="-fx-padding: 5;" text="Challenge description" wrapText="true">
+                           <Label fx:id="challengeDesc" textAlignment="CENTER" alignment="CENTER" prefHeight="120.0" prefWidth="270.0" style="-fx-padding: 5;" text="Challenge description" wrapText="true">
                               <VBox.margin>
                                  <Insets bottom="3.0" top="30.0" />
                               </VBox.margin></Label>
                            <StackPane prefHeight="120.0" prefWidth="270.0">
                               <children>
-                                 <Label fx:id="challengeTip" alignment="CENTER" prefHeight="120.0" prefWidth="270.0" style="-fx-border-width: 3; -fx-border-color: darkgreen; -fx-padding: 5; -fx-background-color: rgba(144, 238, 144, 0.3); -fx-border-radius: 10; -fx-background-radius: 10;" text="Why?" textFill="#17682b" wrapText="true">
+                                 <Label fx:id="challengeTip" textAlignment="CENTER" alignment="CENTER" prefHeight="120.0" prefWidth="270.0" style="-fx-border-width: 3; -fx-border-color: darkgreen; -fx-padding: 5; -fx-background-color: rgba(144, 238, 144, 0.3); -fx-border-radius: 10; -fx-background-radius: 10;" text="Why?" textFill="#17682b" wrapText="true">
                                     <font>
                                        <Font name="System Bold" size="18.0" />
                                     </font>
