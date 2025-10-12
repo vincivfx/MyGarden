@@ -28,13 +28,25 @@ public class UserItemRepository implements BaseRepository<UserItem, Integer> {
 
     @Override
     public UserItem save(UserItem entity) throws SQLException {
-        userItemsDao.createOrUpdate(entity);
+        Integer id = null;
+        try { id = entity.getId(); } catch (Exception ignored) {}
 
-        Optional<UserItem> currentUserItem = findById(entity.getId());
+        if (id == null || id <= 0) {
+            userItemsDao.create(entity);
+        } else {
+            userItemsDao.createOrUpdate(entity);
+        }
 
-        if (currentUserItem.isEmpty()) {throw new SQLException("Transfer not found");}
+        // refresh entity from DB to ensure generated id is populated
+        if (entity.getId() != null && entity.getId() > 0) {
+            Optional<UserItem> currentUserItem = findById(entity.getId());
+            if (currentUserItem.isEmpty()) { throw new SQLException("UserItem not found"); }
+            UserItem saved = currentUserItem.get();
+            System.out.println("UserItemRepository.save: id=" + saved.getId() + " pos_x=" + saved.getPositionX() + " pos_y=" + saved.getPositionY());
+            return saved;
+        }
 
-        return currentUserItem.get();
+        return entity;
     }
 
 
@@ -48,13 +60,29 @@ public class UserItemRepository implements BaseRepository<UserItem, Integer> {
      * @return TRUE if the move has been completed, FALSE if not, i.e. occupied position
      */
     public boolean move(UserItem entity, int position_x, int position_y) throws SQLException {
-        long occupied = userItemsDao.queryBuilder().where()
-                .eq(UserItem.USER_ID, entity.getUser().getUsername())
-                .and().eq(UserItem.POSITION_X, position_x)
-                .and().eq(UserItem.POSITION_Y, position_y)
-                .countOf();
+        if (entity.getUser() == null || entity.getUser().getUsername() == null) {
+            throw new SQLException("Cannot move UserItem without user set");
+        }
 
-        if (occupied == 0) {
+        long occupied;
+        if (entity.getId() != null) {
+            // exclude the current entity id from the occupancy check
+            occupied = userItemsDao.queryBuilder().where()
+                    .eq(UserItem.USER_ID, entity.getUser().getUsername())
+                    .and().eq(UserItem.POSITION_X, position_x)
+                    .and().eq(UserItem.POSITION_Y, position_y)
+                    .and().ne(UserItem.ID, entity.getId())
+                    .countOf();
+        } else {
+            occupied = userItemsDao.queryBuilder().where()
+                    .eq(UserItem.USER_ID, entity.getUser().getUsername())
+                    .and().eq(UserItem.POSITION_X, position_x)
+                    .and().eq(UserItem.POSITION_Y, position_y)
+                    .countOf();
+        }
+
+        // If already occupied by another item then cannot move
+        if (occupied > 0) {
             return false;
         }
 

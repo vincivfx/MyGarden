@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
@@ -183,18 +184,19 @@ public class ShopController extends AbstractController implements Initializable 
 
                 TransferRepository tr = new TransferRepository();
                 try {
-                    tr.buy(getUser(), shopItem);
+                    var currentUser = getUser();
+                    var result = tr.buy(currentUser, shopItem);
+                    if (result.isPresent()) {
+                        System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
+                        updateUICoins();
+                        SceneUtils.showPopup("Plant is bought");
+                    } else {
+                        System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
+                        SceneUtils.showPopup("Not enough coins");
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                // getUser().spendCoins(shopItem.getPrice());
-                updateUICoins();
-                
-
-                //Create the plant with the name and the image of the shop item
-                //getUser().addPlantInInventory(new Plant()); 
-                SceneUtils.showPopup("Plant is bought");
             }
             
         }
@@ -209,6 +211,7 @@ public class ShopController extends AbstractController implements Initializable 
     @FXML
     private void changeCategorie(ActionEvent event)
     {
+        SoundManager.getInstance().playClick();
         Button source = (Button) event.getSource();
          
         Pattern pattern = Pattern.compile("Categorie(\\d+)");
@@ -226,6 +229,7 @@ public class ShopController extends AbstractController implements Initializable 
 
     @FXML
     private void goToMainPage(ActionEvent event) throws IOException {
+        SoundManager.getInstance().playClick();
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
