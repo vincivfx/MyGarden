@@ -11,7 +11,7 @@ public class Transfer {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true, columnName = "user_id")
+    @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true, columnName = "user_id")
     private User user;
 
     @DatabaseField(canBeNull = false)
@@ -60,7 +60,6 @@ public class Transfer {
     public void setChallengeId(Challenge challengeId) {
         this.challengeId = challengeId;
     }
-
 
     public Transfer() {
         /* required by ORMLite */

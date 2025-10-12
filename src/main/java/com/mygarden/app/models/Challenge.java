@@ -16,6 +16,9 @@ public class Challenge {
     private String description;
 
     @DatabaseField
+    private String type; // daily or weekly
+
+    @DatabaseField
     private String tip;
 
     
@@ -25,40 +28,31 @@ public class Challenge {
 
     @DatabaseField
     private Date date;
-    
-    @DatabaseField
-    private String type;// daily or weekly
 
-    public int getPoints() {
-        return points;
+
+    public int getId() {
+        return challenge_id;
     }
 
+    //REQUIRED by ORMLite
     public Challenge() {
-        // empty constructor required by ORMLite
+        // no-arg constructor for ORMLite
     }
 
+    
 
     public Challenge(int challenge_id, String description, String type, String tip) {
         this.challenge_id = challenge_id;
-        this.description = description;
         this.type = type;
+        this.description = description;
         this.tip=tip;
+        this.points = type.equals("daily") ? 20 : 60;
     }
 
     public void setChallenge_id(int challenge_id) {
         this.challenge_id = challenge_id;
     }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTip() {
-        return this.tip;
-    }
-
-    public void setTip(String tip) {
-        this.tip = tip;
-    }
+  
     public void setPoints(int points) {
         this.points = points;
     }
@@ -70,6 +64,10 @@ public class Challenge {
     public void setDate(Date date) {
         this.date = date;
     }
+    public int getChallengeId() {
+        return challenge_id;
+    }
+
     public void setType(String type) {
         this.type = type;
     }
@@ -78,13 +76,23 @@ public class Challenge {
     return type;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    public int getChallengeId() {
-    return challenge_id;
+    public void setTip(String tip) {
+        this.tip = tip;
     }
 
+    public String getTip() {
+        return tip;
+    }
 
+    public int getPoints() {
+        return points;
+    }
 }

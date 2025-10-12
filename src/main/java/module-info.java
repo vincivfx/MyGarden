@@ -1,6 +1,8 @@
 module com.mygarden.app {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
+    requires java.prefs;
 
     requires org.controlsfx.controls;
     requires ormlite.jdbc;
