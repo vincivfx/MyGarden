@@ -74,5 +74,12 @@ public class AudioManager {
         if (v > 1) return 1;
         return v;
     }
+
+    public void dispose() {
+    if (player != null) {
+        player.dispose();   // releases file handle
+        player = null;
+    }
+}
 }
 
