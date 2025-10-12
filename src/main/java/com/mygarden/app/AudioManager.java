@@ -76,9 +76,9 @@ public class AudioManager {
     }
 
     public void dispose() {
-    if (player != null) {
-        player.dispose();   // releases file handle
-        player = null;
+    if (mediaPlayer != null) {
+        mediaPlayer.dispose();   // releases file handle
+        mediaPlayer = null;
     }
 }
 }
