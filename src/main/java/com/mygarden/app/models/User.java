@@ -1,5 +1,11 @@
 package com.mygarden.app.models;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
@@ -20,8 +26,23 @@ public class User extends TimeStampAbstractModel {
     @DatabaseField
     private int coins;
 
+    @DatabaseField
+    private Date lastChallengeGenerationDate;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "current_daily_challenge_id")
+    private Challenge currentDailyChallenge;
+
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "current_weekly_challenge_id")
+    private Challenge currentWeeklyChallenge;
+
+    @ForeignCollectionField
+    private ForeignCollection<UserChallenge> completedChallenges;
+
     @ForeignCollectionField
     private ForeignCollection<Transfer> transfers;
+
+
+    private List<Plant> inventory;
 
     public User() {
         // needed by ORMLite

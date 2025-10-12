@@ -183,7 +183,7 @@ public class ShopController extends AbstractController implements Initializable 
 
                 TransferRepository tr = new TransferRepository();
                 try {
-                    tr.buy(user, shopItem);
+                    tr.buy(getUser(), shopItem);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

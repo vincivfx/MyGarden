@@ -59,21 +59,97 @@
                      </ImageView>
                      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="335.0">
                         <children>
-                           <Label text="Challenge">
-                              <font>
-                                 <Font name="System Bold" size="25.0" />
-                              </font>
+                           <HBox alignment="CENTER" prefHeight="36.0" prefWidth="123.0">
+                              <children>
+                                 <Label fx:id="typeDisplayed" text="Type">
+                                    <font>
+                                       <Font name="System Bold" size="25.0" />
+                                    </font>
+                                 </Label>
+                                 <Label text=" Challenge">
+                                    <font>
+                                       <Font name="System Bold" size="25.0" />
+                                    </font>
+                                 </Label>
+                              </children>
                               <VBox.margin>
                                  <Insets top="21.0" />
                               </VBox.margin>
-                           </Label>
+                           </HBox>
+                           <Label fx:id="challengeDesc" alignment="CENTER" prefHeight="120.0" prefWidth="270.0" style="-fx-padding: 5;" text="Challenge description" wrapText="true">
+                              <VBox.margin>
+                                 <Insets bottom="3.0" top="30.0" />
+                              </VBox.margin></Label>
+                           <StackPane prefHeight="120.0" prefWidth="270.0">
+                              <children>
+                                 <Label fx:id="challengeTip" alignment="CENTER" prefHeight="120.0" prefWidth="270.0" style="-fx-border-width: 3; -fx-border-color: darkgreen; -fx-padding: 5; -fx-background-color: rgba(144, 238, 144, 0.3); -fx-border-radius: 10; -fx-background-radius: 10;" text="Why?" textFill="#17682b" wrapText="true">
+                                    <font>
+                                       <Font name="System Bold" size="18.0" />
+                                    </font>
+                                 </Label>
+                                 <Button fx:id="whyBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onWhyClicked" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: rgba(144, 238, 144, 0.3); -fx-border-width: 3; -fx-border-color: darkgreen; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                    <graphic>
+                                       <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../images/why.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                    <font>
+                                       <Font size="2.0" />
+                                    </font>
+                                 </Button>
+                              </children>
+                           </StackPane>
+                           <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                              <children>
+                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="160.0">
+                                    <children>
+                                       <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../images/remainingTime.png" />
+                                          </image>
+                                          <HBox.margin>
+                                             <Insets />
+                                          </HBox.margin>
+                                       </ImageView>
+                                       <Label fx:id="remainingTime" text="0d 0h 0m">
+                                          <HBox.margin>
+                                             <Insets />
+                                          </HBox.margin>
+                                       </Label>
+                                    </children>
+                                    <HBox.margin>
+                                       <Insets right="40.0" />
+                                    </HBox.margin>
+                                 </HBox>
+                                 <Button fx:id="completedBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onChallengeCompleted" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: green; -fx-border-width: 3; -fx-border-color: darkgreen; -fx-border-radius: 10; -fx-background-radius: 10;">
+                                    <graphic>
+                                       <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                             <Image url="@../../../images/completed.png" />
+                                          </image>
+                                       </ImageView>
+                                    </graphic>
+                                    <font>
+                                       <Font size="2.0" />
+                                    </font>
+                                 </Button>
+                              </children>
+                              <VBox.margin>
+                                 <Insets top="5.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <Button fx:id="typeBtn" mnemonicParsing="false" onAction="#changeChallengeType" style="-fx-background-color: purple; -fx-border-width: 3; -fx-border-color: darkviolet; -fx-border-radius: 10; -fx-background-radius: 10;" text="OtherType" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets top="6.0" />
+                              </VBox.margin>
+                              <font>
+                                 <Font name="System Bold" size="18.0" />
+                              </font>
+                           </Button>
                         </children>
                      </VBox>
-                     <Label fx:id="challengeDescription" prefHeight="26.0" prefWidth="215.0" text="Label">
-                        <graphic>
-                           <Button fx:id="completedBtn" mnemonicParsing="false" text="Button" />
-                        </graphic>
-                     </Label>
                   </children>
                </StackPane>
                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">
