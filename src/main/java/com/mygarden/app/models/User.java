@@ -12,7 +12,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "mg_users")
-public class User {
+public class User extends TimeStampAbstractModel {
 
     @DatabaseField(id = true)
     private String username;
@@ -75,39 +75,6 @@ public class User {
 
     public void earnCoins(int coins) {
         this.coins += coins;
-    }
-
-    public LocalDate getLastChallengeGenerationDate() {
-        if (lastChallengeGenerationDate == null) return null;
-        return lastChallengeGenerationDate.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-    }
-
-    public void setLastChallengeGenerationDate(LocalDate localDate) {
-        if (localDate == null) {
-            this.lastChallengeGenerationDate = null;
-        } else {
-            this.lastChallengeGenerationDate = Date.from(
-                    localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()
-            );
-        }
-    }
-
-    public void setCurrentDailyChallenge(Challenge challenge) {
-        this.currentDailyChallenge = challenge;
-    }
-
-    public Challenge getCurrentDailyChallenge() {
-        return this.currentDailyChallenge;
-    }
-
-    public void setCurrentWeeklyChallenge(Challenge challenge) {
-        this.currentWeeklyChallenge = challenge;
-    }
-
-    public Challenge getCurrentWeeklyChallenge() {
-        return this.currentWeeklyChallenge;
     }
 
     public Boolean verifyPassword(String password) {
