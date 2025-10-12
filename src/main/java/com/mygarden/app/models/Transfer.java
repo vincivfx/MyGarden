@@ -1,12 +1,12 @@
 package com.mygarden.app.models;
 
-import java.util.Optional;
-
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable
-public class Transfer {
+import java.util.Optional;
+
+@DatabaseTable(tableName = "mg_transfers")
+public class Transfer extends TimeStampAbstractModel {
 
     @DatabaseField(generatedId = true)
     private int id;
