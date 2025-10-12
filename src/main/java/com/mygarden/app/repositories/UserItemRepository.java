@@ -1,13 +1,12 @@
 package com.mygarden.app.repositories;
 
-import com.j256.ormlite.dao.Dao;
-import com.mygarden.app.DatabaseManager;
-import com.mygarden.app.models.Transfer;
-import com.mygarden.app.models.UserItem;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+
+import com.j256.ormlite.dao.Dao;
+import com.mygarden.app.DatabaseManager;
+import com.mygarden.app.models.UserItem;
 
 public class UserItemRepository implements BaseRepository<UserItem, Integer> {
     public final Dao<UserItem, Integer> userItemsDao;
@@ -54,7 +53,7 @@ public class UserItemRepository implements BaseRepository<UserItem, Integer> {
                 .and().eq(UserItem.POSITION_Y, position_y)
                 .countOf();
 
-        if (occupied == 0) {
+        if (occupied > 0) {
             return false;
         }
 

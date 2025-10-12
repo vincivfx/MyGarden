@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Optional;
 
 @DatabaseTable(tableName = "mg_transfers")
-public class Transfer {
+public class Transfer extends TimeStampAbstractModel {
 
     @DatabaseField(generatedId = true)
     private int id;
