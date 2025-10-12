@@ -26,5 +26,11 @@ replay_pid*
 # IntelliJ Idea configuration files
 .idea
 
+# Ignore all markdown files
+*.md
+
+# Ignore docs\ dir
+docs\
+
 /target/
 

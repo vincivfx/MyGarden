@@ -183,18 +183,19 @@ public class ShopController extends AbstractController implements Initializable 
 
                 TransferRepository tr = new TransferRepository();
                 try {
-                    tr.buy(user, shopItem);
+                    var currentUser = getUser();
+                    var result = tr.buy(currentUser, shopItem);
+                    if (result.isPresent()) {
+                        System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
+                        updateUICoins();
+                        SceneUtils.showPopup("Plant is bought");
+                    } else {
+                        System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
+                        SceneUtils.showPopup("Not enough coins");
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                // getUser().spendCoins(shopItem.getPrice());
-                updateUICoins();
-                
-
-                //Create the plant with the name and the image of the shop item
-                //getUser().addPlantInInventory(new Plant()); 
-                SceneUtils.showPopup("Plant is bought");
             }
             
         }

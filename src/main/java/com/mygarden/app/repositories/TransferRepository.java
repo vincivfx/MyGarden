@@ -51,8 +51,13 @@ public class TransferRepository implements BaseRepository<Transfer, Integer> {
         Transfer transfer = Transfer.createTransferBought(user, shopItem);
         UserItem boughtUserItem = new UserItem();
 
+        // initialize user item fields and persist
+        boughtUserItem.setUser(user);
+        boughtUserItem.setShopItem(shopItem);
+
         UserItemRepository userItemRepository = new UserItemRepository();
-        userItemRepository.save(boughtUserItem);
+    UserItem saved = userItemRepository.save(boughtUserItem);
+    System.out.println("TransferRepository.buy: created UserItem id=" + saved.getId() + " for user=" + user.getUsername() + " shopItem=" + shopItem.getId());
 
         this.save(transfer);
         return Optional.of(transfer);
