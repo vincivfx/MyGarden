@@ -47,13 +47,13 @@
                               <children>
                                  <Label text="Music Volume">
                                     <font>
-                                       <Font name="System Bold" size="12.0" />
+                                       <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
-                                 <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="160.0" />
+                                 <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="150.0" />
                                  <Label fx:id="volumeLabel" text="50%">
                                     <font>
-                                       <Font name="System Bold" size="12.0" />
+                                       <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
                               </children>
@@ -69,13 +69,13 @@
                               <children>
                                  <Label text="SFX Volume">
                                     <font>
-                                       <Font name="System Bold" size="12.0" />
+                                       <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
-                                 <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="160.0" />
+                                 <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="150.0" />
                                  <Label fx:id="sfxVolumeLabel" text="50%">
                                     <font>
-                                       <Font name="System Bold" size="12.0" />
+                                       <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
                               </children>

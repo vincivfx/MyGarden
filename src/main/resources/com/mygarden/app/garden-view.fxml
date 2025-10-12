@@ -8,15 +8,25 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600.0" prefWidth="335.0" style="-fx-font-family: 'Segoe UI';" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.GardenController">
 
         <top>
                 <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 10 12 8 12; -fx-background-color: rgba(255,255,255,0.6); -fx-border-color: #cfcfcf; -fx-border-width: 0 0 1 0;">
                         <children>
-                                <Button onAction="#onGoToMainPage" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 10;" text="Main Page" />
-                                <Button onAction="#onGoToShop" style="-fx-background-color: #388e3c; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 10;" text="Shop" />
-                                <Button fx:id="inventoryButton" onAction="#onToggleInventory" style="-fx-background-color: #e0e0e0; -fx-text-fill: #333; -fx-background-radius: 8; -fx-padding: 6 10;" text="Inventory" />
+                                <Button onAction="#onGoToMainPage" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 10; -fx-border-width: 3; -fx-border-radius: 8;" text="Main Page">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
+                                <Button onAction="#onGoToShop" style="-fx-background-color: #388e3c; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 6 10; -fx-border-width: 3; -fx-border-radius: 8;" text="Shop">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
+                                <Button fx:id="inventoryButton" onAction="#onToggleInventory" style="-fx-background-color: #e0e0e0; -fx-text-fill: #333; -fx-background-radius: 8; -fx-padding: 6 10; -fx-border-width: 3; -fx-border-radius: 8;" text="Inventory">
+               <font>
+                  <Font size="13.0" />
+               </font></Button>
                         </children>
                 </HBox>
         </top>
