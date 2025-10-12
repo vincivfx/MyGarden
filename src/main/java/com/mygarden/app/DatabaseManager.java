@@ -128,8 +128,8 @@ public final class DatabaseManager {
         shopItemDao.createOrUpdate(ShopItem.create("hydrangea", "Hydrangea", 30, 1));
         shopItemDao.createOrUpdate(ShopItem.create("lavender", "Lavender", 18, 1));
         shopItemDao.createOrUpdate(ShopItem.create("rhododendron", "Rhododendron", 45, 1));
-        shopItemDao.createOrUpdate(ShopItem.create("maple", "Maple", 120, 2));
-        shopItemDao.createOrUpdate(ShopItem.create("oak", "Oak", 200, 2));
+        shopItemDao.createOrUpdate(ShopItem.create("maple", "Maple", 200, 2));
+        shopItemDao.createOrUpdate(ShopItem.create("oak", "Oak", 120, 2));
         shopItemDao.createOrUpdate(ShopItem.create("pine", "Pine", 80, 2));
         shopItemDao.createOrUpdate(ShopItem.create("willow", "Willow", 150, 2));
 
