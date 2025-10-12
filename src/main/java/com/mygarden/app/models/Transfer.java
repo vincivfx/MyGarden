@@ -25,6 +25,43 @@ public class Transfer {
 
     public int getAmount() {return amount;}
 
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public ShopItem getShopItemId() {
+        return this.shopItemId;
+    }
+
+    public void setShopItemId(ShopItem shopItemId) {
+        this.shopItemId = shopItemId;
+    }
+
+    public Challenge getChallengeId() {
+        return this.challengeId;
+    }
+
+    public void setChallengeId(Challenge challengeId) {
+        this.challengeId = challengeId;
+    }
+
+
     public Transfer() {
         /* required by ORMLite */
     }

@@ -18,6 +18,8 @@ public class Challenge {
     @DatabaseField
     private String tip;
 
+    
+
     @DatabaseField
     private int points;
 
@@ -43,7 +45,34 @@ public class Challenge {
         this.tip=tip;
     }
 
+    public void setChallenge_id(int challenge_id) {
+        this.challenge_id = challenge_id;
+    }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
+    public String getTip() {
+        return this.tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+    }
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public Date getDate() {
+        return this.date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getType() {
     return type;
