@@ -1,0 +1,35 @@
+/* Music Volume Slider Thumb */
+#volumeSlider .thumb {
+    -fx-background-color: transparent;          
+    -fx-background-image: url("images/settingsImg/thumb.png");
+    -fx-background-size: contain;               
+    -fx-background-repeat: no-repeat;           
+    -fx-background-position: center;            
+    -fx-pref-width: 30px;                       
+    -fx-pref-height: 30px;                     
+}
+
+/* SFX Volume Slider Thumb */
+#sfxVolumeSlider .thumb {
+    -fx-background-color: transparent;
+    -fx-background-image: url("images/settingsImg/thumb.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+}
+
+/* Slider Track Background  */
+#volumeSlider .track, #sfxVolumeSlider .track {
+    -fx-background-color: #ccc;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+    -fx-pref-height: 8px;
+
+
+#volumeSlider .track, #sfxVolumeSlider .track {
+    -fx-background-radius: 5px;
+}
+
+}
