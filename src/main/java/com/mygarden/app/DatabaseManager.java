@@ -117,6 +117,14 @@ public final class DatabaseManager {
         DatabaseManager.shutdown();
     }
 
+    public void resetApplication() throws SQLException {
+        TableUtils.clearTable(connectionSource, UserItem.class);
+        TableUtils.clearTable(connectionSource, UserChallenge.class);
+        TableUtils.clearTable(connectionSource, Garden.class);
+        TableUtils.clearTable(connectionSource, Transfer.class);
+        TableUtils.clearTable(connectionSource, User.class);
+    }
+
     public void spawnDatabase() throws SQLException {
         System.out.println("Spawning database");
         

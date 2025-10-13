@@ -20,8 +20,10 @@ public class SceneUtils {
 
         Scene newScene = new Scene(fxmlLoader.load());
 
-        AbstractController controller = fxmlLoader.getController();
-        controller.setUser(currentUser);
+        if (currentUser != null) {
+            AbstractController controller = fxmlLoader.getController();
+            controller.setUser(currentUser);
+        }
 
         Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         currentStage.setScene(newScene);
