@@ -41,9 +41,6 @@ public class User extends TimeStampAbstractModel {
     @ForeignCollectionField
     private ForeignCollection<Transfer> transfers;
 
-
-    private List<Plant> inventory;
-
     public User() {
         // needed by ORMLite
     }
@@ -75,6 +72,39 @@ public class User extends TimeStampAbstractModel {
 
     public void earnCoins(int coins) {
         this.coins += coins;
+    }
+
+    public LocalDate getLastChallengeGenerationDate() {
+        if (lastChallengeGenerationDate == null) return null;
+        return lastChallengeGenerationDate.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    public void setLastChallengeGenerationDate(LocalDate localDate) {
+        if (localDate == null) {
+            this.lastChallengeGenerationDate = null;
+        } else {
+            this.lastChallengeGenerationDate = Date.from(
+                    localDate.atStartOfDay(ZoneId.systemDefault()).toInstant()
+            );
+        }
+    }
+
+    public void setCurrentDailyChallenge(Challenge challenge) {
+        this.currentDailyChallenge = challenge;
+    }
+
+    public Challenge getCurrentDailyChallenge() {
+        return this.currentDailyChallenge;
+    }
+
+    public void setCurrentWeeklyChallenge(Challenge challenge) {
+        this.currentWeeklyChallenge = challenge;
+    }
+
+    public Challenge getCurrentWeeklyChallenge() {
+        return this.currentWeeklyChallenge;
     }
 
     public Boolean verifyPassword(String password) {

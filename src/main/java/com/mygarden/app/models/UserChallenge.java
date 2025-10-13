@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.Date;
 
 @DatabaseTable(tableName = "mg_user_challenges")
-public class UserChallenge {
+public class UserChallenge extends TimeStampAbstractModel {
 
     @DatabaseField(generatedId = true)
     private Integer id;
