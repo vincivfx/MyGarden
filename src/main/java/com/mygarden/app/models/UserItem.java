@@ -33,7 +33,7 @@ public class UserItem extends TimeStampAbstractModel {
         // ORMLite
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -41,10 +41,30 @@ public class UserItem extends TimeStampAbstractModel {
         return user;
     }
 
-    public void move(int position_x, int position_y) {
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setShopItem(ShopItem shopItem) {
+        this.shopItem = shopItem;
+    }
+
+    public ShopItem getShopItem() {
+        return this.shopItem;
+    }
+
+    public void move(Integer position_x, Integer position_y) {
         this.position_x = position_x;
         this.position_y = position_y;
         updateUpdatedDate();
+    }
+
+    public Integer getPositionX() {
+        return this.position_x;
+    }
+
+    public Integer getPositionY() {
+        return this.position_y;
     }
 
 }

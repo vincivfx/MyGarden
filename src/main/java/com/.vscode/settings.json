@@ -1,7 +1,0 @@
-{
-  "java.configuration.maven.userSettings": "${workspaceFolder}/.mvn/settings.xml",
-  "java.project.sourcePaths": [
-    "src/main/java",
-    "src/test/java"
-  ]
-}
