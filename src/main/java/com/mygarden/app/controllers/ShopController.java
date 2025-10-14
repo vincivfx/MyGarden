@@ -233,6 +233,13 @@ public class ShopController extends AbstractController implements Initializable 
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
 
+    @FXML
+    private void goToGarden(ActionEvent event) throws IOException {
+        SoundManager.getInstance().playClick();
+        SceneUtils.changeScene(event, "/com/mygarden/app/garden-view.fxml", getUser());
+    }
+
+
 
     
 }
