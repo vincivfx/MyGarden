@@ -1,14 +1,21 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import com.mygarden.app.AudioManager;
+import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class MainPageController extends AbstractController {
     // --- FXML UI elements ---
@@ -42,7 +49,24 @@ public class MainPageController extends AbstractController {
     @FXML
     private void onGoToSettings(ActionEvent event) throws IOException {
         SoundManager.getInstance().playClick();
-        SceneUtils.changeScene(event, "/com/mygarden/app/settings-view.fxml", getUser());
+
+        ResourceBundle bundle = LanguageManager.getBundle();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mygarden/app/settings-view.fxml"), bundle);
+        Parent root = loader.load();
+
+
+        Object controller = loader.getController();
+        if (controller instanceof AbstractController) {
+            ((AbstractController) controller).setUser(getUser());
+        }
+
+        // Replace the scene root on the current stage
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        if (stage.getScene() == null) {
+            stage.setScene(new Scene(root));
+        } else {
+            stage.getScene().setRoot(root);
+        }
     }
 
 

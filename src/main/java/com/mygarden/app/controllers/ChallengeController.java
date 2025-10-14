@@ -10,7 +10,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.mygarden.app.AudioManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Challenge;
@@ -66,7 +65,7 @@ public class ChallengeController extends AbstractController{
         Platform.runLater(() -> {
             Stage stage = (Stage) remainingTime.getScene().getWindow();
             stage.setOnCloseRequest(event -> stopScheduler());
-            AudioManager.getInstance().dispose(); // release audio resources
+            //AudioManager.getInstance().dispose(); // release audio resources
         });
     }
 
