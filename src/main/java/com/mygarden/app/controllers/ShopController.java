@@ -1,13 +1,11 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,10 +18,11 @@ import com.mygarden.app.repositories.TransferRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,7 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 
-public class ShopController extends AbstractController implements Initializable  {
+public class ShopController extends AbstractController {
 
 
     int currentCategorie = -1;
@@ -103,7 +102,6 @@ public class ShopController extends AbstractController implements Initializable 
             
     }
     
-
     private void updateUICoins()
     {
         UserCoins.setText(String.format("%d", getUser().getCoins()));
@@ -136,6 +134,27 @@ public class ShopController extends AbstractController implements Initializable 
                 itemImage.setImage(
                     imageCache.get(item.getId())
                 );
+
+                if(item.getPrice() > getUser().getCoins())
+                {
+                    anchor.setOnMouseClicked(null);
+                    anchor.setOnMouseEntered(null);
+                    anchor.setOnMouseExited(null);
+
+                    ColorAdjust grayEffect = new ColorAdjust();
+                    grayEffect.setSaturation(-1);
+                    itemImage.setEffect(grayEffect);
+                }
+                else
+                {
+                    anchor.setOnMouseClicked(e -> buyPlant(e));
+                    anchor.setOnMouseEntered(e -> buttonIsHovered(e));
+                    anchor.setOnMouseExited(e -> buttonIsNoLongerHovered(e));
+
+                    itemImage.setEffect(null);
+                }
+
+               
                 
 
                 indexInShop++;
@@ -148,15 +167,9 @@ public class ShopController extends AbstractController implements Initializable 
     {
         //Call when the page is load to update all the UI with the user data
         updateUICoins();
-    }
-
-    @Override
-    public void initialize (URL url, ResourceBundle resbundle)
-    {   
         loadShopFromDatabase();
         showShopItemsFromCategorie(currentCategorie);
     }
-
     // --- End Methods ---
 
     // --- FXML UI elements ---
@@ -165,10 +178,13 @@ public class ShopController extends AbstractController implements Initializable 
 
     @FXML
     private GridPane ShopGrid;
+
+    @FXML
+    private ScrollPane scrollPaneShop;
     // --- END FXML UI elements ---
     
     @FXML
-    private void buyPlant(MouseEvent event) throws IOException {
+    private void buyPlant(MouseEvent event) {
         
         //Get the index of the item in the shop
         AnchorPane cell = (AnchorPane) event.getSource();
@@ -189,6 +205,7 @@ public class ShopController extends AbstractController implements Initializable 
                     if (result.isPresent()) {
                         System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
                         updateUICoins();
+                        showShopItemsFromCategorie(currentCategorie);
                         SceneUtils.showPopup("Plant is bought");
                     } else {
                         System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
@@ -209,6 +226,27 @@ public class ShopController extends AbstractController implements Initializable 
     }
 
     @FXML
+    private void buttonIsHovered(MouseEvent event)
+    {
+        ColorAdjust hoverEffect = new ColorAdjust();
+        hoverEffect.setSaturation(1.5);
+
+        AnchorPane cell = (AnchorPane) event.getSource();
+        ImageView image = (ImageView) cell.getChildren().get(0);
+        image.setEffect(hoverEffect);
+
+    }
+
+    @FXML
+    private void buttonIsNoLongerHovered(MouseEvent event)
+    {
+        AnchorPane cell = (AnchorPane) event.getSource();
+        ImageView image = (ImageView) cell.getChildren().get(0);
+        image.setEffect(null);
+
+    }
+
+    @FXML
     private void changeCategorie(ActionEvent event)
     {
         SoundManager.getInstance().playClick();
@@ -225,6 +263,7 @@ public class ShopController extends AbstractController implements Initializable 
         }
         currentCategorie = categorie;
         showShopItemsFromCategorie(categorie);
+        scrollPaneShop.setVvalue(scrollPaneShop.getVmin());
     }
 
     @FXML

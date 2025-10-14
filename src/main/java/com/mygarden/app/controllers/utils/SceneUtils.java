@@ -27,7 +27,7 @@ public class SceneUtils {
         currentStage.setScene(newScene);
     }
 
-    public static boolean showConfirmationPopup(String questionText) throws IOException 
+    public static boolean showConfirmationPopup(String questionText)
     {
         Stage popup = new Stage();
         popup.initModality(Modality.APPLICATION_MODAL); // Bloque la fenêtre principale
@@ -36,15 +36,20 @@ public class SceneUtils {
         popup.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader(SceneUtils.class.getResource("/com/mygarden/app/utils/confirmation-popup-view.fxml"));
-        Scene popUpScene = new Scene(fxmlLoader.load());
+        try {
+            Scene popUpScene = new Scene(fxmlLoader.load());
+            ConfirmationPopUpController controller = fxmlLoader.getController();
+            controller.setQuestion(questionText);
 
-        ConfirmationPopUpController controller = fxmlLoader.getController();
-        controller.setQuestion(questionText);
+            popup.setScene(popUpScene);
+            popup.showAndWait();
 
-        popup.setScene(popUpScene);
-        popup.showAndWait();
-
-        return controller.isConfirmed();
+            return controller.isConfirmed();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return false;
     }
 
     public static void showPopup(String text) throws IOException 
