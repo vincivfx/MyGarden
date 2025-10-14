@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
@@ -155,9 +156,41 @@ public class ShopController extends AbstractController implements Initializable 
     {   
         loadShopFromDatabase();
         showShopItemsFromCategorie(currentCategorie);
-    }
 
-    // --- End Methods ---
+        /*
+         * Minimal i18n initialization:
+         * Use the ResourceBundle provided by FXMLLoader if available (resbundle),
+         * otherwise fall back to LanguageManager.getBundle().
+         * We only set the UI strings here (do not change existing behaviour).
+         */
+        ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
+
+        try {
+            if (mainPageButton != null && bundle.containsKey("shop.mainPage")) {
+                mainPageButton.setText(bundle.getString("shop.mainPage"));
+            }
+            if (CategorieAll != null && bundle.containsKey("shop.categories.all")) {
+                CategorieAll.setText(bundle.getString("shop.categories.all"));
+            }
+            if (Categorie0 != null && bundle.containsKey("shop.categories.flowers")) {
+                Categorie0.setText(bundle.getString("shop.categories.flowers"));
+            }
+            if (Categorie1 != null && bundle.containsKey("shop.categories.shrubs")) {
+                Categorie1.setText(bundle.getString("shop.categories.shrubs"));
+            }
+            if (Categorie2 != null && bundle.containsKey("shop.categories.trees")) {
+                Categorie2.setText(bundle.getString("shop.categories.trees"));
+            }
+
+            // placeholder/fallback for coins before the real user is set
+            if (UserCoins != null && bundle.containsKey("shop.coins")) {
+                UserCoins.setText(bundle.getString("shop.coins"));
+            }
+        } catch (Exception e) {
+            // be conservative: if bundle lookup fails, do not break initialization
+            e.printStackTrace();
+        }
+    }
 
     // --- FXML UI elements ---
     @FXML
@@ -165,6 +198,21 @@ public class ShopController extends AbstractController implements Initializable 
 
     @FXML
     private GridPane ShopGrid;
+
+    @FXML
+    private Button mainPageButton;
+
+    @FXML
+    private Button CategorieAll;
+
+    @FXML
+    private Button Categorie0;
+
+    @FXML
+    private Button Categorie1;
+
+    @FXML
+    private Button Categorie2;
     // --- END FXML UI elements ---
     
     @FXML
@@ -178,7 +226,7 @@ public class ShopController extends AbstractController implements Initializable 
 
         if(shopItem.getPrice() <= getUser().getCoins()) //Enough Money
         {
-            if(SceneUtils.showConfirmationPopup(String.format("Are you sure to buy %s ?", shopItem.getName())))
+            if(SceneUtils.showConfirmationPopupFromKey("popup.purchase.confirm", shopItem.getName()))
             {
                 System.out.println("Buy");
 
@@ -189,10 +237,11 @@ public class ShopController extends AbstractController implements Initializable 
                     if (result.isPresent()) {
                         System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
                         updateUICoins();
-                        SceneUtils.showPopup("Plant is bought");
+                        SoundManager.getInstance().playPurchase();
+                        SceneUtils.showPopupFromKey("popup.plant.bought");
                     } else {
                         System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
-                        SceneUtils.showPopup("Not enough coins");
+                        SceneUtils.showPopupFromKey("popup.not.enough.coins");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -3,6 +3,7 @@ package com.mygarden.app.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
 import com.mygarden.app.AudioManager;
 import com.mygarden.app.DatabaseManager;
@@ -16,10 +17,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -102,23 +105,45 @@ public class SettingsController extends AbstractController{
 
     @FXML
     public void resetApplication(ActionEvent event) throws IOException {
+        ResourceBundle bundle = LanguageManager.getBundle();
+
+        // Localized title / content / button labels with fallbacks
+        String title = bundle != null && bundle.containsKey("reset.title") ? bundle.getString("reset.title") : "Reset Application";
+        String content = bundle != null && bundle.containsKey("reset.confirmText")
+            ? bundle.getString("reset.confirmText")
+            : "Are you sure you want to delete all your data from MyGarden? These settings will be lost forever! (A long time!)";
+        String confirmLabel = bundle != null && bundle.containsKey("reset.confirmButton") ? bundle.getString("reset.confirmButton") : "Delete";
+        String cancelLabel  = bundle != null && bundle.containsKey("reset.cancelButton")  ? bundle.getString("reset.cancelButton")  : "Cancel";
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        // These strings could be localized as well - see notes below.
-        alert.setTitle("Reset Application");
+        alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to delete all your data from MyGarden? These settings will be lost forever! (A long time!)");
+        alert.setContentText(content);
+
+        ButtonType deleteBtn = new ButtonType(confirmLabel, ButtonBar.ButtonData.OK_DONE);
+        ButtonType cancelBtn = new ButtonType(cancelLabel, ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(deleteBtn, cancelBtn);
+
+        // ensure dialog grows to fit long text
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
         alert.showAndWait().ifPresent(rs -> {
-            if (rs == ButtonType.OK) {
+            if (rs == deleteBtn) {
                 try {
                     DatabaseManager.getInstance().resetApplication();
                     SceneUtils.changeScene(event, "/com/mygarden/app/login-page-view.fxml", null);
 
                 } catch (SQLException | IOException exception) {
-                    System.out.println(exception.getMessage());
+                    exception.printStackTrace();
+
+                    String errTitle = bundle != null && bundle.containsKey("error.title") ? bundle.getString("error.title") : "Error";
+                    String errMsg = exception.getMessage() != null ? exception.getMessage() : (bundle != null && bundle.containsKey("error.generic") ? bundle.getString("error.generic") : "An error occurred");
+
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Error");
+                    errorAlert.setTitle(errTitle);
                     errorAlert.setHeaderText(null);
-                    errorAlert.setContentText(exception.getMessage());
+                    errorAlert.setContentText(errMsg);
+                    errorAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
                     errorAlert.showAndWait();
                 }
             }
