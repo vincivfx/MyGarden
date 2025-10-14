@@ -206,7 +206,8 @@ public class ShopController extends AbstractController {
                         System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
                         updateUICoins();
                         showShopItemsFromCategorie(currentCategorie);
-                        SceneUtils.showPopup("Plant is bought");
+                        scrollPaneShop.setVvalue(scrollPaneShop.getVmin());
+                        //SceneUtils.showPopup("Plant is bought");
                     } else {
                         System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
                         SceneUtils.showPopup("Not enough coins");
