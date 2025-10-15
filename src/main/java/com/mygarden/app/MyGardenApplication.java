@@ -25,7 +25,7 @@ public class MyGardenApplication extends Application {
         // connect to the SQLite database
         try {
             DatabaseManager.connect();
-            
+
             if (args.length > 0 && args[0].equals("--spawn")) {
                 DatabaseManager.getInstance().spawnDatabase();
             }

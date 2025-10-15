@@ -1,13 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.utils.ConfirmationPopUpController">
+
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.utils.ConfirmationPopUpController">
    <children>
-      <Label fx:id="question" alignment="CENTER" layoutX="53.0" layoutY="26.0" text="Are you sure to buy this plant?" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0" />
-      <Button layoutX="24.0" layoutY="62.0" mnemonicParsing="false" onAction="#onYesClicked" text="Yes" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="30.0" />
-      <Button layoutX="124.0" layoutY="62.0" mnemonicParsing="false" onAction="#onNoClicked" text="No" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="30.0" />
+      <Label fx:id="question" alignment="CENTER" maxWidth="250.0" text="Are you sure to buy this plant?" textAlignment="CENTER" wrapText="true">
+         <VBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="TOP_CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#onNoClicked" text="No" />
+            <Button mnemonicParsing="false" onAction="#onYesClicked" text="Yes">
+               <HBox.margin>
+                  <Insets left="50.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="20.0" />
+         </VBox.margin>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>
