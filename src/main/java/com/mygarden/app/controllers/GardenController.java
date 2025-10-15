@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 
+import com.mygarden.app.models.Transfer;
+import com.mygarden.app.repositories.TransferRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
@@ -83,6 +85,14 @@ public class GardenController extends AbstractController {
         } catch (Exception ex) {
             System.err.println("Could not load user items on setUser: " + ex.getMessage());
         }
+
+        TransferRepository transferRepository = new TransferRepository();
+        try {
+            transferRepository.getPlantStatistics(getUser());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -163,6 +173,7 @@ public class GardenController extends AbstractController {
                 e.consume();
             });
         }
+
     }
 
     @FXML
