@@ -115,19 +115,31 @@
                         <Button fx:id="CategorieAll" contentDisplay="CENTER" mnemonicParsing="false" onAction="#changeCategorie" prefWidth="112.0" text="All">
                            <font>
                               <Font size="13.0" />
-                           </font></Button>
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                         <Button fx:id="Categorie0" mnemonicParsing="false" onAction="#changeCategorie" prefWidth="112.0" text="Flowers">
                            <font>
                               <Font size="13.0" />
-                           </font></Button>
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                         <Button fx:id="Categorie1" mnemonicParsing="false" onAction="#changeCategorie" prefWidth="112.0" text="Shrubs">
                            <font>
                               <Font size="13.0" />
-                           </font></Button>
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                         <Button fx:id="Categorie2" mnemonicParsing="false" onAction="#changeCategorie" prefWidth="112.0" text="Trees">
                            <font>
                               <Font size="13.0" />
-                           </font></Button>
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                      </children>
                   </HBox>
                   <ScrollPane fx:id="scrollPaneShop" hbarPolicy="NEVER" prefHeight="510.0" prefWidth="333.0" vbarPolicy="NEVER">
@@ -150,27 +162,42 @@
                                  <children>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="159.0">
                                        <children>
-                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ImageView>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1">
                                        <children>
-                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ImageView>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="159.0" GridPane.rowIndex="1">
                                        <children>
-                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ImageView>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ImageView>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="159.0" GridPane.rowIndex="2">
                                        <children>
-                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ImageView fitHeight="167.5" fitWidth="167.5" layoutX="36.0" layoutY="20.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ImageView>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="159.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -209,6 +236,9 @@
                                        </children>
                                     </AnchorPane>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </GridPane>
                            </children>
                         </AnchorPane>

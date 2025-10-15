@@ -18,6 +18,7 @@ import com.mygarden.app.repositories.TransferRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -140,9 +141,11 @@ public class ShopController extends AbstractController {
                     anchor.setOnMouseClicked(null);
                     anchor.setOnMouseEntered(null);
                     anchor.setOnMouseExited(null);
+                    anchor.setCursor(Cursor.DEFAULT);
+
 
                     ColorAdjust grayEffect = new ColorAdjust();
-                    grayEffect.setSaturation(-1);
+                    grayEffect.setSaturation(-0.5);
                     itemImage.setEffect(grayEffect);
                 }
                 else
@@ -230,7 +233,7 @@ public class ShopController extends AbstractController {
     private void buttonIsHovered(MouseEvent event)
     {
         ColorAdjust hoverEffect = new ColorAdjust();
-        hoverEffect.setSaturation(1.5);
+        hoverEffect.setSaturation(0.5);
 
         AnchorPane cell = (AnchorPane) event.getSource();
         ImageView image = (ImageView) cell.getChildren().get(0);
