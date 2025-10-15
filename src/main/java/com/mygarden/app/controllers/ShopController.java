@@ -24,9 +24,12 @@ import com.mygarden.app.repositories.TransferRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,7 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
 
-public class ShopController extends AbstractController implements Initializable  {
+public class ShopController extends AbstractController implements Initializable {
 
 
     int currentCategorie = -1;
@@ -106,7 +109,6 @@ public class ShopController extends AbstractController implements Initializable 
             
     }
     
-
     private void updateUICoins()
     {
         UserCoins.setText(String.format("%d", getUser().getCoins()));
@@ -139,7 +141,27 @@ public class ShopController extends AbstractController implements Initializable 
                 itemImage.setImage(
                     imageCache.get(item.getId())
                 );
-                
+
+                if(item.getPrice() > getUser().getCoins())
+                {
+                    anchor.setOnMouseClicked(null);
+                    anchor.setOnMouseEntered(null);
+                    anchor.setOnMouseExited(null);
+                    anchor.setCursor(Cursor.DEFAULT);
+
+                    ColorAdjust grayEffect = new ColorAdjust();
+                    grayEffect.setSaturation(-0.5);
+                    itemImage.setEffect(grayEffect);
+                }
+                else
+                {
+                    anchor.setOnMouseClicked(e -> buyPlant(e));
+                    anchor.setOnMouseEntered(e -> buttonIsHovered(e));
+                    anchor.setOnMouseExited(e -> buttonIsNoLongerHovered(e));
+                    anchor.setCursor(Cursor.HAND);
+
+                    itemImage.setEffect(null);
+                }
 
                 indexInShop++;
             }
@@ -193,6 +215,7 @@ public class ShopController extends AbstractController implements Initializable 
             e.printStackTrace();
         }
     }
+    // --- End Methods ---
 
     // --- FXML UI elements ---
     @FXML
@@ -215,10 +238,11 @@ public class ShopController extends AbstractController implements Initializable 
 
     @FXML
     private Button Categorie2;
+    private ScrollPane scrollPaneShop;
     // --- END FXML UI elements ---
     
     @FXML
-    private void buyPlant(MouseEvent event) throws IOException {
+    private void buyPlant(MouseEvent event) {
         
         //Get the index of the item in the shop
         AnchorPane cell = (AnchorPane) event.getSource();
@@ -238,26 +262,33 @@ public class ShopController extends AbstractController implements Initializable 
 
         if(shopItem.getPrice() <= getUser().getCoins()) //Enough Money
         {
-            if(SceneUtils.showConfirmationPopupFromKey("popup.purchase.confirm", sit.getName()))
-            {
-                System.out.println("Buy");
+            try {
+                if(SceneUtils.showConfirmationPopupFromKey("popup.purchase.confirm", sit.getName()))
+                {
+                    System.out.println("Buy");
 
-                TransferRepository tr = new TransferRepository();
-                try {
-                    var currentUser = getUser();
-                    var result = tr.buy(currentUser, shopItem);
-                    if (result.isPresent()) {
-                        System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
-                        updateUICoins();
-                        SoundManager.getInstance().playPurchase();
-                        SceneUtils.showPopupFromKey("popup.plant.bought");
-                    } else {
-                        System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
-                        SceneUtils.showPopupFromKey("popup.not.enough.coins");
+                    TransferRepository tr = new TransferRepository();
+                    try {
+                        var currentUser = getUser();
+                        var result = tr.buy(currentUser, shopItem);
+                        if (result.isPresent()) {
+                            System.out.println("ShopController.buyPlant: purchase successful for " + currentUser.getUsername());
+                            updateUICoins();
+                            SoundManager.getInstance().playPurchase();
+                            SceneUtils.showPopupFromKey("popup.plant.bought");
+                            showShopItemsFromCategorie(currentCategorie);
+                            scrollPaneShop.setVvalue(scrollPaneShop.getVmin());
+                            //SceneUtils.showPopup("Plant is bought");
+                        } else {
+                            System.out.println("ShopController.buyPlant: not enough coins for " + currentUser.getUsername());
+                            SceneUtils.showPopupFromKey("popup.not.enough.coins");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
             
         }
@@ -267,6 +298,27 @@ public class ShopController extends AbstractController implements Initializable 
         }
 
         
+    }
+
+    @FXML
+    private void buttonIsHovered(MouseEvent event)
+    {
+        ColorAdjust hoverEffect = new ColorAdjust();
+        hoverEffect.setSaturation(0.5);
+
+        AnchorPane cell = (AnchorPane) event.getSource();
+        ImageView image = (ImageView) cell.getChildren().get(0);
+        image.setEffect(hoverEffect);
+
+    }
+
+    @FXML
+    private void buttonIsNoLongerHovered(MouseEvent event)
+    {
+        AnchorPane cell = (AnchorPane) event.getSource();
+        ImageView image = (ImageView) cell.getChildren().get(0);
+        image.setEffect(null);
+
     }
 
     @FXML
@@ -286,6 +338,7 @@ public class ShopController extends AbstractController implements Initializable 
         }
         currentCategorie = categorie;
         showShopItemsFromCategorie(categorie);
+        scrollPaneShop.setVvalue(scrollPaneShop.getVmin());
     }
 
     @FXML
@@ -293,6 +346,13 @@ public class ShopController extends AbstractController implements Initializable 
         SoundManager.getInstance().playClick();
         SceneUtils.changeScene(event, "/com/mygarden/app/main-page-view.fxml", getUser());
     }
+
+    @FXML
+    private void goToGarden(ActionEvent event) throws IOException {
+        SoundManager.getInstance().playClick();
+        SceneUtils.changeScene(event, "/com/mygarden/app/garden-view.fxml", getUser());
+    }
+
 
 
     
