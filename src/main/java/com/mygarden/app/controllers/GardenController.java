@@ -1,6 +1,7 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
+import java.net.URL;
 
 import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
@@ -8,6 +9,7 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -33,6 +35,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import com.mygarden.app.models.ShopItem;
 import com.mygarden.app.models.ShopItemTranslation;
@@ -40,7 +43,7 @@ import com.mygarden.app.models.UserItem;
 import com.mygarden.app.repositories.ShopItemTranslationRepository;
 import com.mygarden.app.repositories.UserItemRepository;
 
-public class GardenController extends AbstractController {
+public class GardenController extends AbstractController implements Initializable{
 
     // Layout
     private static final int COLS = 5;
@@ -72,6 +75,8 @@ public class GardenController extends AbstractController {
     @FXML private AnchorPane inventoryPane;
     @FXML private GridPane inventoryGrid;
     @FXML private Button inventoryButton;
+    @FXML private Button mainPageButton;
+    @FXML private Button shopButton;
 
     // Images
     private Image tileSoilImg;
@@ -88,9 +93,33 @@ public class GardenController extends AbstractController {
         }
     }
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resbundle) {
         setupBackground();
+
+        /*
+         * Minimal i18n initialization:
+         * Use the ResourceBundle provided by FXMLLoader if available (resbundle),
+         * otherwise fall back to LanguageManager.getBundle().
+         * We only set the UI strings here (do not change existing behaviour).
+         */
+        ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
+
+        try {
+            if (mainPageButton != null && bundle.containsKey("garden.mainPage")) {
+                mainPageButton.setText(bundle.getString("garden.mainPage"));
+            }
+            if (shopButton != null && bundle.containsKey("garden.shop")) {
+                shopButton.setText(bundle.getString("garden.shop"));
+            }
+            if (inventoryButton != null && bundle.containsKey("garden.inventory")) {
+                inventoryButton.setText(bundle.getString("garden.inventory"));
+            }
+
+        } catch (Exception e) {
+            // be conservative: if bundle lookup fails, do not break initialization
+            e.printStackTrace();
+        }
 
         var soilUrl = getClass().getResource("/images/tile_soil.png");
         if (soilUrl == null) {
