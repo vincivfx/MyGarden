@@ -9,15 +9,15 @@
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.utils.ConfirmationPopUpController">
    <children>
-      <Label fx:id="question" alignment="CENTER" maxWidth="250.0" text="Are you sure to buy this plant?" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="question" alignment="CENTER" maxWidth="250.0" text="%popup.confirm.question" textAlignment="CENTER" wrapText="true">
          <VBox.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onNoClicked" text="No" />
-            <Button mnemonicParsing="false" onAction="#onYesClicked" text="Yes">
+            <Button mnemonicParsing="false" onAction="#onNoClicked" text="%popup.no" />
+            <Button mnemonicParsing="false" onAction="#onYesClicked" text="%popup.yes">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>

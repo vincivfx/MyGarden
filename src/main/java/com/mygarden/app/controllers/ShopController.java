@@ -173,13 +173,13 @@ public class ShopController extends AbstractController implements Initializable 
     {
         //Call when the page is load to update all the UI with the user data
         updateUICoins();
+        showShopItemsFromCategorie(currentCategorie);
     }
 
     @Override
     public void initialize (URL url, ResourceBundle resbundle)
     {   
         loadShopFromDatabase();
-        showShopItemsFromCategorie(currentCategorie);
 
         /*
          * Minimal i18n initialization:
@@ -238,6 +238,8 @@ public class ShopController extends AbstractController implements Initializable 
 
     @FXML
     private Button Categorie2;
+
+    @FXML
     private ScrollPane scrollPaneShop;
     // --- END FXML UI elements ---
     
