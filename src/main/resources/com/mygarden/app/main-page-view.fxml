@@ -73,9 +73,9 @@
                      <Insets />
                   </VBox.margin>
                </HBox>
-               <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToShop" opacity="0.0" prefHeight="37.0" prefWidth="81.0" style="-fx-background-color: black;" text="Shop" textFill="WHITE">
+               <Button fx:id="shopBtn" contentDisplay="CENTER" minWidth="81.0" mnemonicParsing="false" onAction="#onGoToShop" prefHeight="33.0" style="-fx-background-color: #59a834; -fx-border-color: #3b8133; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 3;" text="Shop" textFill="WHITE" wrapText="true">
                   <font>
-                     <Font name="System Bold" size="16.0" />
+                     <Font name="System Bold" size="21.0" />
                   </font>
                   <VBox.margin>
                      <Insets left="164.0" top="175.0" />
@@ -83,28 +83,37 @@
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
+                  <padding>
+                     <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+                  </padding>
                </Button>
-               <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToChallenge" opacity="0.0" prefHeight="64.0" prefWidth="90.0" style="-fx-background-color: black;" text="Challenge" textFill="WHITE">
+               <Button fx:id="challengesBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onGoToChallenge" opacity="0.9" prefHeight="64.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Challenges" textFill="#5b3b1b" wrapText="true">
                   <font>
-                     <Font name="System Bold" size="16.0" />
+                     <Font name="System Bold" size="13.5" />
                   </font>
                   <VBox.margin>
-                     <Insets left="130.0" top="76.0" />
+                     <Insets left="134.0" top="72.0" />
                   </VBox.margin>
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
+                  <padding>
+                     <Insets bottom="1.0" left="5.0" right="7.0" top="1.0" />
+                  </padding>
                </Button>
-                <Button contentDisplay="CENTER" onAction="#onGoToGarden" opacity="0.0" prefHeight="42.0" prefWidth="103.0" style="-fx-background-color: black;" text="Garden" textFill="WHITE">
+                <Button fx:id="gardenBtn" contentDisplay="CENTER" minWidth="103.0" onAction="#onGoToGarden" prefHeight="43.0" style="-fx-background-color: #59a834; -fx-border-color: #3b8133; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 3;" text="Garden" textFill="WHITE" wrapText="true">
                   <font>
-                     <Font name="System Bold" size="16.0" />
+                     <Font name="System Bold" size="21.0" />
                   </font>
                   <VBox.margin>
-                     <Insets right="193.0" top="23.0" />
+                     <Insets right="193.0" top="25.0" />
                   </VBox.margin>
                   <cursor>
                      <Cursor fx:constant="HAND" />
                   </cursor>
+                  <padding>
+                     <Insets bottom="1.0" left="8.0" right="8.0" top="1.0" />
+                  </padding>
                </Button>
             </children>
             <StackPane.margin>
