@@ -146,7 +146,7 @@
                                  <Insets top="5.0" />
                               </VBox.margin>
                            </HBox>
-                           <Button fx:id="typeBtn" mnemonicParsing="false" onAction="#changeChallengeType" style="-fx-background-color: purple; -fx-border-width: 3; -fx-border-color: darkviolet; -fx-border-radius: 10; -fx-background-radius: 10;" text="OtherType" textFill="WHITE">
+                           <Button fx:id="typeBtn" mnemonicParsing="false" onAction="#changeChallengeType" style="-fx-background-color: lightblue; -fx-border-width: 3; -fx-border-color: blue; -fx-border-radius: 10; -fx-background-radius: 10;" text="OtherType">
                               <VBox.margin>
                                  <Insets top="9.0" />
                               </VBox.margin>

@@ -247,15 +247,25 @@ public final class DatabaseManager {
         // Load English (creates shopitems and en translations)
         loadShopItemsFromFile("/languages/shopitems_en.txt");
 
-        // Load Swedish (only translations, matches existing shopitems)
+        // Load other languages (only translations, matches existing shopitems)
         loadShopItemsFromFile("/languages/shopitems_sv.txt");
+        loadShopItemsFromFile("/languages/shopitems_de.txt");
+        loadShopItemsFromFile("/languages/shopitems_es.txt");
+        loadShopItemsFromFile("/languages/shopitems_it.txt");
+        loadShopItemsFromFile("/languages/shopitems_fr.txt");
+        loadShopItemsFromFile("/languages/shopitems_pt.txt");
 
 
         // Load English (creates challenges and en translations)
         loadChallengesFromFile("/languages/challenges_en.txt");
 
-        // Load Swedish (only translations, matches existing challenges)
+        // Load other languages (only translations, matches existing challenges)
         loadChallengesFromFile("/languages/challenges_sv.txt");
+        loadChallengesFromFile("/languages/challenges_de.txt");
+        loadChallengesFromFile("/languages/challenges_es.txt");
+        loadChallengesFromFile("/languages/challenges_it.txt");
+        loadChallengesFromFile("/languages/challenges_fr.txt");
+        loadChallengesFromFile("/languages/challenges_pt.txt");
         
 
 

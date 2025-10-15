@@ -22,8 +22,13 @@ public final class LanguageManager {
 
     /** Add or remove supported locales here. Order matters for cycling. */
     private static final List<Locale> SUPPORTED_LOCALES = List.of(
-            Locale.ENGLISH,
-            new Locale("sv") // Swedish
+        Locale.ENGLISH,                   // English (default)
+        new Locale("sv"),        // Swedish
+        new Locale("de"),        // German
+        new Locale("es"),        // Spanish
+        new Locale("it"),        // Italian
+        new Locale("fr"),        // French
+        new Locale("pt")         // Portuguese
     );
 
     // backing property so UI can observe changes

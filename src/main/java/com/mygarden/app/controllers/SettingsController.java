@@ -3,6 +3,7 @@ package com.mygarden.app.controllers;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.mygarden.app.AudioManager;
@@ -19,8 +20,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -44,7 +49,7 @@ public class SettingsController extends AbstractController{
     private VBox rootPane;
 
     @FXML
-    private Button langButton; 
+    private ComboBox<String> languageSelector;
 
     @FXML
     private Button deleteDataButton; 
@@ -93,14 +98,48 @@ public class SettingsController extends AbstractController{
             );
         }
 
-        // ensure language button shows correct localized label when the page loads (if present)
-        try {
-            if (langButton != null && LanguageManager.getBundle().containsKey("lang.button")) {
-                langButton.setText(LanguageManager.getBundle().getString("lang.button"));
-            }
-        } catch (Exception ignored) {
-            // ignore if bundle key not found
+        // --- Language ComboBox ---
+        if (languageSelector != null) {
+            languageSelector.getItems().setAll("en","sv","de","es","it","fr","pt");
+
+            // Mostra solo bandiere
+            languageSelector.setCellFactory(cb -> new ListCell<>() {
+                private final ImageView imageView = new ImageView();
+                {
+                    setStyle("-fx-padding: 2 0 2 0;"); // padding azzerato per ogni cella
+                }
+                @Override
+                protected void updateItem(String lang, boolean empty) {
+                    super.updateItem(lang, empty);
+                    if (empty || lang == null) {
+                        setGraphic(null);
+                    } else {
+                        imageView.setFitWidth(54);
+                        imageView.setFitHeight(36);
+                        imageView.setPreserveRatio(true);
+                        imageView.setSmooth(true);
+                        imageView.setImage(new Image(
+                            Objects.requireNonNull(getClass().getResourceAsStream(
+                                "/images/settingsImg/" + lang + ".png"))
+                        ));
+                        setGraphic(imageView);
+                    }
+                    setText(null); // niente testo
+                }
+            });
+            languageSelector.setButtonCell(languageSelector.getCellFactory().call(null));
+
+            // Imposta lingua corrente
+            languageSelector.setValue(LanguageManager.getCurrentLang());
+
+            // Listener cambio lingua
+            languageSelector.valueProperty().addListener((obs, oldLang, newLang) -> {
+                if (newLang != null) {
+                    setLanguageAndReload(new Locale(newLang));
+                }
+            });
         }
+
     }
 
     @FXML
@@ -153,24 +192,6 @@ public class SettingsController extends AbstractController{
     // -------------------------------
     // Language selection handlers
     // -------------------------------
-
-    /**
-     * Set language to English and reload the settings view while preserving slider values and user.
-     * Wire this from FXML: e.g. a Button with onAction="#onSetEnglish"
-     */
-    @FXML
-    private void onSetEnglish(ActionEvent event) {
-        setLanguageAndReload(Locale.ENGLISH);
-    }
-
-    /**
-     * Set language to Swedish and reload the settings view while preserving slider values and user.
-     * Wire this from FXML: e.g. a Button/ImageView with onAction="#onSetSwedish"
-     */
-    @FXML
-    private void onSetSwedish(ActionEvent event) {
-        setLanguageAndReload(new Locale("sv"));
-    }
 
     /**
      * Central helper: set Locale in LanguageManager, then reload this settings FXML using the new bundle.

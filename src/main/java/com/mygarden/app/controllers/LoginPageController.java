@@ -3,6 +3,7 @@ package com.mygarden.app.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -20,7 +21,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -49,11 +52,7 @@ public class LoginPageController {
     @FXML private Label informations;
     @FXML private Button changeModeButton;
     @FXML private Button connection;
-
-    // These may or may not be present in FXML. 
-    @FXML private HBox flagBox;         
-    @FXML private ImageView flagUk;     
-    @FXML private ImageView flagSv;     
+    @FXML private ComboBox<String> languageSelector;
 
     @FXML
     private void initialize() {
@@ -88,103 +87,49 @@ public class LoginPageController {
             e.printStackTrace();
         }
 
-        // Ensure language controls are added after the Scene has been created.
-        Platform.runLater(() -> injectLanguageControlsAlways());
+        // Popola la combo con i codici lingua
+        languageSelector.getItems().setAll("en","sv","de","es","it","fr","pt");
+
+        // Mostra solo bandiere
+        languageSelector.setCellFactory(cb -> new ListCell<>() {
+            private final ImageView imageView = new ImageView();
+            {
+                setStyle("-fx-padding: 2 0 2 0;"); // padding azzerato per ogni cella
+            }
+            @Override
+            protected void updateItem(String lang, boolean empty) {
+                super.updateItem(lang, empty);
+                if (empty || lang == null) {
+                    setGraphic(null);
+                } else {
+                    imageView.setFitWidth(54);
+                    imageView.setFitHeight(36);
+                    imageView.setPreserveRatio(true);
+                    imageView.setSmooth(true);
+                    imageView.setImage(new Image(
+                        Objects.requireNonNull(getClass().getResourceAsStream(
+                            "/images/settingsImg/" + lang + ".png"))
+                    ));
+                    setGraphic(imageView);
+                }
+                setText(null); // niente testo
+            }
+        });
+        languageSelector.setButtonCell(languageSelector.getCellFactory().call(null));
+
+        // Imposta lingua corrente
+        languageSelector.setValue(LanguageManager.getCurrentLang());
+
+        // Listener cambio lingua
+        languageSelector.valueProperty().addListener((obs, oldLang, newLang) -> {
+            if (newLang != null) {
+                setLanguageAndReload(new Locale(newLang));
+            }
+        });
     }
 
     
-    private void injectLanguageControlsAlways() {
-        try {
-            Node sceneRoot = null;
-            if (rootPane instanceof Node) {
-                sceneRoot = (Node) rootPane;
-            } else if (login instanceof Node && login.getScene() != null) {
-                sceneRoot = login.getScene().getRoot();
-            } else if (connection instanceof Node && connection.getScene() != null) {
-                sceneRoot = connection.getScene().getRoot();
-            } else {
-                if (login != null && login.getScene() != null) sceneRoot = login.getScene().getRoot();
-                else if (connection != null && connection.getScene() != null) sceneRoot = connection.getScene().getRoot();
-            }
-
-            if (sceneRoot == null) {
-                System.out.println("LoginPageController: could not find scene root to attach language controls.");
-                return;
-            }
-
-            HBox hbox = new HBox(8);
-            hbox.setPadding(new Insets(4));
-            hbox.setAlignment(Pos.TOP_RIGHT);
-            hbox.setId("login-lang-box");
-
-            URL ukUrl = getClass().getResource("/images/settingsImg/flag_uk.png");
-            URL svUrl = getClass().getResource("/images/settingsImg/flag_sv.png");
-            boolean ukExists = ukUrl != null;
-            boolean svExists = svUrl != null;
-
-            if (ukExists) {
-                ImageView ivUk = new ImageView(new Image(ukUrl.toExternalForm()));
-                ivUk.setFitWidth(40);
-                ivUk.setFitHeight(30);
-                ivUk.setPreserveRatio(true);
-                ivUk.setPickOnBounds(true);
-                ivUk.setOnMouseClicked(e -> setLanguageAndReload(Locale.ENGLISH));
-                Tooltip.install(ivUk, new Tooltip("English"));
-                hbox.getChildren().add(ivUk);
-                System.out.println("LoginPageController: flag_uk.png loaded and added.");
-            } else {
-                Button enBtn = new Button("EN");
-                enBtn.setOnAction(a -> setLanguageAndReload(Locale.ENGLISH));
-                Tooltip.install(enBtn, new Tooltip("English"));
-                hbox.getChildren().add(enBtn);
-                System.out.println("LoginPageController: flag_uk.png missing — EN fallback button added.");
-            }
-
-            if (svExists) {
-                ImageView ivSv = new ImageView(new Image(svUrl.toExternalForm()));
-                ivSv.setFitWidth(40);
-                ivSv.setFitHeight(30);
-                ivSv.setPreserveRatio(true);
-                ivSv.setPickOnBounds(true);
-                ivSv.setOnMouseClicked(e -> setLanguageAndReload(new Locale("sv")));
-                Tooltip.install(ivSv, new Tooltip("Svenska"));
-                hbox.getChildren().add(ivSv);
-                System.out.println("LoginPageController: flag_sv.png loaded and added.");
-            } else {
-                Button svBtn = new Button("SV");
-                svBtn.setOnAction(a -> setLanguageAndReload(new Locale("sv")));
-                Tooltip.install(svBtn, new Tooltip("Svenska"));
-                hbox.getChildren().add(svBtn);
-                System.out.println("LoginPageController: flag_sv.png missing — SV fallback button added.");
-            }
-
-            if (sceneRoot instanceof Pane) {
-                Pane paneRoot = (Pane) sceneRoot;
-                if (paneRoot instanceof AnchorPane) {
-                    AnchorPane.setTopAnchor(hbox, 10.0);
-                    AnchorPane.setRightAnchor(hbox, 10.0);
-                }
-                paneRoot.getChildren().add(hbox);
-                System.out.println("LoginPageController: language controls added to Pane root.");
-            } else {
-                Parent originalRoot = (Parent) sceneRoot;
-                StackPane wrapper = new StackPane();
-                wrapper.getChildren().add(originalRoot);
-                wrapper.getChildren().add(hbox);
-                StackPane.setAlignment(hbox, Pos.TOP_RIGHT);
-                Stage stage = getStageFromNode(originalRoot);
-                if (stage != null && stage.getScene() != null) {
-                    stage.getScene().setRoot(wrapper);
-                    System.out.println("LoginPageController: scene root wrapped in StackPane and language controls added.");
-                } else {
-                    System.out.println("LoginPageController: unable to replace scene root; language controls not shown.");
-                }
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
+    
 
     private Stage getStageFromNode(Node node) {
         if (node == null) return null;
