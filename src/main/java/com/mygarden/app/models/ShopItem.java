@@ -9,9 +9,6 @@ public class ShopItem extends TimeStampAbstractModel {
     private String shop_item_id;
 
     @DatabaseField
-    private String name;
-
-    @DatabaseField
     private int price;
 
     @DatabaseField
@@ -21,13 +18,6 @@ public class ShopItem extends TimeStampAbstractModel {
         // no-arg constructor for ORMLite
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     public int getPrice() {
         return price;
     }
@@ -53,15 +43,13 @@ public class ShopItem extends TimeStampAbstractModel {
     /**
      * Static method that enables developers to get a ShopItem without constructor
      *
-     * @param name       Name of the ShopItem
      * @param price      Price in coins
      * @param categoryId Category Id related to the ShopItem
      * @return the generated ShopItem
      */
-    public static ShopItem create(String id, String name, int price, int categoryId) {
+    public static ShopItem create(String id, int price, int categoryId) {
         ShopItem shopItem = new ShopItem();
         shopItem.setId(id);
-        shopItem.setName(name);
         shopItem.setPrice(price);
         shopItem.setCategoryId(categoryId);
         return shopItem;

@@ -2,6 +2,7 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 
+import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 
@@ -34,7 +35,9 @@ import java.util.List;
 import java.util.Objects;
 
 import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.ShopItemTranslation;
 import com.mygarden.app.models.UserItem;
+import com.mygarden.app.repositories.ShopItemTranslationRepository;
 import com.mygarden.app.repositories.UserItemRepository;
 
 public class GardenController extends AbstractController {
@@ -264,12 +267,23 @@ public class GardenController extends AbstractController {
                 // Start drag when pressed
                 final Integer userItemId = ui.getId();
                 final String shopId = shopItem.getId();
+
+                // get translated name
+                ShopItemTranslationRepository sitRepo = new ShopItemTranslationRepository();
+                String lang = LanguageManager.getCurrentLang();
+                
+                ShopItemTranslation sit = sitRepo.getTranslation(shopItem, lang);
+                if (sit == null) {
+                    sit = sitRepo.getTranslation(shopItem, "en");
+                }
+                final String itemName = sit != null ? sit.getName() : shopId;
+
                 iv.setOnDragDetected(ev -> {
                     Node src = (Node) ev.getSource();
                     javafx.scene.input.Dragboard db = src.startDragAndDrop(TransferMode.MOVE);
                     javafx.scene.input.ClipboardContent content = new javafx.scene.input.ClipboardContent();
                     // payload: useritem:<userItemId>:<shopItemId>:<name>
-                    content.putString("useritem:" + userItemId + ":" + shopId + ":" + shopItem.getName());
+                    content.putString("useritem:" + userItemId + ":" + shopId + ":" + itemName);
                     db.setContent(content);
                     // ghost image (drag view) using images\gardenImg
                     try {
@@ -282,7 +296,7 @@ public class GardenController extends AbstractController {
                     ev.consume();
                 });
 
-                javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(shopItem.getName());
+                javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(itemName);
                 javafx.scene.layout.AnchorPane.setLeftAnchor(iv, 8.0);
                 javafx.scene.layout.AnchorPane.setTopAnchor(iv, 4.0);
                 javafx.scene.layout.AnchorPane.setLeftAnchor(nameLabel, 8.0);

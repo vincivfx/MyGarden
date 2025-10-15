@@ -13,15 +13,7 @@ public class Challenge extends TimeStampAbstractModel {
     private int challenge_id;
 
     @DatabaseField
-    private String description;
-
-    @DatabaseField
     private String type; // daily or weekly
-
-    @DatabaseField
-    private String tip;
-
-    
 
     @DatabaseField
     private int points;
@@ -41,11 +33,8 @@ public class Challenge extends TimeStampAbstractModel {
 
     
 
-    public Challenge(int challenge_id, String description, String type, String tip) {
-        this.challenge_id = challenge_id;
+    public Challenge(String type) {
         this.type = type;
-        this.description = description;
-        this.tip=tip;
         this.points = type.equals("daily") ? 20 : 60;
     }
 
@@ -74,22 +63,6 @@ public class Challenge extends TimeStampAbstractModel {
 
     public String getType() {
     return type;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setTip(String tip) {
-        this.tip = tip;
-    }
-
-    public String getTip() {
-        return tip;
     }
 
     public int getPoints() {

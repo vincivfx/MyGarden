@@ -16,6 +16,8 @@ import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Shop;
 import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.ShopItemTranslation;
+import com.mygarden.app.repositories.ShopItemTranslationRepository;
 import com.mygarden.app.repositories.ShopItemsRepository;
 import com.mygarden.app.repositories.TransferRepository;
 
@@ -224,9 +226,19 @@ public class ShopController extends AbstractController implements Initializable 
 
         ShopItem shopItem = shop.getShopItemFromCategorie(indexInShop, currentCategorie);
 
+        // Get the translation for the current language
+        ShopItemTranslationRepository sitRepo = new ShopItemTranslationRepository();
+        String lang = LanguageManager.getCurrentLang(); // es. "it", "sv", "en"
+        ShopItemTranslation sit = sitRepo.getTranslation(shopItem, lang);
+
+        if (sit == null) {
+            // english fallback
+            sit = sitRepo.getTranslation(shopItem, "en");
+        }
+
         if(shopItem.getPrice() <= getUser().getCoins()) //Enough Money
         {
-            if(SceneUtils.showConfirmationPopupFromKey("popup.purchase.confirm", shopItem.getName()))
+            if(SceneUtils.showConfirmationPopupFromKey("popup.purchase.confirm", sit.getName()))
             {
                 System.out.println("Buy");
 
