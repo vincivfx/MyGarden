@@ -4,7 +4,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "mg_shop_items")
-public class ShopItem {
+public class ShopItem extends TimeStampAbstractModel {
     @DatabaseField(id = true)
     private String shop_item_id;
 

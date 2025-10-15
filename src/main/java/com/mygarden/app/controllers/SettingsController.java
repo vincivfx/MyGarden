@@ -1,13 +1,17 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.mygarden.app.AudioManager;
+import com.mygarden.app.DatabaseManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -73,6 +77,33 @@ public class SettingsController extends AbstractController{
             getClass().getResource("/styles/settings.css").toExternalForm()
         );
     }
+    }
+
+
+    @FXML
+    public void resetApplication(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Reset Application");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete all your data from MyGarden? These settings will be lost forever! (A long time!)");
+        alert.showAndWait().ifPresent(rs -> {
+            if (rs == ButtonType.OK) {
+                try {
+                    DatabaseManager.getInstance().resetApplication();
+                    SceneUtils.changeScene(event, "/com/mygarden/app/login-page-view.fxml", null);
+
+                } catch (SQLException | IOException exception) {
+                    System.out.println(exception.getMessage());
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Error");
+                    errorAlert.setHeaderText(null);
+                    errorAlert.setContentText(exception.getMessage());
+                    errorAlert.showAndWait();
+                }
+            }
+        });
+
+
     }
 
 }

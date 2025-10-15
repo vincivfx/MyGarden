@@ -6,7 +6,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName="mg_challenges")
-public class Challenge {
+public class Challenge extends TimeStampAbstractModel {
     
 
     @DatabaseField(generatedId = true)

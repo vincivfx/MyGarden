@@ -32,7 +32,7 @@
                         </image>
                      </ImageView>
 
-                     <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="335.0">
+                     <VBox alignment="TOP_CENTER" prefHeight="378.0" prefWidth="335.0">
                         <children>
                            <Label text="Settings">
                               <font>
@@ -78,6 +78,11 @@
                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
+                              </children>
+                           </HBox>
+                           <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="335.0">
+                              <children>
+                                 <Button mnemonicParsing="false" onAction="#resetApplication" text="Delete all data" />
                               </children>
                            </HBox>
 
