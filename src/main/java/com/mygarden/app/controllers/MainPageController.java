@@ -7,6 +7,7 @@ import com.mygarden.app.AudioManager;
 import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
+import com.mygarden.app.BackgroundUtil;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.scene.image.ImageView;
 
 public class MainPageController extends AbstractController {
     // --- FXML UI elements ---
@@ -26,6 +28,9 @@ public class MainPageController extends AbstractController {
     {
         UserCoins.setText(String.format("%d", getUser().getCoins()));
     }
+
+    @FXML
+    private ImageView backgroundImageView;
 
     @FXML
     private void onGoToChallenge(ActionEvent event) throws IOException {
@@ -80,5 +85,9 @@ public class MainPageController extends AbstractController {
     if (!audio.isMusicPlaying()) {
         audio.playMusic("/audio/background.mp3", true);
         }
+    
+    BackgroundUtil.applyMainBackground(backgroundImageView, LanguageManager.getBundle());
     }
+
+    
 }

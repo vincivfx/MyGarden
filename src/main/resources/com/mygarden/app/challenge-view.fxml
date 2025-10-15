@@ -13,7 +13,7 @@
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" spacing="200.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.ChallengeController">
    <StackPane prefHeight="150.0" prefWidth="200.0">
       <children>
-         <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="backgroundImageView" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../images/MainPage.jpg" />
             </image>
