@@ -13,58 +13,58 @@ Condividi gli avanzi di cibo con un amico.; Riduce lo spreco di cibo
 Chiudi il rubinetto mentre ti lavi i denti.; Risparmia litri d'acqua
 Riutilizza la carta straccia per gli appunti.; Prolunga la durata dei materiali
 Raccogli 3 rifiuti.; Mantiene pulito l'ambiente
-Apri le finestre invece di usare l'aria condizionata; Risparmia elettricità
-Dona o scambia un articolo inutilizzato; Prolunga il ciclo di vita del prodotto
-Usa un tovagliolo di stoffa invece di quello di carta; Riduce i rifiuti usa e getta
-Porta con te il tuo set di posate; Evita la plastica monouso
-Pianifica i pasti della giornata; Previene gli sprechi alimentari impulsivi
-Riempisci una bottiglia riutilizzabile invece di comprare acqua in bottiglia; Evita gli sprechi di plastica e risparmia denaro
-Spegni completamente il computer dopo l'uso; Riduce il consumo energetico in standby
-Porta il pranzo in un contenitore riutilizzabile; Riduce gli sprechi di imballaggio
-Usa entrambi i lati di un foglio di carta; Massimizza l'uso della carta
-Raccogli 5 rifiuti all'aperto; Mantiene puliti gli spazi condivisi
-Riduci il riscaldamento di 1°C; Risparmia energia e riduce le emissioni
-Passa a uno scontrino digitale invece che cartaceo; Riduce lo spreco di carta
-Riutilizza un barattolo di vetro per la conservazione; Dà una seconda vita agli imballaggi
-Rifiuta una cannuccia di plastica; Evita l'uso inutile di plastica monouso
-Fai una passeggiata invece di un breve tragitto in auto; Riduce le emissioni e promuove la salute
-Spegni il router Wi-Fi durante la notte; Risparmia elettricità
-Composta gli scarti di frutta o verdura; Trasforma i rifiuti in terreno utile
-Porta con te una mascherina o un panno riutilizzabile invece di quelli usa e getta; Riduce i rifiuti monouso
-Usa una saponetta invece del sapone liquido in bottiglie di plastica; Riduce gli sprechi di imballaggio
-Trascorri un'ora senza usare il telefono; Risparmia energia del dispositivo e favorisce il benessere
-Porta il tuo contenitore per il cibo da asporto; Evita gli imballaggi usa e getta
-Asciuga i vestiti all'aria invece di usare l'asciugatrice; Risparmia elettricità
-Usa la luce naturale invece delle lampade durante il giorno; Riduce il consumo di elettricità
-Separa con più attenzione la raccolta differenziata domestica oggi stesso; Migliora la qualità del riciclaggio
-Spegni il motore dell'auto mentre aspetti; Riduce gli sprechi di carburante e le emissioni
-Porta la tua cannuccia riutilizzabile; Evita la plastica monouso
-Scegli l'acqua del rubinetto invece dell'acqua in bottiglia; Riduce le emissioni di plastica e di trasporto
-Passa a una borsa di stoffa riutilizzabile per la frutta e la verdura; Evita i sacchetti di plastica per la frutta e la verdura
-Usa una penna ricaricabile invece di quelle usa e getta; Riduce gli sprechi di plastica
-Imposta il telefono in modalità risparmio energetico per un giorno; Riduce il consumo di energia
-Raccogli i mozziconi di sigaretta da terra; Previene i rifiuti tossici
-Dona il cibo avanzato in una scatola per la condivisione del cibo; Aiuta a ridurre gli sprechi e sostiene gli altri
-Passa agli asciugamani di stoffa invece di quelli di carta; Riduce gli sprechi usa e getta
-Utilizza i mezzi pubblici per un viaggio oggi; Riduce le emissioni rispetto all'auto
-Usa una ciabatta per spegnere facilmente più dispositivi; Elimina l'uso della batteria in standby
-Porta le tue bacchette o posate riutilizzabili; Evita gli utensili di plastica usa e getta
-Spegni le luci durante le ore diurne; Risparmia elettricità utilizzando la luce naturale
-Scrivi un'abitudine ecologica che desideri mantenere a lungo termine; Incoraggia la riflessione e la creazione di abitudini
-Riutilizza una scatola di cartone per la conservazione o la spedizione; Prolunga la durata dell'imballaggio
-Metti il ​​computer in modalità sospensione dopo 5 minuti di inattività; Risparmia automaticamente elettricità
-Scegli un rasoio riutilizzabile invece di uno usa e getta; Riduce gli sprechi di plastica
-Rifiuta le ricevute cartacee quando possibile; Riduce lo spreco di carta
-Prendi in prestito un libro da una biblioteca invece di comprarne uno nuovo; Riduce l'uso delle risorse
-Passa a uno spazzolino da denti in bambù; Riduce lo spreco di plastica nelle discariche
-Prova uno spuntino a spreco zero (come la frutta senza imballaggio); Evita imballaggi inutili
-Riutilizza una bottiglia di vetro come vaso o contenitore; Dà una seconda vita all'imballaggio
-Riduci la luminosità dello schermo per risparmiare energia; Riduce il consumo di elettricità
-Fai una doccia fredda per 2 minuti; Risparmia acqua calda ed energia
-Porta la tua pellicola alimentare riutilizzabile (come la cera d'api); Evita la pellicola trasparente di plastica
-Cucina un pasto utilizzando solo ingredienti locali; Supporta gli agricoltori locali e riduce le emissioni dei trasporti
-Dona i vecchi vestiti invece di buttarli via; Prolunga la durata del prodotto
-Passa ai biglietti digitali invece di quelli stampati; Riduce lo spreco di carta
+Apri le finestre invece di usare l'aria condizionata.; Risparmia elettricità
+Dona o scambia un articolo inutilizzato.; Prolunga il ciclo di vita del prodotto
+Usa un tovagliolo di stoffa invece di quello di carta.; Riduce i rifiuti usa e getta
+Porta con te il tuo set di posate.; Evita la plastica monouso
+Pianifica i pasti della giornata.; Previene gli sprechi alimentari impulsivi
+Riempisci una bottiglia riutilizzabile invece di comprare acqua in bottiglia.; Evita gli sprechi di plastica e risparmia denaro
+Spegni completamente il computer dopo l'uso.; Riduce il consumo energetico in standby
+Porta il pranzo in un contenitore riutilizzabile.; Riduce gli sprechi di imballaggio
+Usa entrambi i lati di un foglio di carta.; Massimizza l'uso della carta
+Raccogli 5 rifiuti all'aperto.; Mantiene puliti gli spazi condivisi
+Riduci il riscaldamento di 1°C.; Risparmia energia e riduce le emissioni
+Passa a uno scontrino digitale invece che cartaceo.; Riduce lo spreco di carta
+Riutilizza un barattolo di vetro per la conservazione.; Dà una seconda vita agli imballaggi
+Rifiuta una cannuccia di plastica.; Evita l'uso inutile di plastica monouso
+Fai una passeggiata invece di un breve tragitto in auto.; Riduce le emissioni e promuove la salute
+Spegni il router Wi-Fi durante la notte.; Risparmia elettricità
+Composta gli scarti di frutta o verdura.; Trasforma i rifiuti in terreno utile
+Porta con te una mascherina o un panno riutilizzabile invece di quelli usa e getta.; Riduce i rifiuti monouso
+Usa una saponetta invece del sapone liquido in bottiglie di plastica.; Riduce gli sprechi di imballaggio
+Trascorri un'ora senza usare il telefono.; Risparmia energia del dispositivo e favorisce il benessere
+Porta il tuo contenitore per il cibo da asporto.; Evita gli imballaggi usa e getta
+Asciuga i vestiti all'aria invece di usare l'asciugatrice.; Risparmia elettricità
+Usa la luce naturale invece delle lampade durante il giorno.; Riduce il consumo di elettricità
+Separa con più attenzione la raccolta differenziata domestica oggi stesso.; Migliora la qualità del riciclaggio
+Spegni il motore dell'auto mentre aspetti.; Riduce gli sprechi di carburante e le emissioni
+Porta la tua cannuccia riutilizzabile.; Evita la plastica monouso
+Scegli l'acqua del rubinetto invece dell'acqua in bottiglia.; Riduce le emissioni di plastica e di trasporto
+Passa a una borsa di stoffa riutilizzabile per la frutta e la verdura.; Evita i sacchetti di plastica per la frutta e la verdura
+Usa una penna ricaricabile invece di quelle usa e getta.; Riduce gli sprechi di plastica
+Imposta il telefono in modalità risparmio energetico per un giorno.; Riduce il consumo di energia
+Raccogli i mozziconi di sigaretta da terra.; Previene i rifiuti tossici
+Dona il cibo avanzato in una scatola per la condivisione del cibo.; Aiuta a ridurre gli sprechi e sostiene gli altri
+Passa agli asciugamani di stoffa invece di quelli di carta.; Riduce gli sprechi usa e getta
+Utilizza i mezzi pubblici per un viaggio oggi.; Riduce le emissioni rispetto all'auto
+Usa una ciabatta per spegnere facilmente più dispositivi.; Elimina l'uso della batteria in standby
+Porta le tue bacchette o posate riutilizzabili.; Evita gli utensili di plastica usa e getta
+Spegni le luci durante le ore diurne.; Risparmia elettricità utilizzando la luce naturale
+Scrivi un'abitudine ecologica che desideri mantenere a lungo termine.; Incoraggia la riflessione e la creazione di abitudini
+Riutilizza una scatola di cartone per la conservazione o la spedizione.; Prolunga la durata dell'imballaggio
+Metti il ​​computer in modalità sospensione dopo 5 minuti di inattività.; Risparmia automaticamente elettricità
+Scegli un rasoio riutilizzabile invece di uno usa e getta.; Riduce gli sprechi di plastica
+Rifiuta le ricevute cartacee quando possibile.; Riduce lo spreco di carta
+Prendi in prestito un libro da una biblioteca invece di comprarne uno nuovo.; Riduce l'uso delle risorse
+Passa a uno spazzolino da denti in bambù.; Riduce lo spreco di plastica nelle discariche
+Prova uno spuntino a spreco zero (come la frutta senza imballaggio).; Evita imballaggi inutili
+Riutilizza una bottiglia di vetro come vaso o contenitore.; Dà una seconda vita all'imballaggio
+Riduci la luminosità dello schermo per risparmiare energia.; Riduce il consumo di elettricità
+Fai una doccia fredda per 2 minuti.; Risparmia acqua calda ed energia
+Porta la tua pellicola alimentare riutilizzabile (come la cera d'api).; Evita la pellicola trasparente di plastica
+Cucina un pasto utilizzando solo ingredienti locali.; Supporta gli agricoltori locali e riduce le emissioni dei trasporti
+Dona i vecchi vestiti invece di buttarli via.; Prolunga la durata del prodotto
+Passa ai biglietti digitali invece di quelli stampati.; Riduce lo spreco di carta
 Dedica 10 minuti alla conoscenza delle norme locali sul riciclaggio.; Migliora l'accuratezza del riciclaggio
 Spegni il riscaldamento quando esci di casa.; Risparmia energia e denaro
 Prova uno spuntino a zero sprechi (come la frutta senza imballaggio).; Evita imballaggi inutili
@@ -104,22 +104,22 @@ Fai volontariato per un'iniziativa di pulizia locale.; Migliora l'ambiente della
 Monitora il tuo consumo di energia per 7 giorni.; Aumenta la consapevolezza dei modelli di utilizzo
 Impegnati ad andare all'università in bicicletta/a piedi per tutta la settimana.; Riduce le emissioni dei trasporti
 Ripara o ricicla un vecchio oggetto.; Prolunga la durata del prodotto, evita gli sprechi
-Acquista solo vestiti di seconda mano questa settimana; Riduce l'impatto del fast fashion
-Cuoci tutti i pasti a casa per una settimana; Riduce gli sprechi di imballaggio e il trasporto
-Raccogli e ricicla correttamente i rifiuti elettronici; Previene l'inquinamento tossico delle discariche
-Tieni un diario della sostenibilità; Rifletti su abitudini e miglioramenti
-Trascorri un'intera settimana senza usare bicchieri di caffè usa e getta; Evita una notevole quantità di rifiuti monouso
-Cuoci solo cene a base vegetale per 7 giorni; Riduce l'impronta di carbonio del cibo
-Evita di usare l'auto per l'intera settimana; Riduce drasticamente le emissioni dei trasporti
-Raccogli l'acqua piovana e usala per le piante; Risparmia le risorse idriche del rubinetto
-Monitora e riduci i tuoi rifiuti domestici per 7 giorni; Aumenta la consapevolezza e riduce i rifiuti
-Trascorri 30 minuti all'aperto pulendo un parco o una strada; Migliora l'ambiente locale
-Acquista solo cibo sfuso o sfuso questa settimana; Riduce gli sprechi di imballaggio
-Ripara due articoli invece di sostituirli; Prolunga la durata del prodotto e risparmia risorse
-Evita gli acquisti di fast fashion per una settimana; Riduce gli sprechi tessili e le emissioni
-Monitora il tuo consumo di acqua ogni giorno per 7 giorni; Aumenta la consapevolezza sui consumi
-Fai volontariato in un orto comunitario o in un progetto ecologico; Supporta iniziative sostenibili
-Usa solo contenitori riutilizzabili per tutti i pasti questa settimana; Elimina gli imballaggi usa e getta
-Impegnati a ridurre a zero gli sprechi alimentari per 7 giorni; Incoraggia una cucina e una conservazione consapevoli
-Evita di utilizzare sacchetti di plastica monouso per tutta la settimana; Riduce l'inquinamento da plastica
-Documenta le tue azioni sostenibili ogni giorno per una settimana; Aiuta a costruire abitudini ecologiche a lungo termine
+Acquista solo vestiti di seconda mano questa settimana.; Riduce l'impatto del fast fashion
+Cuoci tutti i pasti a casa per una settimana.; Riduce gli sprechi di imballaggio e il trasporto
+Raccogli e ricicla correttamente i rifiuti elettronici.; Previene l'inquinamento tossico delle discariche
+Tieni un diario della sostenibilità.; Rifletti su abitudini e miglioramenti
+Trascorri un'intera settimana senza usare bicchieri di caffè usa e getta.; Evita una notevole quantità di rifiuti monouso
+Cuoci solo cene a base vegetale per 7 giorni.; Riduce l'impronta di carbonio del cibo
+Evita di usare l'auto per l'intera settimana.; Riduce drasticamente le emissioni dei trasporti
+Raccogli l'acqua piovana e usala per le piante.; Risparmia le risorse idriche del rubinetto
+Monitora e riduci i tuoi rifiuti domestici per 7 giorni.; Aumenta la consapevolezza e riduce i rifiuti
+Trascorri 30 minuti all'aperto pulendo un parco o una strada.; Migliora l'ambiente locale
+Acquista solo cibo sfuso o sfuso questa settimana.; Riduce gli sprechi di imballaggio
+Ripara due articoli invece di sostituirli.; Prolunga la durata del prodotto e risparmia risorse
+Evita gli acquisti di fast fashion per una settimana.; Riduce gli sprechi tessili e le emissioni
+Monitora il tuo consumo di acqua ogni giorno per 7 giorni.; Aumenta la consapevolezza sui consumi
+Fai volontariato in un orto comunitario o in un progetto ecologico.; Supporta iniziative sostenibili
+Usa solo contenitori riutilizzabili per tutti i pasti questa settimana.; Elimina gli imballaggi usa e getta
+Impegnati a ridurre a zero gli sprechi alimentari per 7 giorni.; Incoraggia una cucina e una conservazione consapevoli
+Evita di utilizzare sacchetti di plastica monouso per tutta la settimana.; Riduce l'inquinamento da plastica
+Documenta le tue azioni sostenibili ogni giorno per una settimana.; Aiuta a costruire abitudini ecologiche a lungo termine
