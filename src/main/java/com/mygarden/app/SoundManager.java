@@ -6,6 +6,7 @@ public class SoundManager {
     private static SoundManager instance;
     private AudioClip clickClip;
     private AudioClip purchaseClip;
+    private AudioClip shovelClip;
 
     private SoundManager() {
         try {
@@ -21,6 +22,14 @@ public class SoundManager {
         } catch (Exception e) {
             System.err.println("Failed to load purchase sound: " + e.getMessage());
         }
+
+        try {
+            String shovelRes = getClass().getResource("/audio/Shovel.mp3").toExternalForm();
+            shovelClip = new AudioClip(shovelRes);
+        } catch (Exception e) {
+            System.err.println("Failed to load shovel sound: " + e.getMessage());
+            shovelClip = null;
+        }
     }
 
     public static synchronized SoundManager getInstance() {
@@ -34,6 +43,10 @@ public class SoundManager {
 
     public void playPurchase() {
         playClip(purchaseClip);
+    }
+
+    public void playShovel() {
+        playClip(shovelClip);
     }
 
     private void playClip(AudioClip clip) {

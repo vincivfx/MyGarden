@@ -2,10 +2,19 @@ package com.mygarden.app.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
 import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
+import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.ShopItemTranslation;
+import com.mygarden.app.models.UserItem;
+import com.mygarden.app.repositories.ShopItemTranslationRepository;
+import com.mygarden.app.repositories.UserItemRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +24,8 @@ import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -27,21 +35,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
-
-import com.mygarden.app.models.ShopItem;
-import com.mygarden.app.models.ShopItemTranslation;
-import com.mygarden.app.models.UserItem;
-import com.mygarden.app.repositories.ShopItemTranslationRepository;
-import com.mygarden.app.repositories.UserItemRepository;
 
 public class GardenController extends AbstractController implements Initializable{
 
@@ -183,6 +179,8 @@ public class GardenController extends AbstractController implements Initializabl
                                     removePlacedImageByUserItemId(ui.getId());
                                     // refresh inventory UI
                                     loadInventoryItems();
+                                    // Play shovel sound when moved back to inventory
+                                    try { SoundManager.getInstance().playShovel(); } catch (Exception ignored) {}
                                     ok = true;
                                 }
                             } catch (Exception ex) {
@@ -211,6 +209,9 @@ public class GardenController extends AbstractController implements Initializabl
 
     @FXML
     private void onToggleInventory(ActionEvent event) {
+        // Play click sound when toggling inventory
+        SoundManager.getInstance().playClick();
+
         System.out.println("onToggleInventory called");
         if (inventoryPane == null) return;
 
@@ -704,6 +705,9 @@ public class GardenController extends AbstractController implements Initializabl
                         if (n.getUserData() != null && n.getUserData().equals(ui.getId())) { toRemove = n; break; }
                     }
                     if (toRemove != null) inventoryGrid.getChildren().remove(toRemove);
+
+                    // Play shovel sound on successful place/move
+                    try { SoundManager.getInstance().playShovel(); } catch (Exception ignored) {}
 
                     // keep the tile label unchanged — only show the image when placing an item
 
