@@ -28,28 +28,35 @@ class ShopTest {
 
     @Test
     void testGetShopItemFromCategorie() {
-        ShopItem item1 = ShopItem.create("Id1","Rose", 1, 1);
-        ShopItem item2 = ShopItem.create("Id2","Tulip", 1, 2);
-        ShopItem item3 = ShopItem.create("Id3","Lily", 1, 1);
-        shop.addShopItem(item1);
-        shop.addShopItem(item2);
-        shop.addShopItem(item3);
+    ShopItem item1 = ShopItem.create("Id1", "Rose", 10, 1); // prix 1
+    ShopItem item2 = ShopItem.create("Id2", "Tulip", 120, 2); // prix 2
+    ShopItem item3 = ShopItem.create("Id3", "Lily", 15, 1); // prix 1
 
-        // Vérifie récupération par catégorie 1
-        assertEquals(item1, shop.getShopItemFromCategorie(0, 1));
-        assertEquals(item3, shop.getShopItemFromCategorie(1, 1));
+    shop.addShopItem(item1);
+    shop.addShopItem(item2);
+    shop.addShopItem(item3);
 
-        // Vérifie récupération par catégorie 2
-        assertEquals(item2, shop.getShopItemFromCategorie(0, 2));
+    // Comme les items sont triés par prix croissant :
+    // Prix 1 : item1, item3
+    // Prix 2 : item2
 
-        // Vérifie récupération avec catégorie -1 (ignore catégorie)
-        assertEquals(item1, shop.getShopItemFromCategorie(0, -1));
-        assertEquals(item2, shop.getShopItemFromCategorie(1, -1));
+    // Vérifie récupération par catégorie 1 (catégorie = 1)
+    assertEquals(item1, shop.getShopItemFromCategorie(0, 1));
+    assertEquals(item3, shop.getShopItemFromCategorie(1, 1));
 
-        // Vérifie index hors catégorie -> doit retourner null
-        assertNull(shop.getShopItemFromCategorie(2, 1));
+    // Vérifie récupération par catégorie 2 (catégorie = 2)
+    assertEquals(item2, shop.getShopItemFromCategorie(0, 2));
 
-    }
+    // Vérifie récupération avec catégorie -1 (ignore catégorie)
+    // Ici l’ordre est par prix croissant
+    assertEquals(item1, shop.getShopItemFromCategorie(0, -1));
+    assertEquals(item3, shop.getShopItemFromCategorie(1, -1));
+    assertEquals(item2, shop.getShopItemFromCategorie(2, -1));
+
+    // Vérifie index hors catégorie -> doit retourner null
+    assertNull(shop.getShopItemFromCategorie(2, 1));
+}
+
 
     @Test
     void testSetShopItems() {

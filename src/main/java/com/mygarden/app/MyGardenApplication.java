@@ -41,6 +41,9 @@ public class MyGardenApplication extends Application {
             // if connection fails, just exit printing errors
             exception.printStackTrace();
             System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
 
         // launch JavaFX application

@@ -1,12 +1,15 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
+import java.net.URL;
 
+import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
@@ -32,12 +35,15 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.ShopItemTranslation;
 import com.mygarden.app.models.UserItem;
+import com.mygarden.app.repositories.ShopItemTranslationRepository;
 import com.mygarden.app.repositories.UserItemRepository;
 
-public class GardenController extends AbstractController {
+public class GardenController extends AbstractController implements Initializable{
 
     // Layout
     private static final int COLS = 5;
@@ -69,6 +75,8 @@ public class GardenController extends AbstractController {
     @FXML private AnchorPane inventoryPane;
     @FXML private GridPane inventoryGrid;
     @FXML private Button inventoryButton;
+    @FXML private Button mainPageButton;
+    @FXML private Button shopButton;
 
     // Images
     private Image tileSoilImg;
@@ -85,9 +93,33 @@ public class GardenController extends AbstractController {
         }
     }
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resbundle) {
         setupBackground();
+
+        /*
+         * Minimal i18n initialization:
+         * Use the ResourceBundle provided by FXMLLoader if available (resbundle),
+         * otherwise fall back to LanguageManager.getBundle().
+         * We only set the UI strings here (do not change existing behaviour).
+         */
+        ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
+
+        try {
+            if (mainPageButton != null && bundle.containsKey("garden.mainPage")) {
+                mainPageButton.setText(bundle.getString("garden.mainPage"));
+            }
+            if (shopButton != null && bundle.containsKey("garden.shop")) {
+                shopButton.setText(bundle.getString("garden.shop"));
+            }
+            if (inventoryButton != null && bundle.containsKey("garden.inventory")) {
+                inventoryButton.setText(bundle.getString("garden.inventory"));
+            }
+
+        } catch (Exception e) {
+            // be conservative: if bundle lookup fails, do not break initialization
+            e.printStackTrace();
+        }
 
         var soilUrl = getClass().getResource("/images/tile_soil.png");
         if (soilUrl == null) {
@@ -264,12 +296,23 @@ public class GardenController extends AbstractController {
                 // Start drag when pressed
                 final Integer userItemId = ui.getId();
                 final String shopId = shopItem.getId();
+
+                // get translated name
+                ShopItemTranslationRepository sitRepo = new ShopItemTranslationRepository();
+                String lang = LanguageManager.getCurrentLang();
+                
+                ShopItemTranslation sit = sitRepo.getTranslation(shopItem, lang);
+                if (sit == null) {
+                    sit = sitRepo.getTranslation(shopItem, "en");
+                }
+                final String itemName = sit != null ? sit.getName() : shopId;
+
                 iv.setOnDragDetected(ev -> {
                     Node src = (Node) ev.getSource();
                     javafx.scene.input.Dragboard db = src.startDragAndDrop(TransferMode.MOVE);
                     javafx.scene.input.ClipboardContent content = new javafx.scene.input.ClipboardContent();
                     // payload: useritem:<userItemId>:<shopItemId>:<name>
-                    content.putString("useritem:" + userItemId + ":" + shopId + ":" + shopItem.getName());
+                    content.putString("useritem:" + userItemId + ":" + shopId + ":" + itemName);
                     db.setContent(content);
                     // ghost image (drag view) using images\gardenImg
                     try {
@@ -282,7 +325,7 @@ public class GardenController extends AbstractController {
                     ev.consume();
                 });
 
-                javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(shopItem.getName());
+                javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(itemName);
                 javafx.scene.layout.AnchorPane.setLeftAnchor(iv, 8.0);
                 javafx.scene.layout.AnchorPane.setTopAnchor(iv, 4.0);
                 javafx.scene.layout.AnchorPane.setLeftAnchor(nameLabel, 8.0);

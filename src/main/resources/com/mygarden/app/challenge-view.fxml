@@ -61,12 +61,12 @@
                         <children>
                            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="123.0">
                               <children>
-                                 <Label fx:id="typeDisplayed" text="Type">
+                                 <Label fx:id="challengeTitle" text="Challenge: ">
                                     <font>
                                        <Font name="System Bold" size="25.0" />
                                     </font>
                                  </Label>
-                                 <Label text=" Challenge">
+                                 <Label fx:id="typeDisplayed" text="Type">
                                     <font>
                                        <Font name="System Bold" size="25.0" />
                                     </font>

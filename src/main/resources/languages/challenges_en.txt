@@ -1,0 +1,125 @@
+daily; Bring a reusable water bottle.; Cuts down on single-use plastic
+daily; Take the stairs instead of the elevator.; Saves electricity and promotes health
+daily; Turn off lights when leaving a room.; Reduces unnecessary energy use
+daily; Use public transport or bike instead of car.; Lowers CO2 emissions
+daily; Carry a reusable shopping bag.; Avoids plastic waste
+daily; Unplug chargers when not in use.; Prevents phantom energy consumption
+daily; Print only if necessary.; Saves paper and ink
+daily; Take a shorter shower (max 5 min).; Conserves water and energy
+daily; Recycle paper, plastic or glass.; Keeps materials in circulation
+daily; Eat a vegetarian meal.; Reduces carbon footprint from meat
+daily; Use a reusable coffee cup.; Cuts disposable cup waste
+daily; Share leftover food with a friend.; Reduces food waste
+daily; Turn off tap while brushing teeth.; Saves liters of water
+daily; Reuse scrap paper for notes.; Extends material life
+daily; Pick up 3 pieces of litter.; Keeps environment clean
+daily; Open windows instead of using AC.; Saves electricity
+daily; Donate or swap an unused item.; Extends product lifecycle
+daily; Use a cloth napkin instead of paper.; Reduces disposable waste
+daily; Carry your own cutlery set.; Avoids single-use plastics
+daily; Plan your meals for the day.; Prevents impulse food waste
+daily; Refill a reusable bottle instead of buying bottled water.; Avoids plastic waste and saves money
+daily; Switch off your computer completely after use.; Reduces standby power consumption
+daily; Bring lunch in a reusable container.; Cuts down on packaging waste
+daily; Use both sides of a sheet of paper.; Maximizes paper use
+daily; Pick up 5 pieces of litter outdoors.; Keeps shared spaces clean
+daily; Turn down heating by 1°C.; Saves energy and reduces emissions
+daily; Switch to a digital receipt instead of paper.; Reduces paper waste
+daily; Reuse a glass jar for storage.; Gives packaging a second life
+daily; Decline a plastic straw.; Avoids unnecessary single-use plastic
+daily; Take a walk instead of a short car ride.; Reduces emissions and promotes health
+daily; Switch off your Wi-Fi router overnight.; Saves electricity
+daily; Compost fruit or vegetable scraps.; Turns waste into useful soil
+daily; Carry a reusable face mask or cloth instead of disposable.; Reduces single-use waste
+daily; Use a bar of soap instead of liquid soap in plastic bottles.; Cuts packaging waste
+daily; Spend one hour without using your phone.; Saves device energy and supports wellbeing
+daily; Bring your own container for takeaway food.; Avoids disposable packaging
+daily; Air-dry clothes instead of using a dryer.; Saves electricity
+daily; Use natural light instead of lamps during the day.; Reduces electricity use
+daily; Sort your home recycling more carefully today.; Improves recycling quality
+daily; Turn off your car engine while waiting.; Reduces fuel waste and emissions
+daily; Bring your own reusable straw.; Avoids single-use plastic
+daily; Choose tap water over bottled water.; Reduces plastic and transport emissions
+daily; Switch to a reusable cloth bag for produce.; Avoids plastic produce bags
+daily; Use a refillable pen instead of disposable ones.; Reduces plastic waste
+daily; Switch your phone to battery saver mode for the day.; Reduces energy consumption
+daily; Pick up cigarette butts from the ground.; Prevents toxic litter
+daily; Donate leftover food to a food-sharing box.; Helps reduce waste and supports others
+daily; Switch to cloth towels instead of paper towels.; Reduces disposable waste
+daily; Use public transport for one trip today.; Cuts emissions compared to driving
+daily; Use a power strip to easily turn off multiple devices.; Eliminates standby power use
+daily; Bring your own reusable chopsticks or cutlery.; Avoids disposable plastic utensils
+daily; Switch off lights during daylight hours.; Saves electricity by using natural light
+daily; Write down one eco-habit you want to keep long-term.; Encourages reflection and habit-building
+daily; Reuse a cardboard box for storage or shipping.; Extends packaging life
+daily; Set your computer to sleep after 5 minutes of inactivity.; Saves electricity automatically
+daily; Choose a reusable razor instead of disposable.; Cuts down on plastic waste
+daily; Decline paper receipts when possible.; Reduces paper waste
+daily; Borrow a book from a library instead of buying new.; Reduces resource use
+daily; Switch to a bamboo toothbrush.; Reduces plastic waste in landfills
+daily; Try a zero-waste snack (like fruit without packaging).; Avoids unnecessary packaging
+daily; Reuse a glass bottle as a vase or container.; Gives packaging a second life
+daily; Lower your screen brightness to save energy.; Reduces electricity use
+daily; Take a cold shower for 2 minutes.; Saves hot water and energy
+daily; Bring your own reusable food wrap (like beeswax).; Avoids plastic cling film
+daily; Cook a meal using only local ingredients.; Supports local farmers and reduces transport emissions
+daily; Donate old clothes instead of throwing them away.; Extends product life
+daily; Switch to digital tickets instead of printed ones.; Reduces paper waste
+daily; Spend 10 minutes learning about local recycling rules.; Improves recycling accuracy
+daily; Turn off heating when leaving home.; Saves energy and money
+daily; Try a zero-waste snack (like fruit without packaging).; Avoids unnecessary packaging
+daily; Use a reusable lunchbox instead of plastic wrap.; Avoids disposable packaging
+daily; Use a reusable water bottle cap instead of buying new ones.; Extends product life
+daily; Delete 10 old emails to reduce digital storage footprint.; Reduces server energy use
+daily; Spend 5 minutes caring for plants or a green space.; Supports biodiversity
+daily; Plant a seed or care for a houseplant today.; Encourages biodiversity and green spaces
+daily; Collect rainwater in a small container for plants.; Introduces water harvesting
+daily; Reuse packaging material for shipping.; Extends packaging life
+daily; Switch your default search engine to an eco-friendly one (like Ecosia).; Supports reforestation through digital habits
+daily; Walk or bike for a short errand instead of driving.; Reduces emissions and promotes health
+daily; Try a meat-free snack today.; Reduces carbon footprint from food
+daily; Choose a vegetarian breakfast.; Lowers carbon footprint from food
+daily; Pick up 5 cigarette butts and dispose properly.; Prevents toxic litter
+daily; Reuse a cardboard package for storage.; Extends packaging life
+daily; Switch off unused lights for the entire day.; Reduces energy consumption
+daily; Use a reusable coffee filter instead of disposable.; Cuts paper waste
+daily; Collect used batteries and store them for proper recycling.; Prevents toxic waste
+daily; Decline disposable cutlery with takeaway food.; Avoids plastic waste
+daily; Buy a product with eco-label certification (Fairtrade, organic, etc.).; Supports sustainable production
+daily; Take a 3-minute shorter shower.; Saves water and energy
+daily; Reuse a plastic container instead of throwing it away.; Extends product life
+daily; Turn off heating when leaving your room.; Saves energy
+daily; Share a sustainability tip with a friend.; Spreads awareness socially
+daily; Switch to digital notes instead of paper.; Reduces paper waste
+daily; Buy a product with minimal packaging.; Reduces packaging waste
+daily; Switch off background apps on your phone.; Saves battery and energy
+daily; Repair a small household item instead of discarding it.; Extends product life
+daily; Skip sugary bottled drinks and choose homemade instead.; Reduces plastic and sugar consumption
+daily; Use a reusable shopping list app instead of paper notes.; Reduces paper waste
+daily; Spend 15 minutes outdoors without electronics.; Supports wellbeing and saves energy
+daily; Spend 10 minutes cleaning your workspace sustainably.; Encourages mindful organization
+weekly; Go a full week without eating red meat.; Significantly lowers carbon footprint
+weekly; Avoid buying any single-use plastic items.; Reduces long-term waste
+weekly; Volunteer for a local clean-up.; Improves community environment
+weekly; Track your energy consumption for 7 days.; Builds awareness of usage patterns
+weekly; Commit to biking/walking to uni all week.; Cuts transport emissions
+weekly; Repair or upcycle one old item.; Extends product life, avoids waste
+weekly; Buy only second-hand clothes this week.; Reduces fast fashion impact
+weekly; Cook all meals at home for a week.; Cuts packaging waste and transport
+weekly; Collect and recycle e-waste properly.; Prevents toxic landfill pollution
+weekly; Keep a sustainability journal.; Reflects on habits and improvements
+weekly; Go a full week without using disposable coffee cups.; Avoids significant single-use waste
+weekly; Cook only plant-based dinners for 7 days.; Reduces carbon footprint from food
+weekly; Avoid using your car for the entire week.; Cuts transport emissions drastically
+weekly; Collect rainwater and use it for plants.; Saves tap water resources
+weekly; Track and reduce your household waste for 7 days.; Builds awareness and reduces trash
+weekly; Spend 30 minutes outdoors cleaning a park or street.; Improves local environment
+weekly; Buy only unpackaged or bulk food this week.; Reduces packaging waste
+weekly; Repair two items instead of replacing them.; Extends product life and saves resources
+weekly; Avoid fast fashion purchases for a week.; Reduces textile waste and emissions
+weekly; Track your water usage daily for 7 days.; Raises awareness of consumption
+weekly; Volunteer at a community garden or eco-project.; Supports sustainable initiatives
+weekly; Use only reusable containers for all meals this week.; Eliminates disposable packaging
+weekly; Commit to zero food waste for 7 days.; Encourages mindful cooking and storage
+weekly; Avoid using any single-use plastic bags all week.; Reduces plastic pollution
+weekly; Document your sustainable actions daily for a week.; Helps build long-term eco habits

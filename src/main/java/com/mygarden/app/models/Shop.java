@@ -1,6 +1,8 @@
 package com.mygarden.app.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Shop {
@@ -12,7 +14,13 @@ public class Shop {
     }
 
     public void addShopItem(ShopItem item) {
-        ShopItems.add(item);
+
+        Comparator<ShopItem> comp = Comparator.comparingDouble(ShopItem::getPrice);
+
+        int index = Collections.binarySearch(ShopItems, item, comp);
+        if (index < 0) index = -index - 1;
+
+        ShopItems.add(index, item);
     }
 
     public ShopItem getShopItem(int i) {

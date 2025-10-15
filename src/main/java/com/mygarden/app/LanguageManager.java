@@ -52,6 +52,11 @@ public final class LanguageManager {
         return localeProperty.get();
     }
 
+    /** Return the current language code, e.g. "en", "sv". */
+    public static String getCurrentLang() {
+        return getLocale().getLanguage();
+    }
+
     /** JavaFX property for binding/listening. */
     public static ObjectProperty<Locale> localeProperty() {
         return localeProperty;
@@ -116,4 +121,6 @@ public final class LanguageManager {
         // fallback
         return SUPPORTED_LOCALES.get(0);
     }
+
+
 }
