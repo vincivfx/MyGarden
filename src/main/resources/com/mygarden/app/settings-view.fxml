@@ -15,7 +15,8 @@
 
    <StackPane prefHeight="150.0" prefWidth="200.0">
       <children>
-         <ImageView fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
+         <!-- Added fx:id so controller can change this per-language -->
+         <ImageView fx:id="backgroundImageView" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../images/MainPage.jpg" />
             </image>
