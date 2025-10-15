@@ -143,7 +143,6 @@ public class ShopController extends AbstractController {
                     anchor.setOnMouseExited(null);
                     anchor.setCursor(Cursor.DEFAULT);
 
-
                     ColorAdjust grayEffect = new ColorAdjust();
                     grayEffect.setSaturation(-0.5);
                     itemImage.setEffect(grayEffect);
@@ -153,12 +152,10 @@ public class ShopController extends AbstractController {
                     anchor.setOnMouseClicked(e -> buyPlant(e));
                     anchor.setOnMouseEntered(e -> buttonIsHovered(e));
                     anchor.setOnMouseExited(e -> buttonIsNoLongerHovered(e));
+                    anchor.setCursor(Cursor.HAND);
 
                     itemImage.setEffect(null);
                 }
-
-               
-                
 
                 indexInShop++;
             }
