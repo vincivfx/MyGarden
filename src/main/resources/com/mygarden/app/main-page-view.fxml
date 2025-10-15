@@ -63,6 +63,9 @@
                         <HBox.margin>
                            <Insets left="20.0" />
                         </HBox.margin>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
                      </Button>
                   </children>
                   <VBox.margin>
