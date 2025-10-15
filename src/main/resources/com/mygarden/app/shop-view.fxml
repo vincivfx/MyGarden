@@ -71,12 +71,14 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/goGarden.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <ImageView fitHeight="28.0" fitWidth="42.0" layoutX="15.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/back_arrow.png" />
-                           </image>
-                        </ImageView>
                         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="main">
                            <font>
                               <Font size="2.0" />
@@ -84,12 +86,14 @@
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../images/back_arrow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <ImageView fitHeight="50.0" fitWidth="35.0" layoutX="69.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../images/goGarden.png" />
-                           </image>
-                        </ImageView>
                         <ImageView fitHeight="28.0" fitWidth="29.0" layoutX="236.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../images/icon_coins.png" />
