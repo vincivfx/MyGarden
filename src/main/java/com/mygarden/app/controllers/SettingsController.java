@@ -158,18 +158,44 @@ public class SettingsController extends AbstractController{
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
+        alert.getDialogPane().setStyle(
+            "-fx-background-color: #b1ccbb;" +
+            "-fx-border-color: #a0ac97;" +
+            "-fx-border-width: 3;"
+        );
 
         ButtonType deleteBtn = new ButtonType(confirmLabel, ButtonBar.ButtonData.OK_DONE);
         ButtonType cancelBtn = new ButtonType(cancelLabel, ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getButtonTypes().setAll(deleteBtn, cancelBtn);
 
+        Button deleteButton = (Button) alert.getDialogPane().lookupButton(deleteBtn);
+        deleteButton.setStyle(
+            "-fx-background-color: red;" +
+            "-fx-border-color: darkred;" +
+            "-fx-border-width: 3;" +
+            "-fx-border-radius: 10;" +
+            "-fx-background-radius: 10;" +
+            "-fx-text-fill: white;" +
+            "-fx-font-weight: bold;"
+        );
+        Button cancelButton = (Button) alert.getDialogPane().lookupButton(cancelBtn);
+        cancelButton.setStyle(
+            "-fx-background-color: #59a834;" +
+            "-fx-border-color: #3b8133;" +
+            "-fx-border-width: 3;" +
+            "-fx-border-radius: 10;" +
+            "-fx-background-radius: 10;" +
+            "-fx-text-fill: white;" +
+            "-fx-font-weight: bold;"
+        );
+
         // ensure dialog grows to fit long text
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         alert.showAndWait().ifPresent(rs -> {
-            if (rs == deleteBtn) {
+            if (rs == deleteBtn) { 
                 try {
-                    DatabaseManager.getInstance().resetApplication();
+                    DatabaseManager.getInstance().deleteCurrentUser(getUser());
                     SceneUtils.changeScene(event, "/com/mygarden/app/login-page-view.fxml", null);
 
                 } catch (SQLException | IOException exception) {

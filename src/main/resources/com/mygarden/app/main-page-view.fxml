@@ -36,7 +36,7 @@
                            </ImageView>
                            <Label fx:id="UserCoins" alignment="CENTER" contentDisplay="CENTER" text="n_coins">
                               <HBox.margin>
-                                 <Insets left="6.0" />
+                                 <Insets left="5.0" />
                               </HBox.margin>
                               <font>
                                  <Font size="26.0" />

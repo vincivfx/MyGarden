@@ -86,17 +86,17 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="241.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="244.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../images/icon_coins.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="UserCoins" alignment="CENTER" contentDisplay="CENTER" layoutX="277.0" layoutY="23.0" text="n_coins">
+                        <Label fx:id="UserCoins" alignment="CENTER" contentDisplay="CENTER" layoutX="280.0" layoutY="23.0" text="n_coins">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" layoutX="18.0" layoutY="62.0" prefHeight="32.0" prefWidth="300.0">
+                        <HBox alignment="CENTER" layoutX="18.0" layoutY="63.0" prefHeight="32.0" prefWidth="300.0">
                            <children>
                               <Text fx:id="titleText" fill="#b1ccbb" stroke="#633b18" strokeType="OUTSIDE" strokeWidth="0.7" style="-fx-font-weight: 900;" text="Plant Shop" textAlignment="CENTER">
                                  <font>

@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -38,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class GardenController extends AbstractController implements Initializable{
 
@@ -276,8 +278,10 @@ public class GardenController extends AbstractController implements Initializabl
                     continue;
                 }
 
-                javafx.scene.layout.AnchorPane cell = new javafx.scene.layout.AnchorPane();
+                // VBox with ImageView and Label
+                VBox cell = new VBox(4); // vertical spacing 4px
                 cell.setPrefSize(80, 80);
+                cell.setAlignment(Pos.TOP_CENTER);
 
                 ImageView iv = new ImageView();
                 iv.setFitWidth(64);
@@ -327,11 +331,9 @@ public class GardenController extends AbstractController implements Initializabl
                 });
 
                 javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(itemName);
-                javafx.scene.layout.AnchorPane.setLeftAnchor(iv, 8.0);
-                javafx.scene.layout.AnchorPane.setTopAnchor(iv, 4.0);
-                javafx.scene.layout.AnchorPane.setLeftAnchor(nameLabel, 8.0);
-                // lower the name label so it doesn't overlap the plant image
-                javafx.scene.layout.AnchorPane.setTopAnchor(nameLabel, 70.0);
+                nameLabel.setMinWidth(Region.USE_PREF_SIZE);
+                nameLabel.setMaxWidth(Double.MAX_VALUE);
+                nameLabel.setAlignment(Pos.CENTER);
 
                 cell.getChildren().addAll(iv, nameLabel);
                 // tag cell with userItem id for later removal

@@ -144,6 +144,18 @@ public final class DatabaseManager {
         TableUtils.clearTable(connectionSource, User.class);
     }
 
+    public void deleteCurrentUser(User currentUser) throws SQLException {
+
+        // delet data associated with the user
+        userItemsDao.delete(userItemsDao.queryForEq("user_id", currentUser.getUsername()));
+        userChallengeDao.delete(userChallengeDao.queryForEq("user_id", currentUser.getUsername()));
+        gardenDao.delete(gardenDao.queryForEq("user_id", currentUser.getUsername()));
+        transferDao.delete(transferDao.queryForEq("user_id", currentUser.getUsername()));
+
+        // finally delete the user
+        userDao.delete(currentUser);
+    }
+
     private void loadChallengesFromFile(String resourcePath) throws IOException, SQLException {
 
         // Get language from file name (ex. challenges_en.txt → "en")

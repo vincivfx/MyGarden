@@ -5,9 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.utils.ConfirmationPopUpController">
+<VBox alignment="TOP_CENTER" style="-fx-background-color: #b1ccbb; -fx-border-color: #a0ac97; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mygarden.app.controllers.utils.ConfirmationPopUpController">
    <children>
       <Label fx:id="question" alignment="CENTER" maxWidth="250.0" text="%popup.confirm.question" textAlignment="CENTER" wrapText="true">
          <VBox.margin>
@@ -16,11 +16,17 @@
       </Label>
       <HBox alignment="TOP_CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#onNoClicked" text="%popup.no" />
-            <Button mnemonicParsing="false" onAction="#onYesClicked" text="%popup.yes">
+            <Button mnemonicParsing="false" onAction="#onNoClicked" style="-fx-background-color: red; -fx-border-color: darkred; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 10; -fx-font-weight: bold;" text="%popup.no" textFill="WHITE">
                <HBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="3.0" right="24.0" />
+               </HBox.margin></Button>
+            <Button mnemonicParsing="false" onAction="#onYesClicked" style="-fx-background-color: #59a834; -fx-border-color: #3b8133; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 10;" text="%popup.yes" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="24.0" right="3.0" />
                </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
             </Button>
          </children>
          <opaqueInsets>
