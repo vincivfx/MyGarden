@@ -12,7 +12,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "mg_users")
-public class User {
+public class User extends TimeStampAbstractModel {
 
     @DatabaseField(id = true)
     private String username;
@@ -40,9 +40,6 @@ public class User {
 
     @ForeignCollectionField
     private ForeignCollection<Transfer> transfers;
-
-
-    private List<Plant> inventory;
 
     public User() {
         // needed by ORMLite

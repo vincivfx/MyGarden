@@ -1,20 +1,32 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
+import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
+import com.mygarden.app.models.ShopItem;
+import com.mygarden.app.models.ShopItemTranslation;
+import com.mygarden.app.models.UserItem;
+import com.mygarden.app.repositories.ShopItemTranslationRepository;
+import com.mygarden.app.repositories.UserItemRepository;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -24,20 +36,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Objects;
-
-import com.mygarden.app.models.ShopItem;
-import com.mygarden.app.models.UserItem;
-import com.mygarden.app.repositories.UserItemRepository;
-
-public class GardenController extends AbstractController {
+public class GardenController extends AbstractController implements Initializable{
 
     // Layout
     private static final int COLS = 5;
@@ -70,6 +74,8 @@ public class GardenController extends AbstractController {
     @FXML private GridPane inventoryGrid;
     @FXML private Button inventoryButton;
     @FXML private Label plantedCounterLabel;
+    @FXML private Button mainPageButton;
+    @FXML private Button shopButton;
 
     // Images
     private Image tileSoilImg;
@@ -88,9 +94,33 @@ public class GardenController extends AbstractController {
         }
     }
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resbundle) {
         setupBackground();
+
+        /*
+         * Minimal i18n initialization:
+         * Use the ResourceBundle provided by FXMLLoader if available (resbundle),
+         * otherwise fall back to LanguageManager.getBundle().
+         * We only set the UI strings here (do not change existing behaviour).
+         */
+        ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
+
+        try {
+            if (mainPageButton != null && bundle.containsKey("garden.mainPage")) {
+                mainPageButton.setText(bundle.getString("garden.mainPage"));
+            }
+            if (shopButton != null && bundle.containsKey("garden.shop")) {
+                shopButton.setText(bundle.getString("garden.shop"));
+            }
+            if (inventoryButton != null && bundle.containsKey("garden.inventory")) {
+                inventoryButton.setText(bundle.getString("garden.inventory"));
+            }
+
+        } catch (Exception e) {
+            // be conservative: if bundle lookup fails, do not break initialization
+            e.printStackTrace();
+        }
 
         var soilUrl = getClass().getResource("/images/tile_soil.png");
         if (soilUrl == null) {
@@ -156,6 +186,8 @@ public class GardenController extends AbstractController {
                                     loadInventoryItems();
                                     // update counter: item moved back to inventory
                                     decrementPlantedCounter();
+                                    // Play shovel sound when moved back to inventory
+                                    try { SoundManager.getInstance().playShovel(); } catch (Exception ignored) {}
                                     ok = true;
                                 }
                             } catch (Exception ex) {
@@ -184,6 +216,9 @@ public class GardenController extends AbstractController {
 
     @FXML
     private void onToggleInventory(ActionEvent event) {
+        // Play click sound when toggling inventory
+        SoundManager.getInstance().playClick();
+
         System.out.println("onToggleInventory called");
         if (inventoryPane == null) return;
 
@@ -248,8 +283,10 @@ public class GardenController extends AbstractController {
                     continue;
                 }
 
-                javafx.scene.layout.AnchorPane cell = new javafx.scene.layout.AnchorPane();
+                // VBox with ImageView and Label
+                VBox cell = new VBox(4); // vertical spacing 4px
                 cell.setPrefSize(80, 80);
+                cell.setAlignment(Pos.TOP_CENTER);
 
                 ImageView iv = new ImageView();
                 iv.setFitWidth(64);
@@ -269,12 +306,23 @@ public class GardenController extends AbstractController {
                 // Start drag when pressed
                 final Integer userItemId = ui.getId();
                 final String shopId = shopItem.getId();
+
+                // get translated name
+                ShopItemTranslationRepository sitRepo = new ShopItemTranslationRepository();
+                String lang = LanguageManager.getCurrentLang();
+                
+                ShopItemTranslation sit = sitRepo.getTranslation(shopItem, lang);
+                if (sit == null) {
+                    sit = sitRepo.getTranslation(shopItem, "en");
+                }
+                final String itemName = sit != null ? sit.getName() : shopId;
+
                 iv.setOnDragDetected(ev -> {
                     Node src = (Node) ev.getSource();
                     javafx.scene.input.Dragboard db = src.startDragAndDrop(TransferMode.MOVE);
                     javafx.scene.input.ClipboardContent content = new javafx.scene.input.ClipboardContent();
                     // payload: useritem:<userItemId>:<shopItemId>:<name>
-                    content.putString("useritem:" + userItemId + ":" + shopId + ":" + shopItem.getName());
+                    content.putString("useritem:" + userItemId + ":" + shopId + ":" + itemName);
                     db.setContent(content);
                     // ghost image (drag view) using images\gardenImg
                     try {
@@ -287,12 +335,10 @@ public class GardenController extends AbstractController {
                     ev.consume();
                 });
 
-                javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(shopItem.getName());
-                javafx.scene.layout.AnchorPane.setLeftAnchor(iv, 8.0);
-                javafx.scene.layout.AnchorPane.setTopAnchor(iv, 4.0);
-                javafx.scene.layout.AnchorPane.setLeftAnchor(nameLabel, 8.0);
-                // lower the name label so it doesn't overlap the plant image
-                javafx.scene.layout.AnchorPane.setTopAnchor(nameLabel, 70.0);
+                javafx.scene.control.Label nameLabel = new javafx.scene.control.Label(itemName);
+                nameLabel.setMinWidth(Region.USE_PREF_SIZE);
+                nameLabel.setMaxWidth(Double.MAX_VALUE);
+                nameLabel.setAlignment(Pos.CENTER);
 
                 cell.getChildren().addAll(iv, nameLabel);
                 // tag cell with userItem id for later removal
@@ -718,6 +764,9 @@ public class GardenController extends AbstractController {
                         if (n.getUserData() != null && n.getUserData().equals(ui.getId())) { toRemove = n; break; }
                     }
                     if (toRemove != null) inventoryGrid.getChildren().remove(toRemove);
+
+                    // Play shovel sound on successful place/move
+                    try { SoundManager.getInstance().playShovel(); } catch (Exception ignored) {}
 
                     // keep the tile label unchanged — only show the image when placing an item
                     // update counter: only increment if this is a new placement from inventory (not repositioning)

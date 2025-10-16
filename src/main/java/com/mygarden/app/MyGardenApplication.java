@@ -2,15 +2,8 @@ package com.mygarden.app;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-import com.mygarden.app.controllers.AbstractController;
-import com.mygarden.app.models.ShopItem;
-import com.mygarden.app.models.Transfer;
-import com.mygarden.app.models.User;
-
-import com.mygarden.app.repositories.ShopItemsRepository;
-import com.mygarden.app.repositories.TransferRepository;
-import com.mygarden.app.repositories.UserRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,12 +12,18 @@ import javafx.stage.Stage;
 public class MyGardenApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MyGardenApplication.class.getResource("login-page-view.fxml"));
+        // Load the saved locale's ResourceBundle from LanguageManager
+        ResourceBundle bundle = LanguageManager.getBundle();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MyGardenApplication.class.getResource("login-page-view.fxml"), bundle);
 
         Scene scene = new Scene(fxmlLoader.load(), 335, 600);
 
         stage.setResizable(false);
-        stage.setTitle("MyGarden");
+
+        String title = bundle.containsKey("app.name") ? bundle.getString("app.name") : "MyGarden";
+        stage.setTitle(title);
+
         stage.setScene(scene);
         stage.show();
     }
@@ -38,13 +37,14 @@ public class MyGardenApplication extends Application {
                 DatabaseManager.getInstance().spawnDatabase();
             }
 
-
         } catch (SQLException exception) {
             // if connection fails, just exit printing errors
             exception.printStackTrace();
             System.exit(1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
         }
-
 
         // launch JavaFX application
         launch();

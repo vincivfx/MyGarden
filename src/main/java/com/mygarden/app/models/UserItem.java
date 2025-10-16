@@ -4,10 +4,8 @@ package com.mygarden.app.models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.Date;
-
 @DatabaseTable(tableName = "mg_user_plants")
-public class UserItem {
+public class UserItem extends TimeStampAbstractModel {
 
     public final static String ID = "id";
     public final static String USER_ID = "user_id";
@@ -31,11 +29,8 @@ public class UserItem {
     @DatabaseField(columnName = POSITION_Y)
     private Integer position_y;
 
-    @DatabaseField(columnName = CREATED_AT)
-    private Date created_at;
-
     public UserItem() {
-        created_at = new Date();
+        // ORMLite
     }
 
     public Integer getId() {
@@ -61,6 +56,7 @@ public class UserItem {
     public void move(Integer position_x, Integer position_y) {
         this.position_x = position_x;
         this.position_y = position_y;
+        updateUpdatedDate();
     }
 
     public Integer getPositionX() {

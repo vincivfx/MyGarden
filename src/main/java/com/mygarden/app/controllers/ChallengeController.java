@@ -1,20 +1,24 @@
 package com.mygarden.app.controllers;
 import java.io.IOException;
+import java.net.URL;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import com.mygarden.app.AudioManager;
+import com.mygarden.app.LanguageManager;
 import com.mygarden.app.SoundManager;
 import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.Challenge;
+import com.mygarden.app.models.ChallengeTranslation;
 import com.mygarden.app.models.User;
+import com.mygarden.app.repositories.ChallengeTranslationRepository;
 import com.mygarden.app.repositories.TransferRepository;
 import com.mygarden.app.repositories.UserChallengeRepository;
 import com.mygarden.app.repositories.UserRepository;
@@ -23,12 +27,16 @@ import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 
-public class ChallengeController extends AbstractController{
+public class ChallengeController extends AbstractController implements Initializable{
+    @FXML
+    private Label challengeTitle;
+
     @FXML
     private Label typeDisplayed;
 
@@ -60,14 +68,43 @@ public class ChallengeController extends AbstractController{
     private List<Challenge> dailyChallengeList;
     private List<Challenge> weeklyChallengeList;
 
-    @FXML
-    private void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resbundle) {
         // add a listener to handle window close event
         Platform.runLater(() -> {
             Stage stage = (Stage) remainingTime.getScene().getWindow();
             stage.setOnCloseRequest(event -> stopScheduler());
-            AudioManager.getInstance().dispose(); // release audio resources
+            //AudioManager.getInstance().dispose(); // release audio resources
         });
+
+        
+        /*
+         * Minimal i18n initialization:
+         * Use the ResourceBundle provided by FXMLLoader if available (resbundle),
+         * otherwise fall back to LanguageManager.getBundle().
+         * We only set the UI strings here (do not change existing behaviour).
+         */
+        ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
+
+        try {
+            if (challengeTitle != null && bundle.containsKey("challenge.title")) {
+                challengeTitle.setText(bundle.getString("challenge.title") + ": ");
+            }
+            if (typeDisplayed != null && bundle.containsKey("challenge.type.daily")) {
+                typeDisplayed.setText(bundle.getString("challenge.type.daily"));
+            }
+            if (typeBtn != null && bundle.containsKey("challenge.type.weekly")) {
+                typeBtn.setText(bundle.getString("challenge.type.weekly"));
+            }
+
+            // placeholder/fallback for coins before the real user is set
+            if (UserCoins != null && bundle.containsKey("challenge.coins")) {
+                UserCoins.setText(bundle.getString("challenge.coins"));
+            }
+        } catch (Exception e) {
+            // be conservative: if bundle lookup fails, do not break initialization
+            e.printStackTrace();
+        }
     }
 
     private void updateUICoins()
@@ -82,11 +119,37 @@ public class ChallengeController extends AbstractController{
 
         if(challenge == null) 
         { // Dummy challenge
-            description = "Well done! You completed all the current " + typeDisplayed.getText().toLowerCase() + " challenges!";
-            tip = "No more " + typeDisplayed.getText().toLowerCase() + " challenges available";
+            ResourceBundle bundle = LanguageManager.getBundle();
+            description = bundle.getString("challenge.dummy.description");
+            tip = bundle.getString("challenge.dummy.tip");
         } else{
-            description = challenge.getDescription();
-            tip = challenge.getTip();
+            try {
+                ChallengeTranslationRepository trRepo = new ChallengeTranslationRepository();
+                String currentLang = LanguageManager.getCurrentLang(); // es. "en", "sv"
+
+                // Try to get translation for the current language
+                ChallengeTranslation tr = trRepo.getTranslation(challenge, currentLang);
+
+                if (tr != null) {
+                    description = tr.getDescription();
+                    tip = tr.getTip();
+                } else {
+                    // fallback: try English
+                    ChallengeTranslation fallback = trRepo.getTranslation(challenge, "en");
+                    if (fallback != null) {
+                        description = fallback.getDescription();
+                        tip = fallback.getTip();
+                    } else {
+                        // extreme fallback: use whatever is in Challenge (should not happen)
+                        description = "[no description]";
+                        tip = "[no tip]";
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                description = "[error loading description]";
+                tip = "[error loading tip]";
+            }
         }
         completedBtn.setDisable(challenge == null);
         challengeDesc.setText(description);
@@ -115,8 +178,6 @@ public class ChallengeController extends AbstractController{
         //Call when the page is loaded to update all the UI with the user data
         updateUICoins();
         challengeTip.setOpacity(0);
-        typeDisplayed.setText("Daily");
-        typeBtn.setText("Weekly");
         loadChallengesFromDatabase();
         assignChallenges();
 
@@ -298,9 +359,10 @@ public class ChallengeController extends AbstractController{
 
     @FXML
     private void onChallengeCompleted(ActionEvent event) {
+        ResourceBundle bundle = LanguageManager.getBundle();
         SoundManager.getInstance().playClick();
         Challenge currentChallenge;
-        if(typeDisplayed.getText().equals("Daily")){
+        if(typeDisplayed.getText().equals(bundle.getString("challenge.type.daily"))){
             currentChallenge = currentDailyChallenge;
         } else {
             currentChallenge = currentWeeklyChallenge;
@@ -341,12 +403,13 @@ public class ChallengeController extends AbstractController{
 
     @FXML
     private void changeChallengeType(ActionEvent event) {
+        ResourceBundle bundle = LanguageManager.getBundle();
         String curTypeDisplayed = typeDisplayed.getText();
         String curTypeBtn = typeBtn.getText();
         typeDisplayed.setText(curTypeBtn);
         typeBtn.setText(curTypeDisplayed);
 
-        if(curTypeDisplayed.equals("Daily")){
+        if(curTypeDisplayed.equals(bundle.getString("challenge.type.daily"))){
             SoundManager.getInstance().playClick();
             updateUIChallenge(currentWeeklyChallenge);
             startCountdown("weekly");
