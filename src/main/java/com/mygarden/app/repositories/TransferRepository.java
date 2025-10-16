@@ -83,6 +83,12 @@ public class TransferRepository implements BaseRepository<Transfer, Integer> {
         return currentTransfer.get();
     }
 
+    /**
+     * Retrieve the list of all the plants owned by the user
+     * @param user the user we want to know the plants
+     * @return a list of pairs of ShopItems and the number of plants owned
+     * @throws SQLException
+     */
     public List<Pair<ShopItem, Integer>> getPlantStatistics(User user) throws SQLException {
         HashMap<String, Pair<ShopItem, Integer>> plants = new HashMap<>();
         ShopItemsRepository shopItemsRepository = new ShopItemsRepository();
