@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -48,6 +49,9 @@
                               <VBox.margin>
                                  <Insets top="30.0" />
                               </VBox.margin>
+                              <cursor>
+                                 <Cursor fx:constant="HAND" />
+                              </cursor>
                            </ComboBox>
 
                            <HBox alignment="CENTER" prefHeight="135.0" prefWidth="335.0" spacing="10.0">
@@ -57,7 +61,10 @@
                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
-                                 <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="120.0" />
+                                 <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="120.0">
+                                    <cursor>
+                                       <Cursor fx:constant="HAND" />
+                                    </cursor></Slider>
                                  <Label fx:id="volumeLabel" text="50%">
                                     <font>
                                        <Font name="System Bold" size="13.0" />
@@ -79,7 +86,10 @@
                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
-                                 <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="120.0" />
+                                 <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="120.0">
+                                    <cursor>
+                                       <Cursor fx:constant="HAND" />
+                                    </cursor></Slider>
                                  <Label fx:id="sfxVolumeLabel" text="50%">
                                     <font>
                                        <Font name="System Bold" size="13.0" />
@@ -95,7 +105,10 @@
                                     </HBox.margin>
                                     <font>
                                        <Font name="System Bold" size="17.0" />
-                                    </font></Button>
+                                    </font>
+                                    <cursor>
+                                       <Cursor fx:constant="HAND" />
+                                    </cursor></Button>
                               </children>
                            </HBox>
 
@@ -110,6 +123,9 @@
                         <image>
                            <Image url="@../../../images/back_arrow.png" />
                         </image>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor>
                      </ImageView>
                   </graphic>
                </Button>
