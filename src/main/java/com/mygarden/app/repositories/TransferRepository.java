@@ -1,16 +1,18 @@
 package com.mygarden.app.repositories;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.query.In;
 import com.mygarden.app.DatabaseManager;
 import com.mygarden.app.models.Challenge;
 import com.mygarden.app.models.ShopItem;
 import com.mygarden.app.models.Transfer;
 import com.mygarden.app.models.User;
 import com.mygarden.app.models.UserItem;
+import javafx.util.Pair;
 
 public class TransferRepository implements BaseRepository<Transfer, Integer> {
     public final Dao<Transfer, Integer> transferDao;
@@ -79,5 +81,37 @@ public class TransferRepository implements BaseRepository<Transfer, Integer> {
         if (currentTransfer.isEmpty()) {throw new SQLException("Transfer not found");}
 
         return currentTransfer.get();
+    }
+
+    /**
+     * Retrieve the list of all the plants owned by the user
+     * @param user the user we want to know the plants
+     * @return a list of pairs of ShopItems and the number of plants owned
+     * @throws SQLException
+     */
+    public List<Pair<ShopItem, Integer>> getPlantStatistics(User user) throws SQLException {
+        HashMap<String, Pair<ShopItem, Integer>> plants = new HashMap<>();
+        ShopItemsRepository shopItemsRepository = new ShopItemsRepository();
+
+        shopItemsRepository.findAll().forEach(shopItem -> {
+            plants.put(shopItem.getId(), new Pair<>(shopItem, 0));
+        });
+
+        List<Transfer> transfers = transferDao.queryBuilder()
+                .where().eq(Transfer.USER_ID, user)
+                .and().isNotNull(Transfer.SHOP_ITEM_ID)
+                .query();
+
+        transfers.forEach(transfer -> {
+            plants.computeIfPresent(transfer.getShopItemId().getId(), (k, t) -> new Pair<>(t.getKey(), t.getValue() + 1));
+        });
+
+        List<Pair<ShopItem, Integer>> results = new ArrayList<>();
+
+        plants.forEach((k, v) -> {
+            results.add(v);
+        });
+
+        return results;
     }
 }

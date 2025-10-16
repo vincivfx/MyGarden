@@ -108,7 +108,7 @@ public class User extends TimeStampAbstractModel {
     }
 
     public Boolean verifyPassword(String password) {
-        return true;
+        return this.password.equals(password);
     }
 
     public static User createUser(String username, String password, String name) {
@@ -120,6 +120,5 @@ public class User extends TimeStampAbstractModel {
 
         return user;
     }
-
 
 }
