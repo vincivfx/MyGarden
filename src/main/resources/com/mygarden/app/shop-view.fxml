@@ -56,7 +56,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToGarden" prefHeight="50.0" prefWidth="59.0" style="-fx-background-color: transparent;" text="flor">
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToGarden" prefHeight="50.0" prefWidth="59.0" style="-fx-background-color: transparent;">
                            <font>
                               <Font size="2.0" />
                            </font>
@@ -71,7 +71,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;" text="main">
+                        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToMainPage" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparent;">
                            <font>
                               <Font size="2.0" />
                            </font>

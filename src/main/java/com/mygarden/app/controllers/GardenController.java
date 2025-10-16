@@ -74,6 +74,7 @@ public class GardenController extends AbstractController implements Initializabl
     @FXML private GridPane inventoryGrid;
     @FXML private Button inventoryButton;
     @FXML private Label plantedCounterLabel;
+    @FXML private Label plantedCounterLabelNum;
     @FXML private Button mainPageButton;
     @FXML private Button shopButton;
 
@@ -107,7 +108,10 @@ public class GardenController extends AbstractController implements Initializabl
         ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
 
         try {
-            if (mainPageButton != null && bundle.containsKey("garden.mainPage")) {
+            if (plantedCounterLabel != null && bundle.containsKey("garden.plantedPlants")) {
+                plantedCounterLabel.setText(bundle.getString("garden.plantedPlants"));
+            }
+            /*if (mainPageButton != null && bundle.containsKey("garden.mainPage")) {
                 mainPageButton.setText(bundle.getString("garden.mainPage"));
             }
             if (shopButton != null && bundle.containsKey("garden.shop")) {
@@ -115,7 +119,7 @@ public class GardenController extends AbstractController implements Initializabl
             }
             if (inventoryButton != null && bundle.containsKey("garden.inventory")) {
                 inventoryButton.setText(bundle.getString("garden.inventory"));
-            }
+            }*/
 
         } catch (Exception e) {
             // be conservative: if bundle lookup fails, do not break initialization
@@ -409,7 +413,7 @@ public class GardenController extends AbstractController implements Initializabl
     // Update planted counter by querying DB for current user's placed UserItems
     private void updatePlantedCounterFromDb() {
         try {
-            if (getUser() == null || plantedCounterLabel == null) return;
+            if (getUser() == null || plantedCounterLabelNum == null) return;
             UserItemRepository repo = new UserItemRepository();
             List<UserItem> all = repo.findAll();
             int count = 0;
@@ -422,34 +426,32 @@ public class GardenController extends AbstractController implements Initializabl
                 }
             }
             final int finalCount = count;
-            plantedCounterLabel.setText("Planted Plants: " + finalCount);
+            plantedCounterLabelNum.setText("" + finalCount);
         } catch (Exception e) {
             System.err.println("Failed to update planted counter: " + e.getMessage());
-            plantedCounterLabel.setText("Planted Plants: 0");
+            plantedCounterLabelNum.setText("0");
         }
     }
 
     private void incrementPlantedCounter() {
-        if (plantedCounterLabel == null) return;
+        if (plantedCounterLabelNum == null) return;
         try {
-            String t = plantedCounterLabel.getText();
-            int idx = t.lastIndexOf(':');
+            String t = plantedCounterLabelNum.getText();
             int v = 0;
-            if (idx >= 0) v = Integer.parseInt(t.substring(idx + 1).trim());
+            v = Integer.parseInt(t);
             v++;
-            plantedCounterLabel.setText("Planted Plants: " + v);
+            plantedCounterLabelNum.setText("" + v);
         } catch (Exception ignore) {}
     }
 
     private void decrementPlantedCounter() {
-        if (plantedCounterLabel == null) return;
+        if (plantedCounterLabelNum == null) return;
         try {
-            String t = plantedCounterLabel.getText();
-            int idx = t.lastIndexOf(':');
+            String t = plantedCounterLabelNum.getText();
             int v = 0;
-            if (idx >= 0) v = Integer.parseInt(t.substring(idx + 1).trim());
+            v = Integer.parseInt(t);
             v = Math.max(0, v - 1);
-            plantedCounterLabel.setText("Planted Plants: " + v);
+            plantedCounterLabelNum.setText("" + v);
         } catch (Exception ignore) {}
     }
 
