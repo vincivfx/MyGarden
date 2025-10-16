@@ -35,9 +35,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 
 public class ShopController extends AbstractController implements Initializable {
+
 
 
     int currentCategorie = -1;
@@ -190,6 +192,9 @@ public class ShopController extends AbstractController implements Initializable 
         ResourceBundle bundle = (resbundle != null) ? resbundle : LanguageManager.getBundle();
 
         try {
+            if (titleText != null && bundle.containsKey("shop.title")) {
+                titleText.setText(bundle.getString("shop.title"));
+            }
             if (mainPageButton != null && bundle.containsKey("shop.mainPage")) {
                 mainPageButton.setText(bundle.getString("shop.mainPage"));
             }
@@ -218,6 +223,9 @@ public class ShopController extends AbstractController implements Initializable 
     // --- End Methods ---
 
     // --- FXML UI elements ---
+    @FXML
+    private Text titleText;
+    
     @FXML
     private Label UserCoins;
 
