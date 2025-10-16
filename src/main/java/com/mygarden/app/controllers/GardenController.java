@@ -16,6 +16,8 @@ import com.mygarden.app.models.UserItem;
 import com.mygarden.app.repositories.ShopItemTranslationRepository;
 import com.mygarden.app.repositories.UserItemRepository;
 
+import com.mygarden.app.models.Transfer;
+import com.mygarden.app.repositories.TransferRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -89,6 +91,14 @@ public class GardenController extends AbstractController implements Initializabl
         } catch (Exception ex) {
             System.err.println("Could not load user items on setUser: " + ex.getMessage());
         }
+
+        TransferRepository transferRepository = new TransferRepository();
+        try {
+            transferRepository.getPlantStatistics(getUser());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     @Override
@@ -195,6 +205,7 @@ public class GardenController extends AbstractController implements Initializabl
                 e.consume();
             });
         }
+
     }
 
     @FXML

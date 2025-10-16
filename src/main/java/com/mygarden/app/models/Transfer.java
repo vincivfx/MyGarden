@@ -8,19 +8,24 @@ import java.util.Optional;
 @DatabaseTable(tableName = "mg_transfers")
 public class Transfer extends TimeStampAbstractModel {
 
+    public static final String SHOP_ITEM_ID = "shop_item_id";
+    public static final String CHALLENGE_ID = "challenge_id";
+    public static final String USER_ID = "user_id";
+
+
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true, columnName = "user_id")
+    @DatabaseField(canBeNull = true, foreign = true, foreignAutoRefresh = true, columnName = USER_ID)
     private User user;
 
     @DatabaseField(canBeNull = false)
     private int amount;
 
-    @DatabaseField(canBeNull = true, foreign = true)
+    @DatabaseField(canBeNull = true, foreign = true, columnName = SHOP_ITEM_ID)
     private ShopItem shopItemId;
 
-    @DatabaseField(canBeNull = true, foreign = true)
+    @DatabaseField(canBeNull = true, foreign = true, columnName = CHALLENGE_ID)
     private Challenge challengeId;
 
     public int getAmount() {return amount;}

@@ -121,5 +121,4 @@ public class User extends TimeStampAbstractModel {
         return user;
     }
 
-
 }
