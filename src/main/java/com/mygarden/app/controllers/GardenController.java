@@ -69,6 +69,7 @@ public class GardenController extends AbstractController {
     @FXML private AnchorPane inventoryPane;
     @FXML private GridPane inventoryGrid;
     @FXML private Button inventoryButton;
+    @FXML private Label plantedCounterLabel;
 
     // Images
     private Image tileSoilImg;
@@ -80,6 +81,8 @@ public class GardenController extends AbstractController {
         try {
             loadInventoryItems();
             loadPlacedItems();
+            // ensure counter reflects persisted state
+            updatePlantedCounterFromDb();
         } catch (Exception ex) {
             System.err.println("Could not load user items on setUser: " + ex.getMessage());
         }
@@ -151,6 +154,8 @@ public class GardenController extends AbstractController {
                                     removePlacedImageByUserItemId(ui.getId());
                                     // refresh inventory UI
                                     loadInventoryItems();
+                                    // update counter: item moved back to inventory
+                                    decrementPlantedCounter();
                                     ok = true;
                                 }
                             } catch (Exception ex) {
@@ -348,9 +353,58 @@ public class GardenController extends AbstractController {
                     System.err.println("Failed to render placed UserItem id=" + ui.getId() + " -> " + e.getMessage());
                 }
             }
+            // After loading all placed items, update the planted counter to match DB
+            updatePlantedCounterFromDb();
         } catch (Exception e) {
             System.err.println("Error loading placed items: " + e.getMessage());
         }
+    }
+
+    // Update planted counter by querying DB for current user's placed UserItems
+    private void updatePlantedCounterFromDb() {
+        try {
+            if (getUser() == null || plantedCounterLabel == null) return;
+            UserItemRepository repo = new UserItemRepository();
+            List<UserItem> all = repo.findAll();
+            int count = 0;
+            if (all != null) {
+                for (UserItem ui : all) {
+                    if (ui == null) continue;
+                    if (ui.getUser() == null) continue;
+                    if (!Objects.equals(ui.getUser().getUsername(), getUser().getUsername())) continue;
+                    if (ui.getPositionX() != null && ui.getPositionY() != null) count++;
+                }
+            }
+            final int finalCount = count;
+            plantedCounterLabel.setText("Planted Plants: " + finalCount);
+        } catch (Exception e) {
+            System.err.println("Failed to update planted counter: " + e.getMessage());
+            plantedCounterLabel.setText("Planted Plants: 0");
+        }
+    }
+
+    private void incrementPlantedCounter() {
+        if (plantedCounterLabel == null) return;
+        try {
+            String t = plantedCounterLabel.getText();
+            int idx = t.lastIndexOf(':');
+            int v = 0;
+            if (idx >= 0) v = Integer.parseInt(t.substring(idx + 1).trim());
+            v++;
+            plantedCounterLabel.setText("Planted Plants: " + v);
+        } catch (Exception ignore) {}
+    }
+
+    private void decrementPlantedCounter() {
+        if (plantedCounterLabel == null) return;
+        try {
+            String t = plantedCounterLabel.getText();
+            int idx = t.lastIndexOf(':');
+            int v = 0;
+            if (idx >= 0) v = Integer.parseInt(t.substring(idx + 1).trim());
+            v = Math.max(0, v - 1);
+            plantedCounterLabel.setText("Planted Plants: " + v);
+        } catch (Exception ignore) {}
     }
 
     private ImageView createPlacedImageView(UserItem ui) {
@@ -644,6 +698,9 @@ public class GardenController extends AbstractController {
             var opt = repo.findById(Integer.valueOf(idStr));
             if (opt.isPresent()) {
                 UserItem ui = opt.get();
+                // Check if item was already placed in garden (repositioning) or coming from inventory (new placement)
+                boolean wasAlreadyPlaced = (ui.getPositionX() != null && ui.getPositionY() != null);
+                
                 // use repository move() which checks occupancy
                 boolean moved = repo.move(ui, cx, rx);
                 if (!moved) {
@@ -663,6 +720,10 @@ public class GardenController extends AbstractController {
                     if (toRemove != null) inventoryGrid.getChildren().remove(toRemove);
 
                     // keep the tile label unchanged — only show the image when placing an item
+                    // update counter: only increment if this is a new placement from inventory (not repositioning)
+                    if (!wasAlreadyPlaced) {
+                        incrementPlantedCounter();
+                    }
 
                     success = true;
                 }
