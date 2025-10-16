@@ -74,7 +74,7 @@
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../images/goGarden.png" />
+                                    <Image url="@../../../images/gardenIcon.png" />
                                  </image>
                               </ImageView>
                            </graphic>
