@@ -19,13 +19,16 @@
             <Button mnemonicParsing="false" onAction="#onNoClicked" style="-fx-background-color: red; -fx-border-color: darkred; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 10; -fx-font-weight: bold;" text="%popup.no" textFill="WHITE">
                <HBox.margin>
                   <Insets left="3.0" right="24.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <Button mnemonicParsing="false" onAction="#onYesClicked" style="-fx-background-color: #59a834; -fx-border-color: #3b8133; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 10;" text="%popup.yes" textFill="WHITE">
                <HBox.margin>
                   <Insets left="24.0" right="3.0" />
                </HBox.margin>
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Button>
          </children>
