@@ -53,7 +53,35 @@ public class SettingsController extends AbstractController{
     private ComboBox<String> languageSelector;
 
     @FXML
-    private Button deleteDataButton; 
+    private Button deleteDataButton;
+
+    private void ensureSettingsStylesheetLoaded() {
+        var cssUrl = getClass().getResource("/styles/settings.css");
+        if (cssUrl == null) {
+            System.err.println("settings.css not found on classpath at /styles/settings.css");
+            return;
+        }
+        final String css = cssUrl.toExternalForm();
+
+        if (rootPane.getScene() != null) {
+            if (!rootPane.getScene().getStylesheets().contains(css)) {
+                rootPane.getScene().getStylesheets().add(css);
+            }
+            System.out.println("Attached settings.css -> " + css);
+            System.out.println("Thumb image resource check -> " + getClass().getResource("/images/settingsImg/thumb.png"));
+            return;
+        }
+
+        rootPane.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                if (!newScene.getStylesheets().contains(css)) {
+                    newScene.getStylesheets().add(css);
+                }
+                System.out.println("Attached settings.css (on scene ready) -> " + css);
+                System.out.println("Thumb image resource check -> " + getClass().getResource("/images/settingsImg/thumb.png"));
+            }
+        });
+    }
 
     @FXML
     private void onGoToMainPage(ActionEvent event) throws IOException {
@@ -64,7 +92,6 @@ public class SettingsController extends AbstractController{
     @Override
     public void onUserIsSet()
     {
-        // Called when the page is loaded to update all the UI with the user data
         AudioManager audio = AudioManager.getInstance();
 
         // --- Music slider init & listener ---
@@ -89,25 +116,18 @@ public class SettingsController extends AbstractController{
             sfxVolumeLabel.setText(String.format("%d%%", Math.round(v)));
         });
 
-        // Play a short test click when the user releases the slider thumb
         sfxVolumeSlider.addEventHandler(MouseEvent.MOUSE_RELEASED, e -> SoundManager.getInstance().playClick());
 
-        // Settings Stylesheet
-        if (rootPane.getScene() != null) {
-            rootPane.getScene().getStylesheets().add(
-                getClass().getResource("/styles/settings.css").toExternalForm()
-            );
-        }
+        ensureSettingsStylesheetLoaded();
 
-        // --- Language ComboBox ---
         if (languageSelector != null) {
             languageSelector.getItems().setAll("en","sv","de","es","it","fr","pt");
 
-            // Mostra solo bandiere
+            // show only flags (images)
             languageSelector.setCellFactory(cb -> new ListCell<>() {
                 private final ImageView imageView = new ImageView();
                 {
-                    setStyle("-fx-padding: 2 0 2 0;"); // padding azzerato per ogni cella
+                    setStyle("-fx-padding: 2 0 2 0;");
                     setOnMouseEntered(e -> setCursor(Cursor.HAND));
                     setOnMouseExited(e -> setCursor(Cursor.DEFAULT));
                 }
@@ -127,29 +147,25 @@ public class SettingsController extends AbstractController{
                         ));
                         setGraphic(imageView);
                     }
-                    setText(null); // niente testo
+                    setText(null);
                 }
             });
             languageSelector.setButtonCell(languageSelector.getCellFactory().call(null));
 
-            // Imposta lingua corrente
             languageSelector.setValue(LanguageManager.getCurrentLang());
 
-            // Listener cambio lingua
             languageSelector.valueProperty().addListener((obs, oldLang, newLang) -> {
                 if (newLang != null) {
                     setLanguageAndReload(new Locale(newLang));
                 }
             });
         }
-
     }
 
     @FXML
     public void resetApplication(ActionEvent event) throws IOException {
         ResourceBundle bundle = LanguageManager.getBundle();
 
-        // Localized title / content / button labels with fallbacks
         String title = bundle != null && bundle.containsKey("reset.title") ? bundle.getString("reset.title") : "Reset Application";
         String content = bundle != null && bundle.containsKey("reset.confirmText")
             ? bundle.getString("reset.confirmText")
@@ -198,15 +214,13 @@ public class SettingsController extends AbstractController{
         );
         cancelButton.setCursor(Cursor.HAND);
 
-        // ensure dialog grows to fit long text
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
 
         alert.showAndWait().ifPresent(rs -> {
-            if (rs == deleteBtn) { 
+            if (rs == deleteBtn) {
                 try {
                     DatabaseManager.getInstance().deleteCurrentUser(getUser());
                     SceneUtils.changeScene(event, "/com/mygarden/app/login-page-view.fxml", null);
-
                 } catch (SQLException | IOException exception) {
                     exception.printStackTrace();
 
@@ -224,38 +238,24 @@ public class SettingsController extends AbstractController{
         });
     }
 
-    // -------------------------------
-    // Language selection handlers
-    // -------------------------------
-
-    /**
-     * Central helper: set Locale in LanguageManager, then reload this settings FXML using the new bundle.
-     * We capture the relevant UI state (slider percentages) and restore them after reloading.
-     */
     private void setLanguageAndReload(Locale locale) {
-        // capture UI state we want to preserve
         double musicVol = volumeSlider != null ? volumeSlider.getValue() : -1;
         double sfxVol = sfxVolumeSlider != null ? sfxVolumeSlider.getValue() : -1;
 
-        // persist language
         LanguageManager.setLocale(locale);
 
-        // reload the settings view using the new ResourceBundle
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/mygarden/app/settings-view.fxml"), LanguageManager.getBundle());
             Parent root = loader.load();
 
-            // attach the current user to the newly-created controller if possible
             Object controller = loader.getController();
             if (controller instanceof AbstractController) {
                 ((AbstractController) controller).setUser(getUser());
             }
 
-            // swap scene root
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.getScene().setRoot(root);
 
-            // restore slider values on the new scene (lookup by fx:id)
             if (musicVol >= 0) {
                 var newMusicSlider = (Slider) stage.getScene().getRoot().lookup("#volumeSlider");
                 var newMusicLabel = (Label) stage.getScene().getRoot().lookup("#volumeLabel");
@@ -273,7 +273,6 @@ public class SettingsController extends AbstractController{
                 }
             }
 
-            // play click sound for feedback (optional)
             SoundManager.getInstance().playClick();
 
         } catch (IOException e) {

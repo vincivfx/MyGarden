@@ -17,12 +17,13 @@
 
    <StackPane prefHeight="150.0" prefWidth="200.0">
       <children>
-         <!-- Added fx:id so controller can change this per-language -->
+         <!-- background image (language-swappable by controller) -->
          <ImageView fx:id="backgroundImageView" fitHeight="600.0" fitWidth="335.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../../../images/MainPage.jpg" />
             </image>
          </ImageView>
+
          <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_CENTER">
             <children>
                <HBox alignment="CENTER" prefHeight="73.0" prefWidth="335.0" spacing="50.0" />
@@ -45,6 +46,7 @@
                                  <Insets top="21.0" />
                               </VBox.margin>
                            </Label>
+
                            <ComboBox fx:id="languageSelector" prefHeight="36.0" prefWidth="54.0" style="-fx-background-color: transparent;">
                               <VBox.margin>
                                  <Insets top="30.0" />
@@ -61,11 +63,14 @@
                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
-                                 <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="120.0">
+
+                                 <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="120.0" HBox.hgrow="ALWAYS">
                                     <cursor>
                                        <Cursor fx:constant="HAND" />
-                                    </cursor></Slider>
-                                 <Label fx:id="volumeLabel" text="50%">
+                                    </cursor>
+                                 </Slider>
+
+                                 <Label fx:id="volumeLabel" text="50%" prefWidth="48.0" minWidth="48.0" alignment="CENTER_RIGHT" translateX="-10.0">
                                     <font>
                                        <Font name="System Bold" size="13.0" />
                                     </font>
@@ -86,17 +91,21 @@
                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
-                                 <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="120.0">
+
+                                 <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="120.0" HBox.hgrow="ALWAYS">
                                     <cursor>
                                        <Cursor fx:constant="HAND" />
-                                    </cursor></Slider>
-                                 <Label fx:id="sfxVolumeLabel" text="50%">
+                                    </cursor>
+                                 </Slider>
+
+                                 <Label fx:id="sfxVolumeLabel" text="50%" prefWidth="48.0" minWidth="48.0" alignment="CENTER_RIGHT" translateX="-10.0">
                                     <font>
                                        <Font name="System Bold" size="13.0" />
                                     </font>
                                  </Label>
                               </children>
                            </HBox>
+
                            <HBox alignment="TOP_CENTER" prefHeight="25.0" prefWidth="335.0">
                               <children>
                                  <Button fx:id="deleteDataButton" mnemonicParsing="false" onAction="#resetApplication" style="-fx-background-color: red; -fx-border-color: darkred; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 3;" text="%settings.deleteAllData" textFill="WHITE">
@@ -108,7 +117,8 @@
                                     </font>
                                     <cursor>
                                        <Cursor fx:constant="HAND" />
-                                    </cursor></Button>
+                                    </cursor>
+                                 </Button>
                               </children>
                            </HBox>
 
