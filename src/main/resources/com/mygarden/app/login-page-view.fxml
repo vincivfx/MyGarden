@@ -59,7 +59,10 @@
             <Image url="@../../../images/logo.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="languageSelector" layoutX="269.0" layoutY="14.0" prefHeight="27.0" prefWidth="44.0" style="-fx-background-color: transparent;" />
+      <ComboBox fx:id="languageSelector" layoutX="269.0" layoutY="14.0" prefHeight="27.0" prefWidth="44.0" style="-fx-background-color: transparent;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></ComboBox>
       <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="477.0" prefHeight="123.0" prefWidth="329.0">
          <children>
             <Button fx:id="connection" mnemonicParsing="false" onAction="#tryToConnect" style="-fx-background-color: #59a834; -fx-border-width: 3; -fx-border-color: #3b8133; -fx-border-radius: 10; -fx-background-radius: 10;" text="Start!" textFill="WHITE">

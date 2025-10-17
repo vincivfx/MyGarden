@@ -14,6 +14,7 @@ import com.mygarden.app.repositories.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -86,6 +87,8 @@ public class LoginPageController {
             private final ImageView imageView = new ImageView();
             {
                 setStyle("-fx-padding: 2 0 2 0;"); // padding setting
+                setOnMouseEntered(e -> setCursor(Cursor.HAND));
+                setOnMouseExited(e -> setCursor(Cursor.DEFAULT));
             }
             @Override
             protected void updateItem(String lang, boolean empty) {

@@ -15,6 +15,7 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -107,6 +108,8 @@ public class SettingsController extends AbstractController{
                 private final ImageView imageView = new ImageView();
                 {
                     setStyle("-fx-padding: 2 0 2 0;"); // padding azzerato per ogni cella
+                    setOnMouseEntered(e -> setCursor(Cursor.HAND));
+                    setOnMouseExited(e -> setCursor(Cursor.DEFAULT));
                 }
                 @Override
                 protected void updateItem(String lang, boolean empty) {
@@ -178,6 +181,8 @@ public class SettingsController extends AbstractController{
             "-fx-text-fill: white;" +
             "-fx-font-weight: bold;"
         );
+        deleteButton.setCursor(Cursor.HAND);
+
         Button cancelButton = (Button) alert.getDialogPane().lookupButton(cancelBtn);
         cancelButton.setStyle(
             "-fx-background-color: #59a834;" +
@@ -188,6 +193,7 @@ public class SettingsController extends AbstractController{
             "-fx-text-fill: white;" +
             "-fx-font-weight: bold;"
         );
+        cancelButton.setCursor(Cursor.HAND);
 
         // ensure dialog grows to fit long text
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);

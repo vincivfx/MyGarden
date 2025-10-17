@@ -306,6 +306,8 @@ public class GardenController extends AbstractController implements Initializabl
                 iv.setFitWidth(64);
                 iv.setFitHeight(64);
                 iv.setPreserveRatio(true);
+                iv.setOnMouseEntered(e -> iv.setCursor(Cursor.HAND));
+                iv.setOnMouseExited(e -> iv.setCursor(Cursor.DEFAULT));
                 try {
                     var is = getClass().getResourceAsStream("/images/inventoryImg/" + shopItem.getId() + ".png");
                     if (is != null) iv.setImage(new Image(is));
