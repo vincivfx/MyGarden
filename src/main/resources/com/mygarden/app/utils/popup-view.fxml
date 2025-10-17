@@ -16,7 +16,7 @@
       </Label>
       <Button mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #59a834; -fx-border-color: #3b8133; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 10;" text="%popup.ok" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="17.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <VBox.margin>
             <Insets top="8.0" />

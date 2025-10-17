@@ -22,7 +22,7 @@
                   <Insets left="3.0" right="24.0" />
                </HBox.margin>
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -33,7 +33,7 @@
                   <Insets left="24.0" right="3.0" />
                </HBox.margin>
                <font>
-                  <Font name="System Bold" size="17.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
