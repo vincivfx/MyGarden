@@ -62,6 +62,12 @@
                                     <font>
                                        <Font name="System Bold" size="13.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                    <padding>
+                                       <Insets bottom="2.0" />
+                                    </padding>
                                  </Label>
 
                                  <Slider fx:id="volumeSlider" max="100" min="0" prefWidth="120.0" HBox.hgrow="ALWAYS">
@@ -70,10 +76,13 @@
                                     </cursor>
                                  </Slider>
 
-                                 <Label fx:id="volumeLabel" text="50%" prefWidth="48.0" minWidth="48.0" alignment="CENTER_RIGHT" translateX="-10.0">
+                                 <Label fx:id="volumeLabel" alignment="CENTER_RIGHT" minWidth="44.0" prefWidth="44.0" text="50%" translateX="-10.0">
                                     <font>
                                        <Font name="System Bold" size="13.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets right="5.0" top="1.0" />
+                                    </HBox.margin>
                                  </Label>
                               </children>
                               <padding>
@@ -90,6 +99,12 @@
                                     <font>
                                        <Font name="System Bold" size="13.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets left="10.0" />
+                                    </HBox.margin>
+                                    <padding>
+                                       <Insets bottom="2.0" />
+                                    </padding>
                                  </Label>
 
                                  <Slider fx:id="sfxVolumeSlider" max="100" min="0" prefWidth="120.0" HBox.hgrow="ALWAYS">
@@ -98,10 +113,13 @@
                                     </cursor>
                                  </Slider>
 
-                                 <Label fx:id="sfxVolumeLabel" text="50%" prefWidth="48.0" minWidth="48.0" alignment="CENTER_RIGHT" translateX="-10.0">
+                                 <Label fx:id="sfxVolumeLabel" alignment="CENTER_RIGHT" minWidth="44.0" prefWidth="44.0" text="50%" translateX="-10.0">
                                     <font>
                                        <Font name="System Bold" size="13.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets right="5.0" top="1.0" />
+                                    </HBox.margin>
                                  </Label>
                               </children>
                            </HBox>
