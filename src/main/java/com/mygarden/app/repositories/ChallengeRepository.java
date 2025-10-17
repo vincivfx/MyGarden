@@ -3,7 +3,6 @@ package com.mygarden.app.repositories;
 import com.j256.ormlite.dao.Dao;
 import com.mygarden.app.DatabaseManager;
 import com.mygarden.app.models.Challenge;
-import com.mygarden.app.models.ShopItem;
 
 import java.sql.SQLException;
 import java.util.List;

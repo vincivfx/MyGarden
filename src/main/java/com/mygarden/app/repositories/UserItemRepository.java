@@ -2,7 +2,6 @@ package com.mygarden.app.repositories;
 
 import com.j256.ormlite.dao.Dao;
 import com.mygarden.app.DatabaseManager;
-import com.mygarden.app.models.Transfer;
 import com.mygarden.app.models.UserItem;
 
 import java.sql.SQLException;

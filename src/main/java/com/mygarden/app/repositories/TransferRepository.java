@@ -4,8 +4,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.query.In;
 import com.mygarden.app.DatabaseManager;
 import com.mygarden.app.models.Challenge;
 import com.mygarden.app.models.ShopItem;

@@ -16,7 +16,6 @@ import com.mygarden.app.models.UserItem;
 import com.mygarden.app.repositories.ShopItemTranslationRepository;
 import com.mygarden.app.repositories.UserItemRepository;
 
-import com.mygarden.app.models.Transfer;
 import com.mygarden.app.repositories.TransferRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

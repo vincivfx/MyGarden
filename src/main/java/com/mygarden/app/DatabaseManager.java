@@ -146,7 +146,7 @@ public final class DatabaseManager {
 
     public void deleteCurrentUser(User currentUser) throws SQLException {
 
-        // delet data associated with the user
+        // delete data associated with the user
         userItemsDao.delete(userItemsDao.queryForEq("user_id", currentUser.getUsername()));
         userChallengeDao.delete(userChallengeDao.queryForEq("user_id", currentUser.getUsername()));
         gardenDao.delete(gardenDao.queryForEq("user_id", currentUser.getUsername()));

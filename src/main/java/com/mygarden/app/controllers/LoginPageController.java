@@ -1,7 +1,6 @@
 package com.mygarden.app.controllers;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,12 +11,9 @@ import com.mygarden.app.controllers.utils.SceneUtils;
 import com.mygarden.app.models.User;
 import com.mygarden.app.repositories.UserRepository;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -26,14 +22,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -87,14 +78,14 @@ public class LoginPageController {
             e.printStackTrace();
         }
 
-        // Popola la combo con i codici lingua
+        // Popolate language selector
         languageSelector.getItems().setAll("en","sv","de","es","it","fr","pt");
 
-        // Mostra solo bandiere
+        // Show flags in the selector
         languageSelector.setCellFactory(cb -> new ListCell<>() {
             private final ImageView imageView = new ImageView();
             {
-                setStyle("-fx-padding: 2 0 2 0;"); // padding azzerato per ogni cella
+                setStyle("-fx-padding: 2 0 2 0;"); // padding setting
             }
             @Override
             protected void updateItem(String lang, boolean empty) {
@@ -112,15 +103,15 @@ public class LoginPageController {
                     ));
                     setGraphic(imageView);
                 }
-                setText(null); // niente testo
+                setText(null); // no text
             }
         });
         languageSelector.setButtonCell(languageSelector.getCellFactory().call(null));
 
-        // Imposta lingua corrente
+        // Set current language
         languageSelector.setValue(LanguageManager.getCurrentLang());
 
-        // Listener cambio lingua
+        // Change language listener
         languageSelector.valueProperty().addListener((obs, oldLang, newLang) -> {
             if (newLang != null) {
                 setLanguageAndReload(new Locale(newLang));
@@ -130,12 +121,6 @@ public class LoginPageController {
 
     
     
-
-    private Stage getStageFromNode(Node node) {
-        if (node == null) return null;
-        if (node.getScene() != null) return (Stage) node.getScene().getWindow();
-        return null;
-    }
 
     @FXML
     private void tryToConnect(ActionEvent e) throws IOException {
