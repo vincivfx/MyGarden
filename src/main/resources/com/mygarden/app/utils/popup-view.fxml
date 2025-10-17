@@ -13,6 +13,9 @@
          <VBox.margin>
             <Insets top="2.0" />
          </VBox.margin>
+         <font>
+            <Font name="System" size="14.0" />
+         </font>
       </Label>
       <Button mnemonicParsing="false" onAction="#closeWindow" style="-fx-background-color: #59a834; -fx-border-color: #3b8133; -fx-border-width: 3; -fx-border-radius: 10; -fx-background-radius: 10;" text="%popup.ok" textFill="WHITE">
          <font>

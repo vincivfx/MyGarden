@@ -164,7 +164,8 @@ public class SettingsController extends AbstractController{
         alert.getDialogPane().setStyle(
             "-fx-background-color: #b1ccbb;" +
             "-fx-border-color: #a0ac97;" +
-            "-fx-border-width: 3;"
+            "-fx-border-width: 3;" +
+            "-fx-font-size: 14px;"
         );
 
         ButtonType deleteBtn = new ButtonType(confirmLabel, ButtonBar.ButtonData.OK_DONE);
