@@ -33,15 +33,9 @@
                 <!-- Inventory panel - collapsed by default (maxHeight=0 and not managed) -->
                 <AnchorPane fx:id="inventoryPane" maxHeight="0.0" prefHeight="150.0" style="-fx-background-color: A77B3A; -fx-border-color: A77B3A; -fx-padding: 8;" BorderPane.alignment="CENTER">
                         <children>
-<<<<<<< HEAD
                                 <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: EAD8AF;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <content>
                                                 <GridPane fx:id="inventoryGrid" alignment="TOP_CENTER" hgap="8" style="-fx-background-color: EAD8AF;" vgap="8">
-=======
-                                <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background-color: A77B3A;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <content>
-                                                <GridPane fx:id="inventoryGrid" alignment="TOP_CENTER" hgap="8" style="-fx-background-color: FBD477;" vgap="8">
->>>>>>> 20fa8c8f37ee07180415522ac3ad3474cdb58963
                                                         <padding>
                                                                 <Insets bottom="8" left="8" right="8" top="8" />
                                                         </padding>
@@ -54,11 +48,7 @@
    <top>
       <VBox prefHeight="50.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-<<<<<<< HEAD
             <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: EAD8AF;">
-=======
-            <AnchorPane prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: FBD477; -fx-border-color: A77B3A;">
->>>>>>> 20fa8c8f37ee07180415522ac3ad3474cdb58963
                <children>
                   <Button fx:id="shopButton" alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="11.0" mnemonicParsing="false" onAction="#onGoToShop" prefHeight="50.0" prefWidth="59.0" style="-fx-background-color: transparent;">
                      <font>

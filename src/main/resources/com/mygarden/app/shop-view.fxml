@@ -55,11 +55,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-<<<<<<< HEAD
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: EAD8AF;">
-=======
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: FBD477; -fx-border-color: A77B3A;">
->>>>>>> 20fa8c8f37ee07180415522ac3ad3474cdb58963
                      <children>
                         <Button alignment="CENTER" contentDisplay="CENTER" layoutX="52.0" layoutY="11.0" mnemonicParsing="false" onAction="#goToGarden" prefHeight="50.0" prefWidth="59.0" style="-fx-background-color: transparent;">
                            <font>
@@ -155,15 +151,9 @@
                         <Insets />
                      </VBox.margin>
                   </HBox>
-<<<<<<< HEAD
                   <ScrollPane fx:id="scrollPaneShop" hbarPolicy="NEVER" prefHeight="510.0" prefWidth="333.0" style="-fx-background-color: EAD8AF;" vbarPolicy="NEVER">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1005.0" prefWidth="335.0" style="-fx-background-color: EAD8AF;">
-=======
-                  <ScrollPane fx:id="scrollPaneShop" hbarPolicy="NEVER" prefHeight="510.0" prefWidth="333.0" style="-fx-background-color: A77B3A;" vbarPolicy="NEVER">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1005.0" prefWidth="335.0" style="-fx-background-color: FBD477;">
->>>>>>> 20fa8c8f37ee07180415522ac3ad3474cdb58963
                            <children>
                               <GridPane fx:id="ShopGrid" prefHeight="1005.0" prefWidth="335.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <columnConstraints>
