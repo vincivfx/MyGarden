@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
@@ -163,7 +164,9 @@ public final class DatabaseManager {
         String lang = filename.substring(filename.indexOf("_") + 1, filename.indexOf(".txt"));
 
         try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(getClass().getResourceAsStream(resourcePath)))) {
+                new InputStreamReader(
+                Objects.requireNonNull(getClass().getResourceAsStream(resourcePath)),
+                java.nio.charset.StandardCharsets.UTF_8))) {
 
             String line;
             int index = 0;
@@ -211,7 +214,9 @@ public final class DatabaseManager {
         String lang = filename.substring(filename.indexOf("_") + 1, filename.indexOf(".txt"));
 
         try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(getClass().getResourceAsStream(resourcePath)))) {
+                new InputStreamReader(
+                Objects.requireNonNull(getClass().getResourceAsStream(resourcePath)),
+                java.nio.charset.StandardCharsets.UTF_8))) {
 
             String line;
             int index = 0;

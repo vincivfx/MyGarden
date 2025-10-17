@@ -195,7 +195,8 @@ public class SettingsController extends AbstractController{
             "-fx-border-radius: 10;" +
             "-fx-background-radius: 10;" +
             "-fx-text-fill: white;" +
-            "-fx-font-weight: bold;"
+            "-fx-font-weight: bold;" +
+            "-fx-font-size: 14px;"
         );
         deleteButton.setCursor(Cursor.HAND);
 
@@ -207,7 +208,8 @@ public class SettingsController extends AbstractController{
             "-fx-border-radius: 10;" +
             "-fx-background-radius: 10;" +
             "-fx-text-fill: white;" +
-            "-fx-font-weight: bold;"
+            "-fx-font-weight: bold;" +
+            "-fx-font-size: 14px;"
         );
         cancelButton.setCursor(Cursor.HAND);
 
